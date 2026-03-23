@@ -291,39 +291,59 @@ export default function Home() {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">Our Locations</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              {
-                title: "Prishtina Airport",
-                desc: "Pristina 10000, Kosovo",
-                img: "https://images.unsplash.com/photo-1542314831-c53cd4b85ca4?w=800&q=80",
-                tags: ["Airport Pickup", "24/7"]
-              },
               {
                 title: "Ferizaj HQ",
                 desc: "Rruga e Gjilanit, Ferizaj 70000, Kosovo",
-                img: "https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80",
-                tags: ["Main Office", "08:00 - 20:00"]
+                img: `${import.meta.env.BASE_URL}images/location-ferizaj.jpg`,
+                tags: ["Main Office", "08:00–20:00"],
+                country: "Kosovo"
+              },
+              {
+                title: "Pristina Airport",
+                desc: "Adem Jashari International Airport, Kosovo",
+                img: `${import.meta.env.BASE_URL}images/location-pristina.jpg`,
+                tags: ["Airport Pickup", "24/7"],
+                country: "Kosovo"
               },
               {
                 title: "Skopje Airport",
-                desc: "1043 Petrovec, North Macedonia",
-                img: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80",
-                tags: ["Airport Transfer", "On Request"]
+                desc: "Skopje International Airport, North Macedonia",
+                img: `${import.meta.env.BASE_URL}images/location-skopje.jpg`,
+                tags: ["Airport Transfer", "On Request"],
+                country: "N. Macedonia"
+              },
+              {
+                title: "Kukës Airport",
+                desc: "Zayed International Airport, Kukës, Albania",
+                img: `${import.meta.env.BASE_URL}images/location-kukes.jpg`,
+                tags: ["Airport Transfer", "On Request"],
+                country: "Albania"
               }
             ].map((loc, i) => (
-              <div key={i} className="group rounded-2xl overflow-hidden bg-white shadow-[0_2px_20px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col">
-                <div className="aspect-[4/3] overflow-hidden relative">
-                  <img src={loc.img} alt={loc.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+              <div key={i} className="group rounded-2xl overflow-hidden bg-white shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] transition-shadow duration-300">
+                <div className="relative overflow-hidden" style={{ aspectRatio: "3/2" }}>
+                  <img
+                    src={loc.img}
+                    alt={loc.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  {/* Country badge */}
+                  <div className="absolute bottom-3 left-3">
+                    <span className="text-[10px] uppercase tracking-widest font-semibold bg-black/50 backdrop-blur-sm text-white px-2.5 py-1 rounded-full">
+                      {loc.country}
+                    </span>
+                  </div>
                 </div>
-                <div className="p-8">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 tracking-tight">{loc.title}</h3>
-                  <p className="text-gray-400 text-sm font-light mb-6">{loc.desc}</p>
-                  <div className="flex items-center gap-3">
+                <div className="p-5 flex flex-col flex-grow">
+                  <h3 className="text-[1rem] font-bold text-gray-900 mb-1 tracking-tight leading-snug">{loc.title}</h3>
+                  <p className="text-gray-400 text-xs font-light mb-4 leading-relaxed">{loc.desc}</p>
+                  <div className="mt-auto flex items-center gap-2">
                     {loc.tags.map((tag, j) => (
-                      <div key={j} className="flex items-center gap-3">
-                        <span className="text-[10px] uppercase tracking-widest text-gray-500 font-medium">{tag}</span>
-                        {j < loc.tags.length - 1 && <span className="w-1 h-1 rounded-full bg-gray-300" />}
+                      <div key={j} className="flex items-center gap-2">
+                        <span className="text-[10px] uppercase tracking-wider text-gray-500 font-medium">{tag}</span>
+                        {j < loc.tags.length - 1 && <span className="w-1 h-1 rounded-full bg-gray-200" />}
                       </div>
                     ))}
                   </div>
