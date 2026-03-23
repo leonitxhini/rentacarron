@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       {/* Our Fleet Section */}
-      <section className="py-24 lg:py-32 bg-[#f8f9fc]">
+      <section className="py-24 lg:py-32 bg-[#e9ecf4]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-16">
             <div className="flex items-center gap-4 mb-4">
@@ -167,11 +167,16 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 lg:py-32 bg-[#fafafa]">
+      <section className="py-24 lg:py-32 bg-[#0a0c14]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">How it works</h2>
-            <p className="text-gray-500 font-light max-w-lg mx-auto">A seamless experience designed to get you on the road quickly and elegantly.</p>
+            <div className="flex items-center justify-center gap-3 mb-5">
+              <span className="block w-6 h-px bg-blue-500"></span>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-blue-400 font-semibold">Simple Process</span>
+              <span className="block w-6 h-px bg-blue-500"></span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white tracking-tight mb-4">How it works</h2>
+            <p className="text-white/40 font-light max-w-lg mx-auto">A seamless experience designed to get you on the road quickly and elegantly.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
@@ -182,14 +187,14 @@ export default function Home() {
               { step: "04", icon: Key, title: "Take the Keys", desc: "Start your journey with confidence." }
             ].map((s) => (
               <div key={s.step} className="flex flex-col items-center text-center">
-                <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-gray-200 text-gray-400 rounded-full mb-8">
+                <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-white/10 text-white/30 rounded-full mb-8">
                   STEP {s.step}
                 </span>
-                <div className="w-20 h-20 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.03)] flex items-center justify-center mb-8 text-blue-500">
+                <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-8 text-blue-400">
                   <s.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
-                <p className="text-gray-500 font-light text-sm leading-relaxed max-w-[200px]">{s.desc}</p>
+                <h3 className="text-xl font-bold text-white mb-4">{s.title}</h3>
+                <p className="text-white/40 font-light text-sm leading-relaxed max-w-[200px]">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -197,7 +202,7 @@ export default function Home() {
       </section>
 
       {/* What We Offer / Services Section */}
-      <section className="py-24 lg:py-32 bg-white border-t border-gray-100">
+      <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-20 text-center">
             <div className="inline-flex items-center justify-center gap-4 mb-6">
@@ -230,7 +235,7 @@ export default function Home() {
       </section>
 
       {/* Google Reviews */}
-      <section className="py-24 lg:py-32 bg-[#fafafa]">
+      <section className="py-24 lg:py-32 bg-[#e9ecf4]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center gap-4 mb-8">
             <span className="w-12 h-[1px] bg-gray-200"></span>
@@ -281,7 +286,7 @@ export default function Home() {
       </section>
 
       {/* Locations Section */}
-      <section className="py-24 lg:py-32 bg-[#f8f9fc]">
+      <section className="py-24 lg:py-32 bg-white">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-20">
             <div className="flex items-center gap-4 mb-4">
