@@ -91,49 +91,45 @@ export default function FAQ() {
   const filtered = cat === "All" ? faqs : faqs.filter(f => f.category === cat);
 
   return (
-    <div className="min-h-screen bg-[#0a0c14] flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: "#f8f9fc" }}>
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-44 pb-24 overflow-hidden">
+      <section className="relative pt-44 pb-20 bg-white border-b border-gray-100 overflow-hidden">
         <div
           className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(99,102,241,0.12) 0%, transparent 70%)",
-          }}
+          style={{ background: "radial-gradient(ellipse 70% 50% at 50% -10%, rgba(99,102,241,0.07) 0%, transparent 70%)" }}
         />
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-indigo-500/30 to-transparent" />
         <div className="max-w-3xl mx-auto px-6 text-center relative">
-          <span className="inline-flex items-center gap-2 text-[11px] font-semibold tracking-[0.2em] uppercase text-indigo-400 mb-6">
-            <span className="w-6 h-px bg-indigo-500" />
+          <span className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.22em] uppercase text-indigo-500 mb-5">
+            <span className="w-5 h-px bg-indigo-400" />
             Help Center
-            <span className="w-6 h-px bg-indigo-500" />
+            <span className="w-5 h-px bg-indigo-400" />
           </span>
-          <h1 className="text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.08] mb-6">
-            Frequently Asked
-            <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-blue-500">
-              Questions
-            </span>
+          <h1 className="text-5xl md:text-6xl font-black text-gray-900 tracking-tight leading-[1.06] mb-5">
+            Frequently Asked<br />
+            <span className="text-indigo-600">Questions</span>
           </h1>
-          <p className="text-lg text-gray-400 leading-relaxed">
-            Everything you need to know about renting with RRON. Can't find the answer? Just message us on WhatsApp.
+          <p className="text-lg text-gray-500 leading-relaxed">
+            Everything you need to know about renting with RRON. Can't find the answer?{" "}
+            <a href="https://wa.me/38348188415" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline font-medium">
+              Message us on WhatsApp.
+            </a>
           </p>
         </div>
       </section>
 
-      {/* Category filter */}
-      <section className="max-w-3xl mx-auto px-6 mb-10">
-        <div className="flex flex-wrap gap-2 justify-center">
+      {/* Category pills */}
+      <section className="bg-white border-b border-gray-100">
+        <div className="max-w-3xl mx-auto px-6 py-5 flex flex-wrap gap-2 justify-center">
           {categories.map(c => (
             <button
               key={c}
               onClick={() => setCat(c)}
-              className={`px-5 py-2 rounded-full text-[12.5px] font-semibold tracking-wide border transition-all duration-200 ${
+              className={`px-5 py-2 rounded-full text-[12.5px] font-semibold border transition-all duration-200 ${
                 cat === c
-                  ? "bg-blue-600 border-blue-500 text-white shadow-[0_0_16px_rgba(59,130,246,0.4)]"
-                  : "bg-white/[0.03] border-white/[0.08] text-gray-400 hover:text-white hover:bg-white/[0.07] hover:border-white/[0.15]"
+                  ? "bg-gray-900 border-gray-900 text-white shadow-sm"
+                  : "bg-white border-gray-200 text-gray-500 hover:text-gray-900 hover:border-gray-400"
               }`}
             >
               {c}
@@ -142,35 +138,30 @@ export default function FAQ() {
         </div>
       </section>
 
-      {/* FAQ Accordion */}
-      <section className="max-w-3xl mx-auto px-6 pb-28 w-full">
-        <div className="flex flex-col gap-3">
+      {/* Accordion */}
+      <section className="max-w-3xl mx-auto px-6 py-14 pb-10 w-full">
+        <div className="flex flex-col gap-2.5">
           {filtered.map((item) => {
-            const key = item.q;
-            const isOpen = active === key;
+            const isOpen = active === item.q;
             return (
               <div
-                key={key}
-                className={`bg-[#141624] border rounded-[20px] overflow-hidden transition-all duration-300 ${
-                  isOpen
-                    ? "border-blue-500/30 shadow-[0_4px_32px_rgba(59,130,246,0.1)]"
-                    : "border-white/[0.07] hover:border-white/[0.13]"
+                key={item.q}
+                className={`bg-white border rounded-2xl overflow-hidden transition-all duration-200 ${
+                  isOpen ? "border-gray-300 shadow-[0_4px_20px_rgba(0,0,0,0.06)]" : "border-gray-100 hover:border-gray-200"
                 }`}
               >
                 <button
-                  onClick={() => setActive(isOpen ? null : key)}
+                  onClick={() => setActive(isOpen ? null : item.q)}
                   className="w-full flex items-center justify-between px-6 py-5 text-left gap-4"
                 >
-                  <span className="text-[14.5px] font-semibold text-white leading-snug">{item.q}</span>
+                  <span className="text-[14.5px] font-semibold text-gray-900 leading-snug">{item.q}</span>
                   <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-blue-400" : ""}`}
+                    className={`w-5 h-5 flex-shrink-0 text-gray-400 transition-transform duration-300 ${isOpen ? "rotate-180 text-gray-700" : ""}`}
                   />
                 </button>
-                <div
-                  className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}
-                >
+                <div className={`grid transition-all duration-300 ${isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
                   <div className="overflow-hidden">
-                    <div className="px-6 pb-6 text-[13.5px] text-gray-400 leading-relaxed border-t border-white/[0.05] pt-4">
+                    <div className="px-6 pb-6 pt-1 text-[13.5px] text-gray-500 leading-relaxed border-t border-gray-100">
                       {item.a}
                     </div>
                   </div>
@@ -179,26 +170,28 @@ export default function FAQ() {
             );
           })}
         </div>
+      </section>
 
-        {/* Still have questions */}
-        <div className="mt-16 relative bg-white/[0.03] border border-white/[0.07] rounded-[24px] px-8 py-10 text-center">
-          <div className="w-12 h-12 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mx-auto mb-4">
-            <MessageCircle className="w-5 h-5 text-blue-400" strokeWidth={1.5} />
+      {/* Still have questions */}
+      <section className="max-w-3xl mx-auto px-6 pb-28 w-full">
+        <div className="bg-white border border-gray-100 rounded-2xl px-8 py-10 text-center shadow-sm">
+          <div className="w-11 h-11 rounded-xl bg-indigo-50 flex items-center justify-center mx-auto mb-4">
+            <MessageCircle className="w-5 h-5 text-indigo-600" strokeWidth={1.75} />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Still have questions?</h3>
-          <p className="text-gray-400 text-sm mb-6">Our team is available 24/7 — reach us on WhatsApp for an instant reply.</p>
+          <h3 className="text-lg font-bold text-gray-900 mb-2">Still have questions?</h3>
+          <p className="text-gray-500 text-[13.5px] mb-6 max-w-xs mx-auto">Our team is available 24/7 — reach us on WhatsApp for an instant reply.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="https://wa.me/38348188415"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-7 py-3 rounded-full transition-all duration-200 text-sm shadow-[0_0_20px_rgba(59,130,246,0.35)]"
+              className="inline-flex items-center justify-center gap-2 bg-gray-900 hover:bg-gray-800 text-white font-semibold px-7 py-3 rounded-full transition-all text-[13.5px]"
             >
               Chat on WhatsApp
             </a>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 text-white font-semibold px-7 py-3 rounded-full transition-all duration-200 text-sm"
+              className="inline-flex items-center justify-center gap-2 bg-white border border-gray-200 hover:border-gray-400 text-gray-700 font-semibold px-7 py-3 rounded-full transition-all text-[13.5px]"
             >
               Contact Form
             </Link>
