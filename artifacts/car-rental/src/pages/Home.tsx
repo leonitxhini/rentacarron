@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SearchWidget } from "@/components/SearchWidget";
 import { CarCard } from "@/components/ui/CarCard";
 import { useListCars } from "@workspace/api-client-react";
-import { Car as CarIcon, Calendar, Send, Key, Star } from "lucide-react";
+import { Car as CarIcon, Calendar, Send, Key, Star, PlaneTakeoff, Headphones, ShieldCheck, MapPinned } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -220,49 +220,39 @@ export default function Home() {
           </div>
 
           {/* Cards row — swipe on mobile, 4-col on desktop */}
-          <div className="mt-14 flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
+          <div className="mt-16 flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
             {[
               {
-                stat: "3+",
+                Icon: PlaneTakeoff,
                 title: "Airport Transfer",
                 desc: "Seamless pickup and drop-off at Pristina, Skopje, and Kukës airports — any hour, any flight.",
-                color: "from-blue-500 to-cyan-400",
-                ring: "ring-blue-100"
               },
               {
-                stat: "24/7",
-                title: "Round-the-Clock Support",
+                Icon: Headphones,
+                title: "24/7 Support",
                 desc: "Our team is always reachable via WhatsApp for instant help, wherever your journey takes you.",
-                color: "from-violet-500 to-purple-400",
-                ring: "ring-violet-100"
               },
               {
-                stat: "100%",
+                Icon: ShieldCheck,
                 title: "Full Insurance",
                 desc: "Every vehicle comes with comprehensive coverage so you can drive with complete peace of mind.",
-                color: "from-emerald-500 to-teal-400",
-                ring: "ring-emerald-100"
               },
               {
-                stat: "4",
+                Icon: MapPinned,
                 title: "Flexible Drop-off",
                 desc: "Pick up in one city, return in another. We accommodate your route, not the other way around.",
-                color: "from-orange-500 to-amber-400",
-                ring: "ring-orange-100"
               }
             ].map((s, idx) => (
               <div
                 key={idx}
-                className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 p-8 pt-0"
+                className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white rounded-3xl shadow-[0_2px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_36px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 p-8 pt-0"
               >
-                {/* Stat bubble — sits half above the card top */}
-                <div className={`w-28 h-28 rounded-full bg-gradient-to-br ${s.color} ring-8 ${s.ring} flex items-center justify-center -mt-10 mb-7 shadow-lg`}>
-                  <span className="text-white font-black text-2xl leading-none" style={{ letterSpacing: "-0.04em" }}>
-                    {s.stat}
-                  </span>
+                {/* Icon circle — floats above card */}
+                <div className="w-20 h-20 rounded-full bg-[#f4f6fb] border border-gray-100 flex items-center justify-center -mt-10 mb-7 shadow-sm">
+                  <s.Icon className="w-7 h-7 text-gray-500" strokeWidth={1.5} />
                 </div>
 
-                <h3 className="text-base font-bold text-gray-900 mb-3 leading-snug">
+                <h3 className="text-base font-semibold text-gray-900 mb-3 leading-snug">
                   {s.title}
                 </h3>
                 <p className="text-gray-400 text-sm font-light leading-relaxed">
