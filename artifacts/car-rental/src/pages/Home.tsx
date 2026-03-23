@@ -198,11 +198,18 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Wave divider: #e9ecf4 → white */}
+      <div className="bg-white overflow-hidden leading-none" style={{ marginTop: -2 }}>
+        <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
+          <path d="M0,0 C320,72 1120,72 1440,0 L1440,0 L0,0 Z" fill="#e9ecf4" />
+        </svg>
+      </div>
+
       {/* What We Offer / Services Section */}
-      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+      <section className="pb-24 lg:pb-32 bg-white relative overflow-hidden">
         {/* Subtle decorative blobs */}
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
+        <div className="absolute top-0 -left-32 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
+        <div className="absolute bottom-0 -right-32 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
           {/* Centered heading */}
