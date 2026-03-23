@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SearchWidget } from "@/components/SearchWidget";
 import { CarCard } from "@/components/ui/CarCard";
 import { useListCars } from "@workspace/api-client-react";
-import { Car as CarIcon, Calendar, Send, Key, Star, PlaneTakeoff, Headphones, ShieldCheck, MapPinned } from "lucide-react";
+import { Car as CarIcon, Calendar, Send, Key, Star, PlaneTakeoff, Headphones, ShieldCheck, MapPinned, Gauge, MessageCircle } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -44,18 +44,18 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-6">
                 <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
-                  <span className="w-1 h-1 rounded-full bg-amber-500" />
+                  <Gauge className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
                   Unlimited KM
                 </div>
                 <div className="w-[1px] h-4 bg-white/10" />
                 <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
-                  <span className="w-1 h-1 rounded-full bg-amber-500" />
+                  <PlaneTakeoff className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
                   Airport Pickup
                 </div>
               </div>
               <div className="h-[1px] w-48 bg-white/10" />
               <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
-                <span className="w-1 h-1 rounded-full bg-amber-500" />
+                <MessageCircle className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
                 Fast WhatsApp Booking
               </div>
             </div>
