@@ -6,19 +6,32 @@ import { z } from "zod";
 
 const router: IRouter = Router();
 
-const carInputSchema = insertCarSchema.extend({
-  pricePerDay: z.preprocess((val) => String(val), z.string()),
-});
+function normalizeCarBody(body: Record<string, unknown>) {
+  return {
+    ...body,
+    pricePerDay: body.pricePerDay != null ? String(body.pricePerDay) : body.pricePerDay,
+    year: body.year != null ? Number(body.year) : body.year,
+    seats: body.seats != null ? Number(body.seats) : body.seats,
+    bags: body.bags != null ? Number(body.bags) : body.bags,
+  };
+}
+
+function formatCar(car: typeof carsTable.$inferSelect) {
+  return {
+    ...car,
+    pricePerDay: Number(car.pricePerDay),
+    features: car.features || [],
+    imageUrl: car.imageUrl || null,
+    description: car.description || null,
+    createdAt: car.createdAt.toISOString(),
+  };
+}
 
 router.get("/", async (req, res) => {
   try {
-    let query = db.select().from(carsTable).$dynamic();
-    
     const { available, category } = req.query;
-    
     const rows = await db.select().from(carsTable);
     let filtered = rows;
-    
     if (available !== undefined) {
       const isAvailable = available === "true";
       filtered = filtered.filter(c => c.available === isAvailable);
@@ -26,17 +39,7 @@ router.get("/", async (req, res) => {
     if (category) {
       filtered = filtered.filter(c => c.category.toLowerCase() === (category as string).toLowerCase());
     }
-    
-    const cars = filtered.map(car => ({
-      ...car,
-      pricePerDay: Number(car.pricePerDay),
-      features: car.features || [],
-      imageUrl: car.imageUrl || null,
-      description: car.description || null,
-      createdAt: car.createdAt.toISOString(),
-    }));
-    
-    res.json(cars);
+    res.json(filtered.map(formatCar));
   } catch (err) {
     req.log.error({ err }, "Failed to list cars");
     res.status(500).json({ error: "Failed to list cars" });
@@ -51,15 +54,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ error: "Car not found" });
       return;
     }
-    const car = rows[0];
-    res.json({
-      ...car,
-      pricePerDay: Number(car.pricePerDay),
-      features: car.features || [],
-      imageUrl: car.imageUrl || null,
-      description: car.description || null,
-      createdAt: car.createdAt.toISOString(),
-    });
+    res.json(formatCar(rows[0]));
   } catch (err) {
     req.log.error({ err }, "Failed to get car");
     res.status(500).json({ error: "Failed to get car" });
@@ -68,20 +63,9 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const data = carInputSchema.parse(req.body);
-    const rows = await db.insert(carsTable).values({
-      ...data,
-      pricePerDay: String(data.pricePerDay),
-    }).returning();
-    const car = rows[0];
-    res.status(201).json({
-      ...car,
-      pricePerDay: Number(car.pricePerDay),
-      features: car.features || [],
-      imageUrl: car.imageUrl || null,
-      description: car.description || null,
-      createdAt: car.createdAt.toISOString(),
-    });
+    const data = insertCarSchema.parse(normalizeCarBody(req.body));
+    const rows = await db.insert(carsTable).values(data).returning();
+    res.status(201).json(formatCar(rows[0]));
   } catch (err) {
     req.log.error({ err }, "Failed to create car");
     if (err instanceof z.ZodError) {
@@ -95,24 +79,13 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const data = carInputSchema.parse(req.body);
-    const rows = await db.update(carsTable).set({
-      ...data,
-      pricePerDay: String(data.pricePerDay),
-    }).where(eq(carsTable.id, id)).returning();
+    const data = insertCarSchema.parse(normalizeCarBody(req.body));
+    const rows = await db.update(carsTable).set(data).where(eq(carsTable.id, id)).returning();
     if (rows.length === 0) {
       res.status(404).json({ error: "Car not found" });
       return;
     }
-    const car = rows[0];
-    res.json({
-      ...car,
-      pricePerDay: Number(car.pricePerDay),
-      features: car.features || [],
-      imageUrl: car.imageUrl || null,
-      description: car.description || null,
-      createdAt: car.createdAt.toISOString(),
-    });
+    res.json(formatCar(rows[0]));
   } catch (err) {
     req.log.error({ err }, "Failed to update car");
     if (err instanceof z.ZodError) {
