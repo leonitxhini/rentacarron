@@ -197,32 +197,91 @@ export default function Home() {
       </section>
 
       {/* What We Offer / Services Section */}
-      <section className="py-24 lg:py-32 bg-[#0a0c14]">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="mb-20 text-center">
-            <div className="inline-flex items-center justify-center gap-4 mb-6">
-              <span className="w-12 h-[1px] bg-white/10"></span>
-              <span className="text-[11px] text-blue-400 uppercase tracking-[0.2em] font-medium">WHAT WE OFFER</span>
-              <span className="w-12 h-[1px] bg-white/10"></span>
+      <section className="py-24 lg:py-32 bg-[#0a0c14] relative overflow-hidden">
+        {/* Subtle background glow */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
+          {/* Top row: heading left, subtitle right */}
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
+            <div className="max-w-lg">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="block w-6 h-px bg-blue-500"></span>
+                <span className="text-[10px] tracking-[0.25em] uppercase text-blue-400 font-semibold">What We Offer</span>
+              </div>
+              <h2
+                className="text-4xl lg:text-5xl font-black text-white leading-tight"
+                style={{ letterSpacing: "-0.03em" }}
+              >
+                Everything for a<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">perfect drive.</span>
+              </h2>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight max-w-2xl mx-auto leading-tight">
-              Everything you need for a <span className="italic font-light text-white/40">perfect</span> drive
-            </h2>
+            <p className="text-white/40 text-base font-light max-w-xs leading-relaxed lg:text-right">
+              From airport arrivals to full insurance — we handle every detail so you don't have to.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 2×2 bento grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              { icon: Plane, title: "Airport Transfer", desc: "Complimentary pickup and drop-off at the terminal." },
-              { icon: Clock, title: "24/7 Support", desc: "Dedicated assistance around the clock, wherever you are." },
-              { icon: Shield, title: "Full Insurance", desc: "Comprehensive coverage for ultimate peace of mind." },
-              { icon: MapPin, title: "Flexible Drop-off", desc: "Return your vehicle at any of our designated locations." }
-            ].map((service, idx) => (
-              <div key={idx} className="bg-white/5 border border-white/8 p-8 rounded-2xl hover:bg-white/8 hover:-translate-y-1 transition-all duration-300">
-                <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center mb-7 text-blue-400">
-                  <service.icon className="w-5 h-5 stroke-[1.5]" />
+              {
+                icon: Plane,
+                num: "01",
+                title: "Airport Transfer",
+                desc: "Seamless pickup and drop-off at Pristina, Skopje, and Kukës airports — any hour, any flight.",
+                accent: "from-blue-500/20 to-blue-500/5"
+              },
+              {
+                icon: Clock,
+                num: "02",
+                title: "24/7 Support",
+                desc: "Our team is always reachable via WhatsApp for instant assistance, wherever your journey takes you.",
+                accent: "from-purple-500/20 to-purple-500/5"
+              },
+              {
+                icon: Shield,
+                num: "03",
+                title: "Full Insurance",
+                desc: "Every vehicle comes with comprehensive coverage so you can drive with complete peace of mind.",
+                accent: "from-indigo-500/20 to-indigo-500/5"
+              },
+              {
+                icon: MapPin,
+                num: "04",
+                title: "Flexible Drop-off",
+                desc: "Pick up in one city, return in another. We accommodate your route, not the other way around.",
+                accent: "from-violet-500/20 to-violet-500/5"
+              }
+            ].map((s, idx) => (
+              <div
+                key={idx}
+                className={`relative group rounded-2xl border border-white/8 p-8 bg-gradient-to-br ${s.accent} hover:border-white/15 transition-all duration-300 overflow-hidden`}
+              >
+                {/* Large faded number */}
+                <span
+                  className="absolute top-4 right-6 text-[5rem] font-black text-white/4 leading-none select-none pointer-events-none"
+                  style={{ letterSpacing: "-0.04em" }}
+                >
+                  {s.num}
+                </span>
+
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Icon */}
+                  <div className="w-12 h-12 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center mb-6 text-blue-300 group-hover:border-blue-500/40 transition-colors duration-300">
+                    <s.icon className="w-5 h-5" strokeWidth={1.5} />
+                  </div>
+
+                  <h3
+                    className="text-lg font-bold text-white mb-3"
+                    style={{ letterSpacing: "-0.01em" }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p className="text-white/40 text-sm font-light leading-relaxed">
+                    {s.desc}
+                  </p>
                 </div>
-                <h3 className="text-base font-bold text-white mb-3">{service.title}</h3>
-                <p className="text-white/40 text-sm font-light leading-relaxed">{service.desc}</p>
               </div>
             ))}
           </div>
