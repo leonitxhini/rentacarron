@@ -11,22 +11,22 @@ export function CarCard({ car }: { car: Car }) {
   const specs = [
     { icon: Gauge,     label: car.transmission },
     { icon: Fuel,      label: car.fuelType },
-    { icon: Users,     label: `${car.seats} seats` },
-    { icon: Briefcase, label: `${car.bags} bags` },
+    { icon: Users,     label: `${car.seats} Seats` },
+    { icon: Briefcase, label: `${car.bags} Bags` },
   ];
 
   return (
     <>
       <div className="group rounded-[26px] overflow-hidden bg-white border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.11)] hover:border-gray-200 hover:-translate-y-1 transition-all duration-300 flex flex-col">
 
-        {/* ── Image area ── */}
+        {/* ── Image area — Apple product grey ── */}
         <div
           className="relative overflow-hidden"
           style={{ background: "#F5F5F7", minHeight: 210 }}
         >
           {/* Available badge */}
           <div className="absolute top-4 left-4 z-10">
-            <span className={`inline-flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-full ${
+            <span className={`inline-flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1.5 rounded-full tracking-wide ${
               isAvailable
                 ? "bg-emerald-500 text-white"
                 : "bg-red-500 text-white"
@@ -82,7 +82,7 @@ export function CarCard({ car }: { car: Car }) {
         <div className="px-5 pt-4 pb-5 flex flex-col gap-3 flex-grow">
 
           {/* Category · Year · Color */}
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-gray-400">
             {car.category} · {car.year} · {car.color}
           </p>
 
@@ -91,17 +91,34 @@ export function CarCard({ car }: { car: Car }) {
             {car.make} {car.model}
           </h3>
 
-          {/* Apple SF-style spec icons — thin stroke, no backgrounds */}
-          <div className="grid grid-cols-2 gap-y-2 gap-x-3">
-            {specs.map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2">
-                <Icon
-                  className="w-[15px] h-[15px] flex-shrink-0 text-blue-500"
-                  strokeWidth={1.6}
-                />
-                <span className="text-[12px] text-gray-600 font-medium capitalize">{label}</span>
+          {/* Specs — same style as hero feature strip */}
+          <div className="flex flex-col gap-2.5">
+            {/* Row 1: transmission | fuel */}
+            <div className="flex items-center gap-5">
+              <div className="flex items-center gap-1.5 text-[10px] text-gray-500 uppercase tracking-[0.13em] font-light">
+                <Gauge className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" strokeWidth={1.8} />
+                {car.transmission}
               </div>
-            ))}
+              <div className="w-[1px] h-3.5 bg-gray-200" />
+              <div className="flex items-center gap-1.5 text-[10px] text-gray-500 uppercase tracking-[0.13em] font-light">
+                <Fuel className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" strokeWidth={1.8} />
+                {car.fuelType}
+              </div>
+            </div>
+            {/* Thin divider */}
+            <div className="h-px w-32 bg-gray-150" style={{ backgroundColor: "#e8e8ed" }} />
+            {/* Row 2: seats | bags */}
+            <div className="flex items-center gap-5">
+              <div className="flex items-center gap-1.5 text-[10px] text-gray-500 uppercase tracking-[0.13em] font-light">
+                <Users className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" strokeWidth={1.8} />
+                {car.seats} Seats
+              </div>
+              <div className="w-[1px] h-3.5 bg-gray-200" />
+              <div className="flex items-center gap-1.5 text-[10px] text-gray-500 uppercase tracking-[0.13em] font-light">
+                <Briefcase className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" strokeWidth={1.8} />
+                {car.bags} Bags
+              </div>
+            </div>
           </div>
 
           {/* Divider */}
@@ -111,13 +128,13 @@ export function CarCard({ car }: { car: Car }) {
           <div className="flex items-center justify-between">
             <div className="flex items-baseline gap-1">
               <span className="text-[1.5rem] font-black text-gray-900 tracking-tight">€{car.pricePerDay}</span>
-              <span className="text-[11px] text-gray-400 font-medium"> / day</span>
+              <span className="text-[11px] text-gray-400 font-light"> / day</span>
             </div>
 
             {isAvailable ? (
               <button
                 onClick={() => setShowModal(true)}
-                className="flex items-center gap-1.5 text-[12.5px] font-bold px-5 py-2.5 rounded-full text-white transition-all duration-200 active:scale-95 bg-blue-600 hover:bg-blue-500 shadow-[0_4px_12px_rgba(59,130,246,0.35)]"
+                className="flex items-center gap-1.5 text-[12px] font-semibold px-5 py-2.5 rounded-full text-white transition-all duration-200 active:scale-95 bg-blue-600 hover:bg-blue-500 shadow-[0_4px_12px_rgba(59,130,246,0.35)]"
               >
                 Book Now
                 <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.5} />
