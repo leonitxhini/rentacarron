@@ -176,22 +176,57 @@ export default function Home() {
             <p className="text-gray-500 font-light max-w-lg mx-auto">A seamless experience designed to get you on the road quickly and elegantly.</p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
+          {/* Mobile: swipe carousel */}
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide lg:hidden">
             {[
               { step: "01", icon: CarIcon, title: "Choose a Vehicle", desc: "Select a car from our premium fleet that fits your lifestyle." },
               { step: "02", icon: Calendar, title: "Set Date & Location", desc: "Choose your pickup and drop-off preferences." },
               { step: "03", icon: Send, title: "Request Booking", desc: "Fill in your details and send a direct request." },
               { step: "04", icon: Key, title: "Take the Keys", desc: "Start your journey with confidence." }
             ].map((s) => (
-              <div key={s.step} className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white/60 sm:bg-transparent rounded-2xl p-6 sm:p-0">
-                <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-gray-300 text-gray-400 rounded-full mb-8">
+              <div key={s.step} className="snap-start flex-shrink-0 w-[72vw] flex flex-col items-center text-center bg-white/60 rounded-2xl p-6">
+                <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-gray-300 text-gray-400 rounded-full mb-6">
                   STEP {s.step}
                 </span>
-                <div className="w-20 h-20 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] flex items-center justify-center mb-8 text-blue-500">
+                <div className="w-20 h-20 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] flex items-center justify-center mb-6 text-blue-500">
                   <s.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
-                <p className="text-gray-500 font-light text-sm leading-relaxed max-w-[200px]">{s.desc}</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">{s.title}</h3>
+                <p className="text-gray-500 font-light text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop: steps connected by arrow lines */}
+          <div className="hidden lg:flex items-start justify-between">
+            {[
+              { step: "01", icon: CarIcon, title: "Choose a Vehicle", desc: "Select a car from our premium fleet that fits your lifestyle." },
+              { step: "02", icon: Calendar, title: "Set Date & Location", desc: "Choose your pickup and drop-off preferences." },
+              { step: "03", icon: Send, title: "Request Booking", desc: "Fill in your details and send a direct request." },
+              { step: "04", icon: Key, title: "Take the Keys", desc: "Start your journey with confidence." }
+            ].map((s, idx, arr) => (
+              <div key={s.step} className="flex items-start flex-1">
+                {/* Step column */}
+                <div className="flex-1 flex flex-col items-center text-center">
+                  <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-gray-300 text-gray-400 rounded-full mb-8">
+                    STEP {s.step}
+                  </span>
+                  <div className="w-20 h-20 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] flex items-center justify-center mb-8 text-blue-500">
+                    <s.icon className="w-8 h-8 stroke-[1.5]" />
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
+                  <p className="text-gray-500 font-light text-sm leading-relaxed max-w-[180px]">{s.desc}</p>
+                </div>
+
+                {/* Arrow connector — shown between steps, not after the last */}
+                {idx < arr.length - 1 && (
+                  <div className="flex-shrink-0 flex items-center justify-center w-12" style={{ marginTop: "5.25rem" }}>
+                    <svg width="48" height="24" viewBox="0 0 48 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <line x1="0" y1="12" x2="36" y2="12" stroke="#c8cfe0" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round"/>
+                      <polyline points="28,5 38,12 28,19" stroke="#c8cfe0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+                    </svg>
+                  </div>
+                )}
               </div>
             ))}
           </div>
