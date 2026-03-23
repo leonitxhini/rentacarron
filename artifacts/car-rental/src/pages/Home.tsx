@@ -126,8 +126,8 @@ export default function Home() {
           <div className="max-w-xl">
             {/* Label */}
             <div className="flex items-center gap-3 mb-6">
-              <span className="block w-6 h-px bg-amber-400"></span>
-              <span className="text-[10px] tracking-[0.25em] uppercase text-amber-400 font-semibold">Limited Offer</span>
+              <span className="block w-6 h-px bg-blue-500"></span>
+              <span className="text-[10px] tracking-[0.25em] uppercase text-blue-400 font-semibold">Limited Offer</span>
             </div>
 
             <h2
@@ -135,7 +135,7 @@ export default function Home() {
               style={{ letterSpacing: "-0.03em" }}
             >
               Drive anywhere.<br />
-              <span className="text-amber-400">Book in minutes.</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">Book in minutes.</span>
             </h2>
 
             <p className="text-white/50 text-base font-light leading-relaxed max-w-sm">
