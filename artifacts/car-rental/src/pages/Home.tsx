@@ -15,12 +15,12 @@ export default function Home() {
       <Navbar />
       
       {/* Hero Section — full background image */}
-      <section className="relative overflow-hidden" style={{minHeight: "480px"}}>
+      <section className="relative overflow-hidden" style={{minHeight: "360px"}}>
         {/* Background image */}
         <img
           src={`${import.meta.env.BASE_URL}images/hero-car.png`}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          className="absolute inset-0 w-full h-full object-cover object-center scale-90 origin-right"
         />
         {/* Dark overlay — heavier on left so text is readable, lighter on right to show car */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30 pointer-events-none" />
@@ -28,7 +28,7 @@ export default function Home() {
         <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0a0c14] to-transparent pointer-events-none" />
 
         {/* Content */}
-        <div className="relative z-10 pt-24 pb-16">
+        <div className="relative z-10 pt-24 pb-10">
           <div className="max-w-6xl mx-auto px-6 lg:px-8">
             <div className="max-w-xl">
               <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-extrabold text-white tracking-tight leading-[1.05] mb-4">
