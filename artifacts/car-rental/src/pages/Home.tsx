@@ -67,7 +67,7 @@ export default function Home() {
       </div>
 
       {/* Our Fleet Section */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-[#f8f9fc]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-16">
             <div className="flex items-center gap-4 mb-4">
@@ -197,7 +197,7 @@ export default function Home() {
       </section>
 
       {/* What We Offer / Services Section */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-white border-t border-gray-100">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-20 text-center">
             <div className="inline-flex items-center justify-center gap-4 mb-6">
@@ -281,7 +281,7 @@ export default function Home() {
       </section>
 
       {/* Locations Section */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-[#f8f9fc]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-20">
             <div className="flex items-center gap-4 mb-4">
