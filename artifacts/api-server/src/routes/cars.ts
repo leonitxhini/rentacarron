@@ -6,6 +6,10 @@ import { z } from "zod";
 
 const router: IRouter = Router();
 
+const carInputSchema = insertCarSchema.extend({
+  pricePerDay: z.preprocess((val) => String(val), z.string()),
+});
+
 router.get("/", async (req, res) => {
   try {
     let query = db.select().from(carsTable).$dynamic();
@@ -64,7 +68,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const data = insertCarSchema.parse(req.body);
+    const data = carInputSchema.parse(req.body);
     const rows = await db.insert(carsTable).values({
       ...data,
       pricePerDay: String(data.pricePerDay),
@@ -91,7 +95,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const data = insertCarSchema.parse(req.body);
+    const data = carInputSchema.parse(req.body);
     const rows = await db.update(carsTable).set({
       ...data,
       pricePerDay: String(data.pricePerDay),
