@@ -3,7 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SearchWidget } from "@/components/SearchWidget";
 import { CarCard } from "@/components/ui/CarCard";
 import { useListCars } from "@workspace/api-client-react";
-import { Car as CarIcon, Calendar, Send, Key, Plane, Clock, Shield, MapPin, Star } from "lucide-react";
+import { Car as CarIcon, Calendar, Send, Key, Star } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -199,91 +199,75 @@ export default function Home() {
       </section>
 
       {/* What We Offer / Services Section */}
-      <section className="py-24 lg:py-32 bg-[#0a0c14] relative overflow-hidden">
-        {/* Subtle background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-600/5 rounded-full blur-3xl pointer-events-none" />
+      <section className="py-24 lg:py-32 bg-white relative overflow-hidden">
+        {/* Subtle decorative blobs */}
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-blue-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-indigo-50 rounded-full blur-3xl opacity-60 pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-          {/* Top row: heading left, subtitle right */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
-            <div className="max-w-lg">
-              <div className="flex items-center gap-3 mb-5">
-                <span className="block w-6 h-px bg-blue-500"></span>
-                <span className="text-[10px] tracking-[0.25em] uppercase text-blue-400 font-semibold">What We Offer</span>
-              </div>
-              <h2
-                className="text-4xl lg:text-5xl font-black text-white leading-tight"
-                style={{ letterSpacing: "-0.03em" }}
-              >
-                Everything for a<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">perfect drive.</span>
-              </h2>
-            </div>
-            <p className="text-white/40 text-base font-light max-w-xs leading-relaxed lg:text-right">
+          {/* Centered heading */}
+          <div className="text-center mb-16">
+            <p className="text-sm text-blue-500 font-semibold tracking-[0.18em] uppercase mb-4">What We Offer</p>
+            <h2
+              className="text-4xl lg:text-5xl font-black text-gray-900 mb-5 max-w-2xl mx-auto leading-tight"
+              style={{ letterSpacing: "-0.03em" }}
+            >
+              Why Choose Us
+            </h2>
+            <p className="text-gray-400 font-light text-base max-w-md mx-auto leading-relaxed">
               From airport arrivals to full insurance — we handle every detail so you don't have to.
             </p>
           </div>
 
-          {/* 2×2 bento grid */}
-          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0">
+          {/* Cards row — swipe on mobile, 4-col on desktop */}
+          <div className="mt-14 flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
             {[
               {
-                icon: Plane,
-                num: "01",
+                stat: "3+",
                 title: "Airport Transfer",
                 desc: "Seamless pickup and drop-off at Pristina, Skopje, and Kukës airports — any hour, any flight.",
-                accent: "from-blue-500/20 to-blue-500/5"
+                color: "from-blue-500 to-cyan-400",
+                ring: "ring-blue-100"
               },
               {
-                icon: Clock,
-                num: "02",
-                title: "24/7 Support",
-                desc: "Our team is always reachable via WhatsApp for instant assistance, wherever your journey takes you.",
-                accent: "from-purple-500/20 to-purple-500/5"
+                stat: "24/7",
+                title: "Round-the-Clock Support",
+                desc: "Our team is always reachable via WhatsApp for instant help, wherever your journey takes you.",
+                color: "from-violet-500 to-purple-400",
+                ring: "ring-violet-100"
               },
               {
-                icon: Shield,
-                num: "03",
+                stat: "100%",
                 title: "Full Insurance",
                 desc: "Every vehicle comes with comprehensive coverage so you can drive with complete peace of mind.",
-                accent: "from-indigo-500/20 to-indigo-500/5"
+                color: "from-emerald-500 to-teal-400",
+                ring: "ring-emerald-100"
               },
               {
-                icon: MapPin,
-                num: "04",
+                stat: "4",
                 title: "Flexible Drop-off",
                 desc: "Pick up in one city, return in another. We accommodate your route, not the other way around.",
-                accent: "from-violet-500/20 to-violet-500/5"
+                color: "from-orange-500 to-amber-400",
+                ring: "ring-orange-100"
               }
             ].map((s, idx) => (
               <div
                 key={idx}
-                className={`snap-start flex-shrink-0 w-[80vw] sm:w-auto relative group rounded-2xl border border-white/8 p-8 bg-gradient-to-br ${s.accent} hover:border-white/15 transition-all duration-300 overflow-hidden`}
+                className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white rounded-3xl shadow-[0_4px_30px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_40px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 p-8 pt-0"
               >
-                {/* Large faded number */}
-                <span
-                  className="absolute top-4 right-6 text-[5rem] font-black text-white/4 leading-none select-none pointer-events-none"
-                  style={{ letterSpacing: "-0.04em" }}
-                >
-                  {s.num}
-                </span>
-
-                <div className="relative z-10 flex flex-col h-full">
-                  {/* Icon */}
-                  <div className="w-12 h-12 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center mb-6 text-blue-300 group-hover:border-blue-500/40 transition-colors duration-300">
-                    <s.icon className="w-5 h-5" strokeWidth={1.5} />
-                  </div>
-
-                  <h3
-                    className="text-lg font-bold text-white mb-3"
-                    style={{ letterSpacing: "-0.01em" }}
-                  >
-                    {s.title}
-                  </h3>
-                  <p className="text-white/40 text-sm font-light leading-relaxed">
-                    {s.desc}
-                  </p>
+                {/* Stat bubble — sits half above the card top */}
+                <div className={`w-28 h-28 rounded-full bg-gradient-to-br ${s.color} ring-8 ${s.ring} flex items-center justify-center -mt-10 mb-7 shadow-lg`}>
+                  <span className="text-white font-black text-2xl leading-none" style={{ letterSpacing: "-0.04em" }}>
+                    {s.stat}
+                  </span>
                 </div>
+
+                <h3 className="text-base font-bold text-gray-900 mb-3 leading-snug">
+                  {s.title}
+                </h3>
+                <p className="text-gray-400 text-sm font-light leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
