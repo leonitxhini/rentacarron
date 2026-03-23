@@ -20,7 +20,7 @@ export default function Home() {
         <img
           src={`${import.meta.env.BASE_URL}images/hero-car.png`}
           alt=""
-          className="absolute inset-0 w-full h-full object-contain object-right scale-75 origin-right"
+          className="absolute inset-0 w-full h-full object-cover" style={{objectPosition: "center 30%"}}
         />
         {/* Dark overlay — heavier on left so text is readable, lighter on right to show car */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30 pointer-events-none" />
