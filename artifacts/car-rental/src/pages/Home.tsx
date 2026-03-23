@@ -88,15 +88,17 @@ export default function Home() {
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4 -mx-6 px-6 scrollbar-hide md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:pb-0 md:mx-0 md:px-0 lg:grid-cols-3">
               {[1,2,3].map(i => (
-                <div key={i} className="h-[400px] bg-gray-50 animate-pulse rounded-xl"></div>
+                <div key={i} className="snap-start flex-shrink-0 w-[80vw] md:w-auto h-[400px] bg-gray-200 animate-pulse rounded-xl"></div>
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4 -mx-6 px-6 scrollbar-hide md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:pb-0 md:mx-0 md:px-0 lg:grid-cols-3">
               {featuredCars.map(car => (
-                <CarCard key={car.id} car={car} />
+                <div key={car.id} className="snap-start flex-shrink-0 w-[80vw] md:w-auto">
+                  <CarCard car={car} />
+                </div>
               ))}
             </div>
           )}
@@ -174,14 +176,14 @@ export default function Home() {
             <p className="text-gray-500 font-light max-w-lg mx-auto">A seamless experience designed to get you on the road quickly and elegantly.</p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
             {[
               { step: "01", icon: CarIcon, title: "Choose a Vehicle", desc: "Select a car from our premium fleet that fits your lifestyle." },
               { step: "02", icon: Calendar, title: "Set Date & Location", desc: "Choose your pickup and drop-off preferences." },
               { step: "03", icon: Send, title: "Request Booking", desc: "Fill in your details and send a direct request." },
               { step: "04", icon: Key, title: "Take the Keys", desc: "Start your journey with confidence." }
             ].map((s) => (
-              <div key={s.step} className="flex flex-col items-center text-center">
+              <div key={s.step} className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white/60 sm:bg-transparent rounded-2xl p-6 sm:p-0">
                 <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-gray-300 text-gray-400 rounded-full mb-8">
                   STEP {s.step}
                 </span>
@@ -223,7 +225,7 @@ export default function Home() {
           </div>
 
           {/* 2×2 bento grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0">
             {[
               {
                 icon: Plane,
@@ -256,7 +258,7 @@ export default function Home() {
             ].map((s, idx) => (
               <div
                 key={idx}
-                className={`relative group rounded-2xl border border-white/8 p-8 bg-gradient-to-br ${s.accent} hover:border-white/15 transition-all duration-300 overflow-hidden`}
+                className={`snap-start flex-shrink-0 w-[80vw] sm:w-auto relative group rounded-2xl border border-white/8 p-8 bg-gradient-to-br ${s.accent} hover:border-white/15 transition-all duration-300 overflow-hidden`}
               >
                 {/* Large faded number */}
                 <span
@@ -350,7 +352,7 @@ export default function Home() {
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight">Our Locations</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-5 pb-4 -mx-6 px-6 scrollbar-hide md:grid md:grid-cols-2 md:overflow-visible md:snap-none md:pb-0 md:mx-0 md:px-0 lg:grid-cols-4">
             {[
               {
                 title: "Ferizaj HQ",
@@ -381,7 +383,7 @@ export default function Home() {
                 country: "Albania"
               }
             ].map((loc, i) => (
-              <div key={i} className="group rounded-2xl overflow-hidden bg-white shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] transition-shadow duration-300">
+              <div key={i} className="snap-start flex-shrink-0 w-[75vw] md:w-auto group rounded-2xl overflow-hidden bg-white shadow-[0_2px_20px_rgba(0,0,0,0.04)] border border-gray-100 flex flex-col hover:shadow-[0_8px_32px_rgba(0,0,0,0.09)] transition-shadow duration-300">
                 <div className="relative overflow-hidden" style={{ aspectRatio: "3/2" }}>
                   <img
                     src={loc.img}
