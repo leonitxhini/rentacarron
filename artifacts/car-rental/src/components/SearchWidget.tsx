@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useLocation } from "wouter";
 import { useListLocations } from "@workspace/api-client-react";
-import { MapPin, CalendarDays, Search } from "lucide-react";
+import { MapPin, Flag, CalendarDays, Search, ChevronDown } from "lucide-react";
 
 export function SearchWidget() {
   const [, setLocation] = useLocation();
   const { data: locations } = useListLocations();
-  
+
   const [pickupLocation, setPickupLocation] = useState("");
   const [dropoffLocation, setDropoffLocation] = useState("");
   const [pickupDate, setPickupDate] = useState("");
@@ -19,95 +19,87 @@ export function SearchWidget() {
     if (dropoffLocation) params.append("dropoff", dropoffLocation);
     if (pickupDate) params.append("start", pickupDate);
     if (dropoffDate) params.append("end", dropoffDate);
-    
     setLocation(`/fleet?${params.toString()}`);
   };
 
   return (
-    <div className="bg-[#11131c] p-2 md:p-3 rounded-2xl w-full max-w-6xl mx-auto shadow-2xl relative z-20">
-      <form onSubmit={handleSearch} className="flex flex-col lg:flex-row items-center gap-2">
-        
-        <div className="flex-1 w-full flex items-center bg-[#1c1f2e] rounded-xl px-4 py-3">
+    <div className="bg-[#13151f] border border-white/10 rounded-2xl w-full max-w-5xl mx-auto shadow-2xl overflow-hidden">
+      <form onSubmit={handleSearch} className="flex flex-col lg:flex-row items-stretch">
+
+        {/* Pick Up Location */}
+        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 lg:border-r border-white/10 group">
+          <MapPin className="w-4 h-4 text-blue-500 shrink-0" />
           <div className="flex-1 min-w-0">
-            <label className="block text-xs uppercase font-semibold text-gray-400 mb-1">Pick Up Location</label>
-            <div className="flex items-center gap-2 text-white">
-              <MapPin className="w-4 h-4 text-primary" />
-              <select 
-                value={pickupLocation}
-                onChange={(e) => setPickupLocation(e.target.value)}
-                className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-medium"
-              >
-                <option value="" className="bg-[#1c1f2e]">Choose your location</option>
-                {locations?.map(loc => (
-                  <option key={loc.id} value={loc.id} className="bg-[#1c1f2e]">{loc.name}, {loc.city}</option>
-                ))}
-              </select>
-            </div>
+            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Pick Up</label>
+            <select
+              value={pickupLocation}
+              onChange={(e) => setPickupLocation(e.target.value)}
+              className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-medium text-white truncate"
+            >
+              <option value="" className="bg-[#13151f]">Select location...</option>
+              {locations?.map(loc => (
+                <option key={loc.id} value={loc.id} className="bg-[#13151f]">{loc.name}</option>
+              ))}
+            </select>
+          </div>
+          <ChevronDown className="w-4 h-4 text-gray-500 shrink-0 pointer-events-none" />
+        </div>
+
+        {/* Drop Off Location */}
+        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 lg:border-r border-white/10 group">
+          <Flag className="w-4 h-4 text-blue-500 shrink-0" />
+          <div className="flex-1 min-w-0">
+            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Drop Off</label>
+            <select
+              value={dropoffLocation}
+              onChange={(e) => setDropoffLocation(e.target.value)}
+              className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-medium text-white truncate"
+            >
+              <option value="" className="bg-[#13151f]">Select location...</option>
+              {locations?.map(loc => (
+                <option key={loc.id} value={loc.id} className="bg-[#13151f]">{loc.name}</option>
+              ))}
+            </select>
+          </div>
+          <ChevronDown className="w-4 h-4 text-gray-500 shrink-0 pointer-events-none" />
+        </div>
+
+        {/* Pick Up Date */}
+        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 lg:border-r border-white/10 group">
+          <CalendarDays className="w-4 h-4 text-blue-500 shrink-0" />
+          <div className="flex-1 min-w-0">
+            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Pick Up Date</label>
+            <input
+              type="date"
+              value={pickupDate}
+              onChange={(e) => setPickupDate(e.target.value)}
+              className="w-full bg-transparent outline-none text-sm font-medium text-white [color-scheme:dark] cursor-pointer"
+            />
           </div>
         </div>
 
-        <div className="hidden lg:block w-px h-10 bg-white/10 mx-1"></div>
-
-        <div className="flex-1 w-full flex items-center bg-[#1c1f2e] rounded-xl px-4 py-3">
+        {/* Drop Off Date */}
+        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 border-white/10 group">
+          <CalendarDays className="w-4 h-4 text-blue-500 shrink-0" />
           <div className="flex-1 min-w-0">
-            <label className="block text-xs uppercase font-semibold text-gray-400 mb-1">Drop Off Location</label>
-            <div className="flex items-center gap-2 text-white">
-              <MapPin className="w-4 h-4 text-primary" />
-              <select 
-                value={dropoffLocation}
-                onChange={(e) => setDropoffLocation(e.target.value)}
-                className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-medium"
-              >
-                <option value="" className="bg-[#1c1f2e]">Same as pick up</option>
-                {locations?.map(loc => (
-                  <option key={loc.id} value={loc.id} className="bg-[#1c1f2e]">{loc.name}, {loc.city}</option>
-                ))}
-              </select>
-            </div>
+            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Drop Off Date</label>
+            <input
+              type="date"
+              value={dropoffDate}
+              onChange={(e) => setDropoffDate(e.target.value)}
+              className="w-full bg-transparent outline-none text-sm font-medium text-white [color-scheme:dark] cursor-pointer"
+            />
           </div>
         </div>
 
-        <div className="hidden lg:block w-px h-10 bg-white/10 mx-1"></div>
-
-        <div className="flex-1 w-full flex items-center bg-[#1c1f2e] rounded-xl px-4 py-3">
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs uppercase font-semibold text-gray-400 mb-1">Pick Up Date</label>
-            <div className="flex items-center gap-2 text-white">
-              <CalendarDays className="w-4 h-4 text-primary" />
-              <input 
-                type="date" 
-                value={pickupDate}
-                onChange={(e) => setPickupDate(e.target.value)}
-                className="w-full bg-transparent outline-none text-sm font-medium [color-scheme:dark]"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="hidden lg:block w-px h-10 bg-white/10 mx-1"></div>
-
-        <div className="flex-1 w-full flex items-center bg-[#1c1f2e] rounded-xl px-4 py-3">
-          <div className="flex-1 min-w-0">
-            <label className="block text-xs uppercase font-semibold text-gray-400 mb-1">Drop Off Date</label>
-            <div className="flex items-center gap-2 text-white">
-              <CalendarDays className="w-4 h-4 text-primary" />
-              <input 
-                type="date" 
-                value={dropoffDate}
-                onChange={(e) => setDropoffDate(e.target.value)}
-                className="w-full bg-transparent outline-none text-sm font-medium [color-scheme:dark]"
-              />
-            </div>
-          </div>
-        </div>
-
-        <button 
+        {/* Search Button */}
+        <button
           type="submit"
-          className="w-full lg:w-auto h-[68px] px-8 bg-[#3b82f6] hover:bg-blue-600 text-white rounded-xl font-semibold flex items-center justify-center transition-colors shrink-0"
+          className="flex items-center justify-center gap-2 px-8 py-4 bg-[#3b82f6] hover:bg-blue-500 text-white font-semibold text-sm transition-colors shrink-0 lg:rounded-none lg:rounded-r-2xl"
         >
+          <Search className="w-4 h-4" />
           Search vehicles
         </button>
-
       </form>
     </div>
   );

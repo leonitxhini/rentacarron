@@ -15,49 +15,58 @@ export default function Home() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-32 lg:pt-40 lg:pb-48 bg-[#0a0c14] overflow-hidden">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
-            
-            {/* Left Column (Text) */}
-            <div className="w-full lg:w-[55%] text-left">
-              <h1 className="text-6xl sm:text-7xl lg:text-[80px] font-bold text-white tracking-tight leading-[1.05] mb-6">
-                Premium car<br />
-                rental
-              </h1>
+      <section className="relative bg-[#0a0c14] overflow-hidden" style={{minHeight: "480px"}}>
+        {/* Top padding for floating navbar */}
+        <div className="pt-24 pb-28">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:flex-row items-center gap-8">
               
-              <p className="text-lg text-gray-400 mb-10 max-w-lg">
-                Premium cars. Easy booking. Reliable service across the Balkans.
-              </p>
-              
-              {/* Feature Badges */}
-              <div className="flex flex-wrap items-center gap-4">
-                <div className="flex items-center gap-2 bg-[#1A1D24] border border-white/5 rounded-full px-4 py-2 text-sm text-gray-300 font-medium">
-                  <span className="text-lg">🚗</span> UNLIMITED KM
-                </div>
-                <div className="flex items-center gap-2 bg-[#1A1D24] border border-white/5 rounded-full px-4 py-2 text-sm text-gray-300 font-medium">
-                  <span className="text-lg">🛫</span> AIRPORT PICKUP
-                </div>
-                <div className="flex items-center gap-2 bg-[#1A1D24] border border-white/5 rounded-full px-4 py-2 text-sm text-gray-300 font-medium">
-                  <span className="text-lg">💬</span> FAST WHATSAPP BOOKING
+              {/* Left Column (Text) */}
+              <div className="w-full lg:w-[52%] text-left">
+                <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-extrabold text-white tracking-tight leading-[1.05] mb-4">
+                  Premium car<br />rental
+                </h1>
+                
+                <p className="text-base text-gray-400 mb-6 max-w-md">
+                  Premium cars. Easy booking. Reliable service across the Balkans.
+                </p>
+                
+                {/* Feature badges — small inline icon+text style */}
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
+                      <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="22" height="13" rx="2"/><path d="M16 17l-1 4H9l-1-4"/><path d="M1 13h22"/></svg>
+                      UNLIMITED KM
+                    </div>
+                    <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
+                      <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M13 16h2l2 2 2-2h2"/></svg>
+                      AIRPORT PICKUP
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
+                    <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    FAST WHATSAPP BOOKING
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Right Column (Image) */}
-            <div className="w-full lg:w-[45%] relative">
-              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full z-0"></div>
-              <img 
-                src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
-                alt="Premium Car" 
-                className="w-full h-auto object-contain relative z-10 drop-shadow-2xl scale-110"
-              />
-              {/* Logo Silhouette Overlay */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none z-0 flex items-center justify-center">
-                <img 
-                   src={`${import.meta.env.BASE_URL}images/rron-logo.png`} 
-                   alt="" 
-                   className="w-[120%] h-auto object-contain mix-blend-screen"
+              {/* Right Column (Car Image + RRON logo) */}
+              <div className="w-full lg:w-[48%] relative h-[220px] lg:h-[280px] flex items-center justify-center">
+                {/* Spotlight glow */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-[60%] h-[60%] bg-white/5 blur-[60px] rounded-full"></div>
+                </div>
+                {/* RRON logo watermark */}
+                <img
+                  src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
+                  alt="RRON"
+                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] opacity-30 object-contain pointer-events-none z-10"
+                />
+                {/* Hero car image */}
+                <img
+                  src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
+                  alt="Premium Car"
+                  className="relative z-20 w-full h-full object-contain drop-shadow-2xl"
                 />
               </div>
             </div>
@@ -65,13 +74,13 @@ export default function Home() {
         </div>
 
         {/* Floating Search Widget */}
-        <div className="absolute left-0 w-full px-4 sm:px-6 lg:px-8 -bottom-16 z-30">
+        <div className="absolute left-0 w-full px-4 sm:px-6 lg:px-8 -bottom-[34px] z-30">
           <SearchWidget />
         </div>
       </section>
 
       {/* Spacer for Floating Widget */}
-      <div className="h-32 bg-white"></div>
+      <div className="h-20 bg-white"></div>
 
       {/* Our Fleet Section */}
       <section className="py-20 bg-white">
