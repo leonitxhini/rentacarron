@@ -16,21 +16,23 @@ export function Navbar() {
 
   const navLinks = [
     { name: "Home", path: "/" },
+    { name: "Services", path: "/services" },
     { name: "Fleet", path: "/fleet" },
-    { name: "Admin", path: "/admin" },
+    { name: "FAQ", path: "/faq" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-background/90 backdrop-blur-md border-b border-white/5 py-4" : "bg-transparent py-6"}`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#0a0c14]/95 backdrop-blur-md py-4" : "bg-[#0a0c14] py-6"}`}>
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-3 group">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3">
             <img 
-              src={`${import.meta.env.BASE_URL}images/logo.png`} 
-              alt="RRON Logo" 
-              className="h-8 w-8 object-contain group-hover:scale-105 transition-transform" 
+              src={`${import.meta.env.BASE_URL}images/rron-logo.png`} 
+              alt="RRON RENT A CAR" 
+              className="h-10 object-contain" 
             />
-            <span className="text-xl font-bold tracking-wider text-white">RRON<span className="text-primary font-light">RENTAL</span></span>
           </Link>
 
           {/* Desktop Nav */}
@@ -39,22 +41,25 @@ export function Navbar() {
               <Link 
                 key={link.name} 
                 href={link.path}
-                className={`text-sm font-medium transition-colors hover:text-primary ${location === link.path ? "text-primary" : "text-white/80"}`}
+                className={`text-[15px] transition-colors hover:text-white ${location === link.path ? "text-white" : "text-gray-300"}`}
               >
                 {link.name}
               </Link>
             ))}
           </div>
 
+          {/* Right Side: Search + User */}
           <div className="hidden md:flex items-center gap-4">
-            <button className="p-2 text-white/80 hover:text-primary transition-colors">
-              <Search className="w-5 h-5" />
-            </button>
-            <Link href="/admin" className="p-2 text-white/80 hover:text-primary transition-colors">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <input 
+                type="text" 
+                placeholder="Search..." 
+                className="pl-9 pr-4 py-2 bg-[#1A1D24] text-sm text-white rounded-full border-none outline-none focus:ring-1 focus:ring-primary/50 w-[180px] placeholder:text-gray-500"
+              />
+            </div>
+            <Link href="/admin" className="p-2 text-gray-300 hover:text-white transition-colors bg-[#1A1D24] rounded-full">
               <User className="w-5 h-5" />
-            </Link>
-            <Link href="/fleet" className="ml-2 px-6 py-2.5 bg-primary text-white text-sm font-semibold rounded-full hover:bg-primary/90 transition-all hover:shadow-[0_0_20px_rgba(59,110,245,0.4)]">
-              Book Now
             </Link>
           </div>
 
@@ -72,7 +77,7 @@ export function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="md:hidden absolute top-full left-0 w-full bg-card border-b border-white/5 shadow-2xl"
+            className="md:hidden absolute top-full left-0 w-full bg-[#0a0c14] border-t border-white/10 shadow-2xl"
           >
             <div className="px-4 py-6 flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -80,15 +85,20 @@ export function Navbar() {
                   key={link.name} 
                   href={link.path}
                   onClick={() => setIsOpen(false)}
-                  className={`text-lg font-medium p-2 rounded-lg ${location === link.path ? "bg-primary/10 text-primary" : "text-white/80"}`}
+                  className={`text-lg p-2 rounded-lg ${location === link.path ? "bg-white/5 text-white" : "text-gray-300"}`}
                 >
                   {link.name}
                 </Link>
               ))}
               <div className="h-px bg-white/10 my-2" />
-              <Link href="/fleet" onClick={() => setIsOpen(false)} className="w-full text-center py-3 bg-primary text-white font-semibold rounded-xl">
-                Book Now
-              </Link>
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                <input 
+                  type="text" 
+                  placeholder="Search..." 
+                  className="w-full pl-9 pr-4 py-3 bg-[#1A1D24] text-white rounded-xl border-none outline-none"
+                />
+              </div>
             </div>
           </motion.div>
         )}

@@ -3,8 +3,7 @@ import { Footer } from "@/components/layout/Footer";
 import { SearchWidget } from "@/components/SearchWidget";
 import { CarCard } from "@/components/ui/CarCard";
 import { useListCars } from "@workspace/api-client-react";
-import { motion } from "framer-motion";
-import { ShieldCheck, Clock, MapPin, Star } from "lucide-react";
+import { Car as CarIcon, Calendar, Send, Key, Plane, Clock, Shield, MapPin, Star } from "lucide-react";
 import { Link } from "wouter";
 
 export default function Home() {
@@ -12,68 +11,89 @@ export default function Home() {
   const featuredCars = cars?.slice(0, 3) || [];
 
   return (
-    <div className="min-h-screen flex flex-col bg-background">
+    <div className="min-h-screen flex flex-col bg-white font-sans selection:bg-blue-500 selection:text-white">
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
-        {/* Background Image & Overlay */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
-            alt="Premium Hero" 
-            className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/80 to-background"></div>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,110,245,0.1)_0%,transparent_70%)]"></div>
+      <section className="relative pt-32 pb-32 lg:pt-40 lg:pb-48 bg-[#0a0c14] overflow-hidden">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            
+            {/* Left Column (Text) */}
+            <div className="w-full lg:w-[55%] text-left">
+              <h1 className="text-6xl sm:text-7xl lg:text-[80px] font-bold text-white tracking-tight leading-[1.05] mb-6">
+                Premium car<br />
+                rental
+              </h1>
+              
+              <p className="text-lg text-gray-400 mb-10 max-w-lg">
+                Premium cars. Easy booking. Reliable service across the Balkans.
+              </p>
+              
+              {/* Feature Badges */}
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-2 bg-[#1A1D24] border border-white/5 rounded-full px-4 py-2 text-sm text-gray-300 font-medium">
+                  <span className="text-lg">🚗</span> UNLIMITED KM
+                </div>
+                <div className="flex items-center gap-2 bg-[#1A1D24] border border-white/5 rounded-full px-4 py-2 text-sm text-gray-300 font-medium">
+                  <span className="text-lg">🛫</span> AIRPORT PICKUP
+                </div>
+                <div className="flex items-center gap-2 bg-[#1A1D24] border border-white/5 rounded-full px-4 py-2 text-sm text-gray-300 font-medium">
+                  <span className="text-lg">💬</span> FAST WHATSAPP BOOKING
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column (Image) */}
+            <div className="w-full lg:w-[45%] relative">
+              <div className="absolute inset-0 bg-blue-500/20 blur-[100px] rounded-full z-0"></div>
+              <img 
+                src={`${import.meta.env.BASE_URL}images/hero-bg.png`} 
+                alt="Premium Car" 
+                className="w-full h-auto object-contain relative z-10 drop-shadow-2xl scale-110"
+              />
+              {/* Logo Silhouette Overlay */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-10 pointer-events-none z-0 flex items-center justify-center">
+                <img 
+                   src={`${import.meta.env.BASE_URL}images/rron-logo.png`} 
+                   alt="" 
+                   className="w-[120%] h-auto object-contain mix-blend-screen"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col items-center text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-block py-1 px-3 rounded-full bg-white/5 border border-white/10 text-primary font-medium text-sm mb-6 backdrop-blur-sm">
-              ✨ The New Standard in Car Rental
-            </span>
-            <h1 className="text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 leading-tight">
-              Drive the <span className="text-gradient">Extraordinary.</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-12">
-              Premium cars. Easy booking. Reliable service across the Balkans. Experience luxury without the hassle.
-            </p>
-          </motion.div>
-
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="w-full"
-          >
-            <SearchWidget />
-          </motion.div>
+        {/* Floating Search Widget */}
+        <div className="absolute left-0 w-full px-4 sm:px-6 lg:px-8 -bottom-16 z-30">
+          <SearchWidget />
         </div>
       </section>
 
-      {/* Featured Fleet */}
-      <section className="py-24 bg-card/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-end mb-12">
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-2">Featured Fleet</h2>
-              <p className="text-muted-foreground">Discover our most popular premium vehicles.</p>
+      {/* Spacer for Floating Widget */}
+      <div className="h-32 bg-white"></div>
+
+      {/* Our Fleet Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <div className="flex justify-between items-end mb-8">
+              <h2 className="text-4xl font-extrabold text-gray-900">Our Fleet</h2>
+              <div className="flex items-center gap-6 text-sm font-medium">
+                <Link href="/fleet" className="text-gray-900 hover:text-blue-600 transition-colors">
+                  View full fleet →
+                </Link>
+                <a href="https://wa.me/38370000000" className="text-green-600 hover:text-green-700 transition-colors hidden sm:flex items-center gap-1">
+                  Book via WhatsApp <span>💬</span>
+                </a>
+              </div>
             </div>
-            <Link href="/fleet" className="hidden md:inline-flex text-primary font-medium hover:text-primary/80 items-center gap-1 group">
-              View All Cars 
-              <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
           </div>
 
           {isLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[1,2,3].map(i => (
-                <div key={i} className="h-96 bg-white/5 animate-pulse rounded-2xl"></div>
+                <div key={i} className="h-96 bg-gray-100 animate-pulse rounded-2xl"></div>
               ))}
             </div>
           ) : (
@@ -84,38 +104,172 @@ export default function Home() {
             </div>
           )}
           
-          <div className="mt-10 text-center md:hidden">
-             <Link href="/fleet" className="inline-block px-8 py-3 border border-white/10 rounded-xl text-white hover:bg-white/5 transition-colors">
-              View All Cars
+          <div className="mt-16 text-center">
+             <Link href="/fleet" className="inline-flex text-blue-600 font-bold hover:text-blue-800 transition-colors text-lg">
+              View all vehicles & prices →
             </Link>
           </div>
         </div>
       </section>
 
       {/* How It Works */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl z-0 pointer-events-none"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold text-white mb-4">How It Works</h2>
-            <p className="text-muted-foreground">Rent your dream car in four simple steps.</p>
-          </div>
+      <section className="py-24 bg-[#f5f5f5]">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-4xl font-extrabold text-gray-900 text-center mb-16">How it works</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
             {[
-              { icon: MapPin, title: "1. Choose Location", desc: "Select where you want to pick up and drop off the car." },
-              { icon: Clock, title: "2. Pick Dates", desc: "Select your desired rental period and times." },
-              { icon: Star, title: "3. Book Your Car", desc: "Choose from our premium fleet of well-maintained vehicles." },
-              { icon: ShieldCheck, title: "4. Hit The Road", desc: "Pick up your keys and enjoy a seamless driving experience." }
-            ].map((step, idx) => (
-              <div key={idx} className="bg-card p-8 rounded-2xl border border-white/5 text-center hover:border-primary/30 transition-colors">
-                <div className="w-16 h-16 mx-auto bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
-                  <step.icon className="w-8 h-8" />
+              { step: "01", icon: CarIcon, title: "Choose a Vehicle", desc: "Select a car from our premium fleet that fits your needs perfectly." },
+              { step: "02", icon: Calendar, title: "Pick Date & Location", desc: "Choose your pickup and drop-off dates and locations." },
+              { step: "03", icon: Send, title: "Send a Request", desc: "Fill in your details and send a booking request." },
+              { step: "04", icon: Key, title: "Pick Up Your Keys", desc: "Get your keys and start your journey with RRON." }
+            ].map((s) => (
+              <div key={s.step} className="flex flex-col items-start relative">
+                <span className="px-3 py-1 text-xs font-bold bg-gray-200 text-gray-600 rounded-full mb-6">
+                  STEP {s.step}
+                </span>
+                <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 text-blue-600">
+                  <s.icon className="w-8 h-8" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">{step.desc}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{s.title}</h3>
+                <p className="text-gray-500 leading-relaxed">{s.desc}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* What We Offer / Services Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-16">
+            <div className="flex items-center gap-3 text-blue-600 font-bold text-sm tracking-wider uppercase mb-4">
+              <span className="w-8 h-0.5 bg-blue-600"></span>
+              WHAT WE OFFER
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 max-w-xl leading-tight">
+              Everything you need<br />for a perfect drive
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { icon: Plane, title: "Airport Transfer", desc: "We provide pickup and drop-off right at the airport terminal." },
+              { icon: Clock, title: "24/7 Support", desc: "Our team is available around the clock for any assistance you need." },
+              { icon: Shield, title: "Full Insurance", desc: "Drive with peace of mind knowing you are fully covered." },
+              { icon: MapPin, title: "Flexible Drop-off", desc: "Return the car at any of our designated locations easily." }
+            ].map((service, idx) => (
+              <div key={idx} className="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+                <service.icon className="w-10 h-10 text-blue-600 mb-6" />
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{service.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Google Reviews */}
+      <section className="py-24 bg-[#f8f9fa] border-y border-gray-200">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center gap-2 text-gray-500 font-bold text-sm tracking-wider uppercase mb-4">
+            — VERIFIED ON GOOGLE
+          </div>
+          <h2 className="text-4xl font-extrabold text-gray-900 mb-10">Google Reviews</h2>
+          
+          <div className="flex flex-col items-center justify-center mb-12">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-sm">
+                {/* Google G Logo simplified */}
+                <span className="text-blue-600 font-bold text-2xl">G</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-3xl font-bold text-gray-900">5.0</span>
+                <div className="flex gap-1 text-yellow-400">
+                  <Star className="w-6 h-6 fill-current" />
+                  <Star className="w-6 h-6 fill-current" />
+                  <Star className="w-6 h-6 fill-current" />
+                  <Star className="w-6 h-6 fill-current" />
+                  <Star className="w-6 h-6 fill-current" />
+                </div>
+              </div>
+            </div>
+            <p className="text-gray-600 font-medium">· 21 reviews · Rent A Car – RRON, Ferizaj</p>
+            <p className="text-blue-600 mt-4 text-sm font-medium cursor-pointer hover:underline">
+              Read the original reviews on Google Maps...
+            </p>
+          </div>
+
+          <div className="w-full max-w-4xl mx-auto h-[400px] bg-gray-200 rounded-2xl overflow-hidden shadow-lg border border-gray-300 relative">
+            {/* Embedded map placeholder */}
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2946.5293214457885!2d21.1444102!3d42.3653155!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13547eb10817c8ad%3A0xc3cf909d949cf9d7!2sRent%20a%20car%20RRON!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+              width="100%" 
+              height="100%" 
+              style={{border:0}} 
+              allowFullScreen={true} 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </section>
+
+      {/* Locations Section */}
+      <section className="py-24 bg-white">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center gap-2 text-blue-600 font-bold text-sm tracking-wider uppercase mb-4">
+              — WHERE TO FIND US
+            </div>
+            <h2 className="text-4xl font-extrabold text-gray-900">Our Locations</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Location Card 1 */}
+            <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 group">
+              <div className="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1542314831-c53cd4b85ca4?w=800&q=80" alt="Prishtina Airport" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Prishtina International Airport</h3>
+                <p className="text-gray-500 text-sm mb-4">Pristina 10000, Kosovo</p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-md">Airport Pickup</span>
+                  <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-md">24/7</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Location Card 2 */}
+            <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 group">
+              <div className="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800&q=80" alt="Ferizaj Office" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Ferizaj HQ Office</h3>
+                <p className="text-gray-500 text-sm mb-4">Rruga e Gjilanit, Ferizaj 70000, Kosovo</p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-md">Main Office</span>
+                  <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-md">08:00 - 20:00</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Location Card 3 */}
+            <div className="rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 group">
+              <div className="h-48 overflow-hidden relative">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800&q=80" alt="Skopje Airport" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Skopje International Airport</h3>
+                <p className="text-gray-500 text-sm mb-4">1043 Petrovec, North Macedonia</p>
+                <div className="flex gap-2">
+                  <span className="px-2 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-md">Airport Transfer</span>
+                  <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs font-bold rounded-md">On Request</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
