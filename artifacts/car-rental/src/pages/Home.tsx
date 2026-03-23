@@ -15,9 +15,9 @@ export default function Home() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative bg-[#0a0c14] overflow-hidden" style={{minHeight: "480px"}}>
+      <section className="relative bg-[#0a0c14]" style={{minHeight: "420px"}}>
         {/* Top padding for floating navbar */}
-        <div className="pt-24 pb-28">
+        <div className="pt-24 pb-14">
           <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
             <div className="flex flex-col lg:flex-row items-center gap-8">
               
@@ -73,14 +73,15 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Floating Search Widget */}
-        <div className="absolute left-0 w-full px-4 sm:px-6 lg:px-8 -bottom-[34px] z-30">
-          <SearchWidget />
-        </div>
       </section>
 
-      {/* Spacer for Floating Widget */}
-      <div className="h-20 bg-white"></div>
+      {/* Search Widget — floats over the hero/fleet boundary */}
+      <div className="relative z-30 -mt-[30px] px-4 sm:px-6 lg:px-8">
+        <SearchWidget />
+      </div>
+
+      {/* Spacer below widget before fleet */}
+      <div className="h-14 bg-white"></div>
 
       {/* Our Fleet Section */}
       <section className="py-20 bg-white">
