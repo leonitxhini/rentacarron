@@ -132,7 +132,7 @@ export default function Contact() {
             <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm" style={{ height: 200 }}>
               <iframe
                 title="RRON Rent A Car Location"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=21.1450%2C42.0470%2C21.1650%2C42.0640&layer=mapnik&marker=42.0557%2C21.1550"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=21.1314%2C42.3580%2C21.1714%2C42.3860&layer=mapnik&marker=42.3717%2C21.1514"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
