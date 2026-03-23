@@ -23,18 +23,18 @@ export function SearchWidget() {
   };
 
   return (
-    <div className="bg-[#13151f] border border-white/10 rounded-2xl w-full max-w-5xl mx-auto shadow-2xl overflow-hidden">
-      <form onSubmit={handleSearch} className="flex flex-col lg:flex-row items-stretch">
+    <div className="bg-[#0a0c14]/80 backdrop-blur-xl border border-white/10 rounded-xl w-full max-w-5xl mx-auto shadow-2xl p-2">
+      <form onSubmit={handleSearch} className="flex flex-col lg:flex-row items-stretch gap-2">
 
         {/* Pick Up Location */}
-        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 lg:border-r border-white/10 group">
+        <div className="flex-1 relative flex items-center gap-4 px-6 py-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer group">
           <MapPin className="w-4 h-4 text-blue-500 shrink-0" />
           <div className="flex-1 min-w-0">
-            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Pick Up</label>
+            <label className="block text-[10px] uppercase font-medium text-gray-400 tracking-widest mb-1">Pick Up</label>
             <select
               value={pickupLocation}
               onChange={(e) => setPickupLocation(e.target.value)}
-              className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-medium text-white truncate"
+              className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-light text-white truncate"
             >
               <option value="" className="bg-[#13151f]">Select location...</option>
               {locations?.map(loc => (
@@ -42,18 +42,18 @@ export function SearchWidget() {
               ))}
             </select>
           </div>
-          <ChevronDown className="w-4 h-4 text-gray-500 shrink-0 pointer-events-none" />
+          <ChevronDown className="w-4 h-4 text-gray-500 shrink-0 pointer-events-none group-hover:text-white transition-colors" />
         </div>
 
         {/* Drop Off Location */}
-        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 lg:border-r border-white/10 group">
+        <div className="flex-1 relative flex items-center gap-4 px-6 py-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors cursor-pointer group">
           <Flag className="w-4 h-4 text-blue-500 shrink-0" />
           <div className="flex-1 min-w-0">
-            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Drop Off</label>
+            <label className="block text-[10px] uppercase font-medium text-gray-400 tracking-widest mb-1">Drop Off</label>
             <select
               value={dropoffLocation}
               onChange={(e) => setDropoffLocation(e.target.value)}
-              className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-medium text-white truncate"
+              className="w-full bg-transparent outline-none appearance-none cursor-pointer text-sm font-light text-white truncate"
             >
               <option value="" className="bg-[#13151f]">Select location...</option>
               {locations?.map(loc => (
@@ -61,45 +61,47 @@ export function SearchWidget() {
               ))}
             </select>
           </div>
-          <ChevronDown className="w-4 h-4 text-gray-500 shrink-0 pointer-events-none" />
+          <ChevronDown className="w-4 h-4 text-gray-500 shrink-0 pointer-events-none group-hover:text-white transition-colors" />
         </div>
 
         {/* Pick Up Date */}
-        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 lg:border-r border-white/10 group">
+        <div className="flex-1 relative flex items-center gap-4 px-6 py-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
           <CalendarDays className="w-4 h-4 text-blue-500 shrink-0" />
           <div className="flex-1 min-w-0">
-            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Pick Up Date</label>
+            <label className="block text-[10px] uppercase font-medium text-gray-400 tracking-widest mb-1">Pick Up Date</label>
             <input
               type="date"
               value={pickupDate}
               onChange={(e) => setPickupDate(e.target.value)}
-              className="w-full bg-transparent outline-none text-sm font-medium text-white [color-scheme:dark] cursor-pointer"
+              className="w-full bg-transparent outline-none text-sm font-light text-white [color-scheme:dark] cursor-pointer"
             />
           </div>
         </div>
 
         {/* Drop Off Date */}
-        <div className="flex-1 relative flex items-center gap-3 px-5 py-4 border-b lg:border-b-0 border-white/10 group">
+        <div className="flex-1 relative flex items-center gap-4 px-6 py-4 bg-white/5 rounded-lg hover:bg-white/10 transition-colors">
           <CalendarDays className="w-4 h-4 text-blue-500 shrink-0" />
           <div className="flex-1 min-w-0">
-            <label className="block text-[10px] uppercase font-bold text-gray-500 tracking-widest mb-0.5">Drop Off Date</label>
+            <label className="block text-[10px] uppercase font-medium text-gray-400 tracking-widest mb-1">Drop Off Date</label>
             <input
               type="date"
               value={dropoffDate}
               onChange={(e) => setDropoffDate(e.target.value)}
-              className="w-full bg-transparent outline-none text-sm font-medium text-white [color-scheme:dark] cursor-pointer"
+              className="w-full bg-transparent outline-none text-sm font-light text-white [color-scheme:dark] cursor-pointer"
             />
           </div>
         </div>
 
         {/* Search Button */}
-        <button
-          type="submit"
-          className="flex items-center justify-center gap-2 px-8 py-4 bg-[#3b82f6] hover:bg-blue-500 text-white font-semibold text-sm transition-colors shrink-0 lg:rounded-none lg:rounded-r-2xl"
-        >
-          <Search className="w-4 h-4" />
-          Search vehicles
-        </button>
+        <div className="flex items-stretch lg:w-[180px]">
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm transition-colors rounded-lg group"
+          >
+            <Search className="w-4 h-4 group-hover:scale-110 transition-transform" />
+            Search
+          </button>
+        </div>
       </form>
     </div>
   );
