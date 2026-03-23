@@ -262,7 +262,7 @@ export default function Home() {
           </div>
 
           {/* Cards row — swipe on mobile, 4-col on desktop */}
-          <div className="mt-16 flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
+          <div className="mt-8 flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 -mx-6 px-6 scrollbar-hide sm:grid sm:grid-cols-2 sm:overflow-visible sm:snap-none sm:pb-0 sm:mx-0 sm:px-0 lg:grid-cols-4">
             {[
               {
                 Icon: PlaneTakeoff,
@@ -287,10 +287,10 @@ export default function Home() {
             ].map((s, idx) => (
               <div
                 key={idx}
-                className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white rounded-3xl shadow-[0_2px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_36px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 p-8 pt-0"
+                className="snap-start flex-shrink-0 w-[72vw] sm:w-auto flex flex-col items-center text-center bg-white rounded-3xl shadow-[0_2px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_6px_36px_rgba(0,0,0,0.10)] hover:-translate-y-1 transition-all duration-300 p-8"
               >
-                {/* Icon circle — floats above card */}
-                <div className="w-20 h-20 rounded-full bg-[#f4f6fb] border border-gray-100 flex items-center justify-center -mt-10 mb-7 shadow-sm">
+                {/* Icon circle — inside card, no negative margin */}
+                <div className="w-16 h-16 rounded-2xl bg-[#f4f6fb] border border-gray-100 flex items-center justify-center mb-6 shadow-sm">
                   <s.Icon className="w-7 h-7 text-gray-500" strokeWidth={1.5} />
                 </div>
 
