@@ -8,7 +8,9 @@ import { Link } from "wouter";
 
 export default function Home() {
   const { data: cars, isLoading } = useListCars({ available: true });
-  const featuredCars = cars?.slice(0, 3) || [];
+  const featuredCars = [...(cars || [])]
+    .sort((a, b) => b.pricePerDay - a.pricePerDay)
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen flex flex-col bg-white font-sans selection:bg-blue-500 selection:text-white">

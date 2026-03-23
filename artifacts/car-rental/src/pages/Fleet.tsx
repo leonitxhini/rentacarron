@@ -1,20 +1,46 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { CarCard } from "@/components/ui/CarCard";
 import { useListCars } from "@workspace/api-client-react";
+import { ChevronDown } from "lucide-react";
 
-const CATEGORIES = ["All", "SUV", "Sedan", "Luxury", "Economy", "Sport"];
+const CATEGORIES = ["All", "Economy", "Compact", "Premium", "Luxury"];
+
+type SortKey = "price-desc" | "price-asc" | "newest" | "name-az";
+
+const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+  { value: "price-desc", label: "Price: High to Low" },
+  { value: "price-asc",  label: "Price: Low to High" },
+  { value: "newest",     label: "Newest First" },
+  { value: "name-az",    label: "Name: A–Z" },
+];
 
 export default function Fleet() {
   const [activeCategory, setActiveCategory] = useState("All");
+  const [sortBy, setSortBy] = useState<SortKey>("price-desc");
+  const [sortOpen, setSortOpen] = useState(false);
 
-  const queryParams: any = {};
-  if (activeCategory !== "All") {
-    queryParams.category = activeCategory;
-  }
+  const { data: cars, isLoading } = useListCars({});
 
-  const { data: cars, isLoading } = useListCars(queryParams);
+  const filtered = useMemo(() => {
+    let list = [...(cars || [])];
+
+    if (activeCategory !== "All") {
+      list = list.filter(c => c.category.toLowerCase() === activeCategory.toLowerCase());
+    }
+
+    switch (sortBy) {
+      case "price-desc": list.sort((a, b) => b.pricePerDay - a.pricePerDay); break;
+      case "price-asc":  list.sort((a, b) => a.pricePerDay - b.pricePerDay); break;
+      case "newest":     list.sort((a, b) => b.year - a.year); break;
+      case "name-az":    list.sort((a, b) => `${a.make} ${a.model}`.localeCompare(`${b.make} ${b.model}`)); break;
+    }
+
+    return list;
+  }, [cars, activeCategory, sortBy]);
+
+  const activeSortLabel = SORT_OPTIONS.find(o => o.value === sortBy)?.label ?? "Sort";
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -42,8 +68,9 @@ export default function Fleet() {
       <main className="flex-grow">
         <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
 
-          {/* Category Filters */}
+          {/* Filter + Sort bar */}
           <div className="flex flex-wrap items-center gap-2 mb-12">
+            {/* Category pills */}
             {CATEGORIES.map(cat => (
               <button
                 key={cat}
@@ -58,9 +85,47 @@ export default function Fleet() {
                 {cat}
               </button>
             ))}
-            <span className="ml-auto text-sm text-gray-400 font-light">
-              {!isLoading && cars ? `${cars.length} vehicle${cars.length !== 1 ? "s" : ""}` : ""}
-            </span>
+
+            {/* Right side: count + sort */}
+            <div className="ml-auto flex items-center gap-4">
+              <span className="text-sm text-gray-400 font-light hidden sm:block">
+                {!isLoading ? `${filtered.length} vehicle${filtered.length !== 1 ? "s" : ""}` : ""}
+              </span>
+
+              {/* Sort dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setSortOpen(o => !o)}
+                  onBlur={() => setTimeout(() => setSortOpen(false), 150)}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white text-sm text-gray-600 font-medium hover:border-gray-300 hover:text-gray-900 transition-all duration-200"
+                  style={{ letterSpacing: "0.01em" }}
+                >
+                  <span>{activeSortLabel}</span>
+                  <ChevronDown className={`w-3.5 h-3.5 text-gray-400 transition-transform duration-200 ${sortOpen ? "rotate-180" : ""}`} />
+                </button>
+
+                {sortOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-xl shadow-black/8 overflow-hidden z-20">
+                    {SORT_OPTIONS.map(opt => (
+                      <button
+                        key={opt.value}
+                        onClick={() => { setSortBy(opt.value); setSortOpen(false); }}
+                        className={`w-full text-left px-4 py-3 text-sm transition-colors duration-150 ${
+                          sortBy === opt.value
+                            ? "bg-gray-50 text-gray-900 font-semibold"
+                            : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                        }`}
+                      >
+                        {opt.value === sortBy && (
+                          <span className="mr-2 text-blue-500">✓</span>
+                        )}
+                        {opt.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Grid */}
@@ -77,9 +142,9 @@ export default function Fleet() {
                 </div>
               ))}
             </div>
-          ) : cars && cars.length > 0 ? (
+          ) : filtered.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {cars.map(car => (
+              {filtered.map(car => (
                 <CarCard key={car.id} car={car} />
               ))}
             </div>
