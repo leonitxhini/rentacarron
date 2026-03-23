@@ -55,7 +55,13 @@ export function CarCard({ car }: { car: Car }) {
           {/* Car image */}
           <div className="flex items-center justify-center px-6 py-8" style={{ minHeight: 210 }}>
             <img
-              src={car.imageUrl || "https://images.unsplash.com/photo-1503376713203-b0970081e8c9?w=800&q=80"}
+              src={
+                car.imageUrl
+                  ? car.imageUrl.startsWith("http")
+                    ? car.imageUrl
+                    : `${import.meta.env.BASE_URL}${car.imageUrl}`
+                  : "https://images.unsplash.com/photo-1503376713203-b0970081e8c9?w=800&q=80"
+              }
               alt={`${car.make} ${car.model}`}
               className="w-full object-contain group-hover:scale-[1.04] transition-transform duration-500"
               style={{
