@@ -1,0 +1,18 @@
+packages:
+  "framer-motion": "For page transitions and smooth UI animations in the premium design"
+  "react-hook-form": "For robust booking and admin form state management"
+  "@hookform/resolvers": "For Zod validation integration with forms"
+  "date-fns": "For formatting pickup and dropoff dates cleanly"
+  "recharts": "For the admin dashboard statistics charts"
+
+images:
+  - path: "artifacts/car-rental/public/images/logo.png"
+    description: "A minimalist, premium luxury car rental logo mark featuring a sleek sports car silhouette outline in solid white on a transparent background, high-end feel"
+    aspect_ratio: "1:1"
+  - path: "artifacts/car-rental/public/images/hero-bg.png"
+    description: "Dark, moody, cinematic lighting on a sleek abstract background with subtle navy blue and deep black gradients, suggesting luxury automotive elegance"
+    aspect_ratio: "16:9"
+
+notes:
+  - Expecting TanStack Query hooks to be imported from @workspace/api-client-react
+  - Admin auth is a simple client-side session check with password 'admin123'
