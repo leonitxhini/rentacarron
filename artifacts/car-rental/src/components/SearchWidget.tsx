@@ -50,7 +50,8 @@ function LocationPicker({
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
-  const selected = locations?.find(l => String(l.id) === value);
+  const locationList = Array.isArray(locations) ? locations : [];
+  const selected = locationList.find(l => String(l.id) === value);
 
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
@@ -94,7 +95,7 @@ function LocationPicker({
             </p>
           </div>
           <ul className="py-1">
-            {locations?.map(loc => (
+            {locationList.map(loc => (
               <li key={loc.id}>
                 <button
                   type="button"

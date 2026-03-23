@@ -16,10 +16,12 @@ export function BookingModal({ car, onClose }: BookingModalProps) {
   const [returnDate, setReturnDate] = useState("");
   const [returnTime, setReturnTime] = useState("10:00");
 
+  const locationList = Array.isArray(locations) ? locations : [];
+
   useEffect(() => {
-    if (locations?.length && !pickupLocation) {
-      setPickupLocation(String(locations[0].id));
-      setDropoffLocation(String(locations[0].id));
+    if (locationList.length && !pickupLocation) {
+      setPickupLocation(String(locationList[0].id));
+      setDropoffLocation(String(locationList[0].id));
     }
   }, [locations]);
 
@@ -29,8 +31,8 @@ export function BookingModal({ car, onClose }: BookingModalProps) {
   }, []);
 
   const handleWhatsApp = () => {
-    const pickup = locations?.find(l => String(l.id) === pickupLocation)?.name || pickupLocation;
-    const dropoff = locations?.find(l => String(l.id) === dropoffLocation)?.name || dropoffLocation;
+    const pickup = locationList.find(l => String(l.id) === pickupLocation)?.name || pickupLocation;
+    const dropoff = locationList.find(l => String(l.id) === dropoffLocation)?.name || dropoffLocation;
     const message = [
       `Hello, I'd like to book a car:`,
       `🚗 ${car.make} ${car.model} (${car.category} · ${car.year} · ${car.color})`,
@@ -141,7 +143,7 @@ export function BookingModal({ car, onClose }: BookingModalProps) {
                   onChange={(e) => setPickupLocation(e.target.value)}
                   className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-800 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 bg-white transition-all appearance-none cursor-pointer"
                 >
-                  {locations?.map(loc => (
+                  {locationList.map(loc => (
                     <option key={loc.id} value={loc.id}>{loc.name}</option>
                   ))}
                 </select>
@@ -156,7 +158,7 @@ export function BookingModal({ car, onClose }: BookingModalProps) {
                   onChange={(e) => setDropoffLocation(e.target.value)}
                   className="w-full border border-gray-200 rounded-xl px-3 py-2.5 text-sm text-gray-800 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-100 bg-white transition-all appearance-none cursor-pointer"
                 >
-                  {locations?.map(loc => (
+                  {locationList.map(loc => (
                     <option key={loc.id} value={loc.id}>{loc.name}</option>
                   ))}
                 </select>
