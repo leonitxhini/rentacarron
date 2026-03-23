@@ -167,16 +167,11 @@ export default function Home() {
       </section>
 
       {/* How It Works */}
-      <section className="py-24 lg:py-32 bg-[#0a0c14]">
+      <section className="py-24 lg:py-32 bg-[#e9ecf4]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-20">
-            <div className="flex items-center justify-center gap-3 mb-5">
-              <span className="block w-6 h-px bg-blue-500"></span>
-              <span className="text-[10px] tracking-[0.25em] uppercase text-blue-400 font-semibold">Simple Process</span>
-              <span className="block w-6 h-px bg-blue-500"></span>
-            </div>
-            <h2 className="text-3xl lg:text-4xl font-bold text-white tracking-tight mb-4">How it works</h2>
-            <p className="text-white/40 font-light max-w-lg mx-auto">A seamless experience designed to get you on the road quickly and elegantly.</p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 tracking-tight mb-4">How it works</h2>
+            <p className="text-gray-500 font-light max-w-lg mx-auto">A seamless experience designed to get you on the road quickly and elegantly.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
@@ -187,14 +182,14 @@ export default function Home() {
               { step: "04", icon: Key, title: "Take the Keys", desc: "Start your journey with confidence." }
             ].map((s) => (
               <div key={s.step} className="flex flex-col items-center text-center">
-                <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-white/10 text-white/30 rounded-full mb-8">
+                <span className="px-4 py-1 text-[10px] font-medium tracking-[0.2em] border border-gray-300 text-gray-400 rounded-full mb-8">
                   STEP {s.step}
                 </span>
-                <div className="w-20 h-20 bg-white/5 border border-white/10 rounded-2xl flex items-center justify-center mb-8 text-blue-400">
+                <div className="w-20 h-20 bg-white rounded-2xl shadow-[0_2px_15px_rgba(0,0,0,0.06)] flex items-center justify-center mb-8 text-blue-500">
                   <s.icon className="w-8 h-8 stroke-[1.5]" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">{s.title}</h3>
-                <p className="text-white/40 font-light text-sm leading-relaxed max-w-[200px]">{s.desc}</p>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{s.title}</h3>
+                <p className="text-gray-500 font-light text-sm leading-relaxed max-w-[200px]">{s.desc}</p>
               </div>
             ))}
           </div>
@@ -202,32 +197,32 @@ export default function Home() {
       </section>
 
       {/* What We Offer / Services Section */}
-      <section className="py-24 lg:py-32 bg-white">
+      <section className="py-24 lg:py-32 bg-[#0a0c14]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="mb-20 text-center">
             <div className="inline-flex items-center justify-center gap-4 mb-6">
-              <span className="w-12 h-[1px] bg-gray-200"></span>
-              <span className="text-[11px] text-gray-400 uppercase tracking-[0.2em] font-medium">WHAT WE OFFER</span>
-              <span className="w-12 h-[1px] bg-gray-200"></span>
+              <span className="w-12 h-[1px] bg-white/10"></span>
+              <span className="text-[11px] text-blue-400 uppercase tracking-[0.2em] font-medium">WHAT WE OFFER</span>
+              <span className="w-12 h-[1px] bg-white/10"></span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight max-w-2xl mx-auto leading-tight">
-              Everything you need for a <span className="italic font-light text-gray-500">perfect</span> drive
+            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight max-w-2xl mx-auto leading-tight">
+              Everything you need for a <span className="italic font-light text-white/40">perfect</span> drive
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: Plane, title: "Airport Transfer", desc: "Complimentary pickup and drop-off at the terminal." },
               { icon: Clock, title: "24/7 Support", desc: "Dedicated assistance around the clock, wherever you are." },
               { icon: Shield, title: "Full Insurance", desc: "Comprehensive coverage for ultimate peace of mind." },
               { icon: MapPin, title: "Flexible Drop-off", desc: "Return your vehicle at any of our designated locations." }
             ].map((service, idx) => (
-              <div key={idx} className="bg-white p-10 border border-gray-100 rounded-2xl shadow-[0_2px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300">
-                <div className="w-14 h-14 bg-[#eff6ff] rounded-xl flex items-center justify-center mb-8 text-blue-600">
-                  <service.icon className="w-6 h-6 stroke-[1.5]" />
+              <div key={idx} className="bg-white/5 border border-white/8 p-8 rounded-2xl hover:bg-white/8 hover:-translate-y-1 transition-all duration-300">
+                <div className="w-12 h-12 bg-blue-500/10 border border-blue-500/20 rounded-xl flex items-center justify-center mb-7 text-blue-400">
+                  <service.icon className="w-5 h-5 stroke-[1.5]" />
                 </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{service.title}</h3>
-                <p className="text-gray-500 text-sm font-light leading-relaxed">{service.desc}</p>
+                <h3 className="text-base font-bold text-white mb-3">{service.title}</h3>
+                <p className="text-white/40 text-sm font-light leading-relaxed">{service.desc}</p>
               </div>
             ))}
           </div>
