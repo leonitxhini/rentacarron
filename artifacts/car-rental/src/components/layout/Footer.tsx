@@ -34,7 +34,7 @@ export function Footer() {
                <Phone className="w-4 h-4 text-blue-500" /> +383 48 188 415
              </a>
              <div className="flex gap-4 mt-2">
-              <a href="#" className="text-gray-500 hover:text-white transition-colors"><Instagram className="w-4 h-4" /></a>
+              <a href="https://www.instagram.com/rentacarron/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-white transition-colors"><Instagram className="w-4 h-4" /></a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors"><Facebook className="w-4 h-4" /></a>
               <a href="#" className="text-gray-500 hover:text-white transition-colors"><Twitter className="w-4 h-4" /></a>
             </div>
