@@ -50,24 +50,15 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Right Column (Car Image + RRON logo) */}
-              <div className="w-full lg:w-[48%] relative h-[220px] lg:h-[280px] flex items-center justify-center">
-                {/* Spotlight glow */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-[60%] h-[60%] bg-white/5 blur-[60px] rounded-full"></div>
-                </div>
-                {/* RRON logo watermark */}
+              {/* Right Column (Hero Car Image) */}
+              <div className="w-full lg:w-[48%] relative h-[240px] lg:h-[320px] overflow-hidden rounded-xl">
                 <img
-                  src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
-                  alt="RRON"
-                  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[55%] opacity-30 object-contain pointer-events-none z-10"
+                  src={`${import.meta.env.BASE_URL}images/hero-car.png`}
+                  alt="RRON Rent A Car"
+                  className="w-full h-full object-cover object-center"
                 />
-                {/* Hero car image */}
-                <img
-                  src={`${import.meta.env.BASE_URL}images/hero-bg.png`}
-                  alt="Premium Car"
-                  className="relative z-20 w-full h-full object-contain drop-shadow-2xl"
-                />
+                {/* Fade left edge to blend with dark bg */}
+                <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0a0c14] to-transparent pointer-events-none"></div>
               </div>
             </div>
           </div>
