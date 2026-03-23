@@ -33,7 +33,7 @@ function Router() {
       <Route path="/fleet" component={Fleet} />
       <Route path="/booking/:carId" component={Booking} />
       <Route path="/booking/confirm/:id" component={BookingConfirm} />
-      <Route path="/admin" component={Admin} />
+      <Route path="/rron-secure-4x9k" component={Admin} />
       <Route component={NotFound} />
     </Switch>
   );
