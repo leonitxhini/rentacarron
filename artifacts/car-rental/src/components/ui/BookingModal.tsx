@@ -38,7 +38,7 @@ export function BookingModal({ car, onClose }: BookingModalProps) {
       `📍 Pick-up: ${pickup}${pickupDate ? ` on ${pickupDate}` : ""}${pickupTime ? ` at ${pickupTime}` : ""}`,
       `🏁 Drop-off: ${dropoff}${returnDate ? ` on ${returnDate}` : ""}${returnTime ? ` at ${returnTime}` : ""}`,
     ].join("\n");
-    window.open(`https://wa.me/38370000000?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`https://wa.me/38348188415?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   const specs = [

@@ -30,8 +30,8 @@ export function Footer() {
              <a href="mailto:booking@rronrental.com" className="hover:text-white transition-colors flex items-center gap-2">
                <Mail className="w-4 h-4 text-blue-500" /> booking@rronrental.com
              </a>
-             <a href="tel:+38344123456" className="hover:text-white transition-colors flex items-center gap-2">
-               <Phone className="w-4 h-4 text-blue-500" /> +383 44 123 456
+             <a href="tel:+38348188415" className="hover:text-white transition-colors flex items-center gap-2">
+               <Phone className="w-4 h-4 text-blue-500" /> +383 48 188 415
              </a>
              <div className="flex gap-4 mt-2">
               <a href="#" className="text-gray-500 hover:text-white transition-colors"><Instagram className="w-4 h-4" /></a>

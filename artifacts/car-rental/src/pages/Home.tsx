@@ -80,7 +80,7 @@ export default function Home() {
                 <Link href="/fleet" className="text-gray-500 hover:text-gray-900 transition-colors font-light">
                   View full fleet →
                 </Link>
-                <a href="https://wa.me/38370000000" className="text-green-600 hover:text-green-700 transition-colors hidden sm:flex items-center gap-2 font-medium">
+                <a href="https://wa.me/38348188415" className="text-green-600 hover:text-green-700 transition-colors hidden sm:flex items-center gap-2 font-medium">
                   Book via WhatsApp <span className="text-lg">💬</span>
                 </a>
               </div>
@@ -146,7 +146,7 @@ export default function Home() {
 
           <div className="flex flex-col items-start md:items-end gap-4 flex-shrink-0">
             <a
-              href="https://wa.me/38370000000"
+              href="https://wa.me/38348188415"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 bg-[#25d366] hover:bg-[#1ebe5d] text-white font-semibold text-base px-8 py-4 rounded-full transition-all duration-200 shadow-lg shadow-black/30"
@@ -354,9 +354,9 @@ export default function Home() {
             {[
               {
                 title: "Ferizaj HQ",
-                desc: "Rruga e Gjilanit, Ferizaj 70000, Kosovo",
+                desc: "Emin Duraku, Ferizaj 70000, Kosovo",
                 img: `${import.meta.env.BASE_URL}images/location-ferizaj.jpg`,
-                tags: ["Main Office", "08:00–20:00"],
+                tags: ["Main Office", "24/7"],
                 country: "Kosovo"
               },
               {
