@@ -7,6 +7,9 @@ import NotFound from "@/pages/not-found";
 // Pages
 import Home from "@/pages/Home";
 import Fleet from "@/pages/Fleet";
+import Services from "@/pages/Services";
+import FAQ from "@/pages/FAQ";
+import Contact from "@/pages/Contact";
 import Booking from "@/pages/Booking";
 import BookingConfirm from "@/pages/BookingConfirm";
 import Admin from "@/pages/Admin";
@@ -24,6 +27,9 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/services" component={Services} />
+      <Route path="/faq" component={FAQ} />
+      <Route path="/contact" component={Contact} />
       <Route path="/fleet" component={Fleet} />
       <Route path="/booking/:carId" component={Booking} />
       <Route path="/booking/confirm/:id" component={BookingConfirm} />
