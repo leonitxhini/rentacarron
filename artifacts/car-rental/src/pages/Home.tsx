@@ -14,56 +14,51 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-white font-sans selection:bg-blue-500 selection:text-white">
       <Navbar />
       
-      {/* Hero Section */}
-      <section className="relative bg-[#0a0c14]" style={{minHeight: "420px"}}>
-        {/* Top padding for floating navbar */}
-        <div className="pt-24 pb-14">
-          <div className="max-w-6xl mx-auto px-6 lg:px-8 relative z-10">
-            <div className="flex flex-col lg:flex-row items-center gap-8">
-              
-              {/* Left Column (Text) */}
-              <div className="w-full lg:w-[52%] text-left">
-                <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-extrabold text-white tracking-tight leading-[1.05] mb-4">
-                  Premium car<br />rental
-                </h1>
-                
-                <p className="text-base text-gray-400 mb-6 max-w-md">
-                  Premium cars. Easy booking. Reliable service across the Balkans.
-                </p>
-                
-                {/* Feature badges — small inline icon+text style */}
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center gap-6">
-                    <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
-                      <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="22" height="13" rx="2"/><path d="M16 17l-1 4H9l-1-4"/><path d="M1 13h22"/></svg>
-                      UNLIMITED KM
-                    </div>
-                    <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
-                      <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M13 16h2l2 2 2-2h2"/></svg>
-                      AIRPORT PICKUP
-                    </div>
+      {/* Hero Section — full background image */}
+      <section className="relative overflow-hidden" style={{minHeight: "480px"}}>
+        {/* Background image */}
+        <img
+          src={`${import.meta.env.BASE_URL}images/hero-car.png`}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
+        {/* Dark overlay — heavier on left so text is readable, lighter on right to show car */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30 pointer-events-none" />
+        {/* Bottom fade to merge with search widget */}
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-[#0a0c14] to-transparent pointer-events-none" />
+
+        {/* Content */}
+        <div className="relative z-10 pt-24 pb-16">
+          <div className="max-w-6xl mx-auto px-6 lg:px-8">
+            <div className="max-w-xl">
+              <h1 className="text-5xl sm:text-6xl lg:text-[72px] font-extrabold text-white tracking-tight leading-[1.05] mb-4">
+                Premium car<br />rental
+              </h1>
+
+              <p className="text-base text-gray-300 mb-6 max-w-md">
+                Premium cars. Easy booking. Reliable service across the Balkans.
+              </p>
+
+              {/* Feature badges — small inline icon+text */}
+              <div className="flex flex-col gap-1.5">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
+                    <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="1" y="3" width="22" height="13" rx="2"/><path d="M16 17l-1 4H9l-1-4"/><path d="M1 13h22"/></svg>
+                    UNLIMITED KM
                   </div>
                   <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
-                    <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                    FAST WHATSAPP BOOKING
+                    <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M13 16h2l2 2 2-2h2"/></svg>
+                    AIRPORT PICKUP
                   </div>
                 </div>
-              </div>
-
-              {/* Right Column (Hero Car Image) */}
-              <div className="w-full lg:w-[48%] relative h-[240px] lg:h-[320px] overflow-hidden rounded-xl">
-                <img
-                  src={`${import.meta.env.BASE_URL}images/hero-car.png`}
-                  alt="RRON Rent A Car"
-                  className="w-full h-full object-cover object-center"
-                />
-                {/* Fade left edge to blend with dark bg */}
-                <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[#0a0c14] to-transparent pointer-events-none"></div>
+                <div className="flex items-center gap-1.5 text-[13px] text-gray-400 font-medium">
+                  <svg className="w-3.5 h-3.5 text-gray-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  FAST WHATSAPP BOOKING
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </section>
 
       {/* Search Widget — floats over the hero/fleet boundary */}
