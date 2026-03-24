@@ -8,7 +8,7 @@ const CARS = [
   { name: "Audi A6",  mark: "A6",   sub: "2021 · Automatik · Diesel", price: 75, img: `${BASE}/audi-a6.png`,  tag: "PREMIUM"  },
   { name: "Audi A5",  mark: "A5",   sub: "2021 · Automatik · Benzin", price: 70, img: `${BASE}/audi-a5.png`,  tag: "SPORTIV"  },
   { name: "Audi A3",  mark: "A3",   sub: "2018 · Automatik · Benzin", price: 40, img: `${BASE}/audi-a3.png`,  tag: "KOMPAKT"  },
-  { name: "Golf 8",   mark: "MK8",  sub: "2021 · Automatik · Benzin", price: 50, img: `${BASE}/golf8.png`,    tag: "POPULLOR" },
+  { name: "Golf 8",   mark: "8",    sub: "2021 · Automatik · Benzin", price: 50, img: `${BASE}/golf8.png`,    tag: "POPULLOR" },
 ];
 
 const SERVICE_BOXES = [
