@@ -4,22 +4,30 @@ import { Footer } from "@/components/layout/Footer";
 import { CarCard } from "@/components/ui/CarCard";
 import { useListCars } from "@workspace/api-client-react";
 import { ChevronDown } from "lucide-react";
-
-const CATEGORIES = ["All", "Economy", "Compact", "Premium", "Luxury"];
+import { useLang } from "@/contexts/LanguageContext";
 
 type SortKey = "price-desc" | "price-asc" | "newest" | "name-az";
-
-const SORT_OPTIONS: { value: SortKey; label: string }[] = [
-  { value: "price-desc", label: "Price: High to Low" },
-  { value: "price-asc",  label: "Price: Low to High" },
-  { value: "newest",     label: "Newest First" },
-  { value: "name-az",    label: "Name: A–Z" },
-];
 
 export default function Fleet() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [sortBy, setSortBy] = useState<SortKey>("price-desc");
   const [sortOpen, setSortOpen] = useState(false);
+  const { t } = useLang();
+
+  const CATEGORIES = [
+    { key: "All", label: t.fleet.allCategories },
+    { key: "Economy", label: t.fleet.economy },
+    { key: "Compact", label: t.fleet.compact },
+    { key: "Premium", label: t.fleet.premium },
+    { key: "Luxury", label: t.fleet.luxury },
+  ];
+
+  const SORT_OPTIONS: { value: SortKey; label: string }[] = [
+    { value: "price-desc", label: t.fleet.sort.highLow },
+    { value: "price-asc",  label: t.fleet.sort.lowHigh },
+    { value: "newest",     label: t.fleet.sort.newest },
+    { value: "name-az",    label: "Name: A–Z" },
+  ];
 
   const { data: cars, isLoading } = useListCars({});
 
@@ -41,6 +49,7 @@ export default function Fleet() {
   }, [cars, activeCategory, sortBy]);
 
   const activeSortLabel = SORT_OPTIONS.find(o => o.value === sortBy)?.label ?? "Sort";
+  const activeCategoryLabel = CATEGORIES.find(c => c.key === activeCategory)?.label ?? activeCategory;
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -51,16 +60,16 @@ export default function Fleet() {
         <div className="max-w-6xl mx-auto px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-5">
             <span className="block w-8 h-px bg-blue-500"></span>
-            <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">Our Vehicles</span>
+            <span className="text-xs tracking-[0.2em] uppercase text-blue-400 font-medium">{t.fleet.label}</span>
           </div>
           <h1
             className="text-5xl md:text-6xl font-black text-white leading-tight mb-5"
             style={{ letterSpacing: "-0.03em" }}
           >
-            The Fleet
+            {t.fleet.title}
           </h1>
           <p className="text-white/50 text-lg font-light max-w-xl leading-relaxed">
-            Handpicked vehicles maintained to the highest standard. Every journey, every time.
+            {t.fleet.subtitle}
           </p>
         </div>
       </section>
@@ -73,23 +82,23 @@ export default function Fleet() {
             {/* Category pills */}
             {CATEGORIES.map(cat => (
               <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
+                key={cat.key}
+                onClick={() => setActiveCategory(cat.key)}
                 className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === cat
+                  activeCategory === cat.key
                     ? "bg-[#0a0c14] text-white shadow-sm"
                     : "bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-700"
                 }`}
                 style={{ letterSpacing: "0.02em" }}
               >
-                {cat}
+                {cat.label}
               </button>
             ))}
 
             {/* Right side: count + sort */}
             <div className="ml-auto flex items-center gap-4">
               <span className="text-sm text-gray-400 font-light hidden sm:block">
-                {!isLoading ? `${filtered.length} vehicle${filtered.length !== 1 ? "s" : ""}` : ""}
+                {!isLoading ? `${filtered.length} ${t.fleet.vehicles}` : ""}
               </span>
 
               {/* Sort dropdown */}

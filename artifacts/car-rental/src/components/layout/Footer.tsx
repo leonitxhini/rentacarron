@@ -1,7 +1,9 @@
 import { Link } from "wouter";
 import { Instagram, Facebook, MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
+import { useLang } from "@/contexts/LanguageContext";
 
 export function Footer() {
+  const { t } = useLang();
   return (
     <footer className="bg-[#07090f] mt-auto border-t border-white/5">
 
@@ -15,7 +17,7 @@ export function Footer() {
               <img src={`${import.meta.env.BASE_URL}images/rron-logo.png`} alt="RRON Rent A Car" className="h-16 w-auto" />
             </Link>
             <p className="text-gray-500 text-sm font-light leading-relaxed max-w-[260px]">
-              Premium car rental across the Balkans. Elegance, comfort, and reliability — every journey.
+              {t.footer.tagline}
             </p>
             <div className="flex items-center gap-3 mt-1">
               <a
@@ -39,13 +41,13 @@ export function Footer() {
 
           {/* Navigation column */}
           <div className="md:col-span-2 md:col-start-6 flex flex-col gap-4">
-            <p className="text-white text-xs font-semibold uppercase tracking-[0.15em] mb-1">Navigation</p>
+            <p className="text-white text-xs font-semibold uppercase tracking-[0.15em] mb-1">{t.footer.navigation}</p>
             {[
-              { label: "Home", href: "/" },
-              { label: "Fleet", href: "/fleet" },
-              { label: "Services", href: "/services" },
-              { label: "FAQ", href: "/faq" },
-              { label: "Contact", href: "/contact" },
+              { label: t.nav.home.charAt(0) + t.nav.home.slice(1).toLowerCase(), href: "/" },
+              { label: t.nav.fleet.charAt(0) + t.nav.fleet.slice(1).toLowerCase(), href: "/fleet" },
+              { label: t.nav.services.charAt(0) + t.nav.services.slice(1).toLowerCase(), href: "/services" },
+              { label: t.nav.faq, href: "/faq" },
+              { label: t.nav.contact.charAt(0) + t.nav.contact.slice(1).toLowerCase(), href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={label} href={href} className="text-gray-500 text-sm font-light hover:text-white transition-colors duration-150">
                 {label}
@@ -55,7 +57,7 @@ export function Footer() {
 
           {/* Contact column */}
           <div className="md:col-span-4 md:col-start-9 flex flex-col gap-5">
-            <p className="text-white text-xs font-semibold uppercase tracking-[0.15em] mb-1">Get In Touch</p>
+            <p className="text-white text-xs font-semibold uppercase tracking-[0.15em] mb-1">{t.footer.getInTouch}</p>
             <a
               href="mailto:rentacarron@hotmail.com"
               className="group flex items-start gap-3 text-gray-500 hover:text-white transition-colors duration-150"
@@ -64,7 +66,7 @@ export function Footer() {
                 <Mail className="w-3.5 h-3.5 text-blue-400" />
               </span>
               <span className="flex flex-col">
-                <span className="text-xs text-gray-600 uppercase tracking-wider font-light mb-0.5">Email</span>
+                <span className="text-xs text-gray-600 uppercase tracking-wider font-light mb-0.5">{t.footer.email}</span>
                 <span className="text-sm font-light">rentacarron@hotmail.com</span>
               </span>
             </a>
@@ -76,7 +78,7 @@ export function Footer() {
                 <Phone className="w-3.5 h-3.5 text-blue-400" />
               </span>
               <span className="flex flex-col">
-                <span className="text-xs text-gray-600 uppercase tracking-wider font-light mb-0.5">Phone / WhatsApp</span>
+                <span className="text-xs text-gray-600 uppercase tracking-wider font-light mb-0.5">{t.footer.phoneWhatsApp}</span>
                 <span className="text-sm font-light">+383 48 188 415</span>
               </span>
             </a>
@@ -85,7 +87,7 @@ export function Footer() {
                 <MapPin className="w-3.5 h-3.5 text-blue-400" />
               </span>
               <span className="flex flex-col">
-                <span className="text-xs text-gray-600 uppercase tracking-wider font-light mb-0.5">Location</span>
+                <span className="text-xs text-gray-600 uppercase tracking-wider font-light mb-0.5">{t.footer.location}</span>
                 <span className="text-sm font-light">Ferizaj, Kosovo 70000</span>
               </span>
             </div>
@@ -98,7 +100,7 @@ export function Footer() {
       <div className="border-t border-white/[0.06]">
         <div className="max-w-6xl mx-auto px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-gray-600 text-xs tracking-wider font-light">
-            © {new Date().getFullYear()} <span className="text-gray-500">RRON Rent A Car</span>. All rights reserved.
+            © {new Date().getFullYear()} <span className="text-gray-500">RRON Rent A Car</span>. {t.footer.rights}
           </p>
           <a
             href="https://lxclouds.com"
