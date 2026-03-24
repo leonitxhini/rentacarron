@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Instagram, Facebook, Twitter, MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
+import { Instagram, Facebook, MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
 
 export function Footer() {
   return (
@@ -27,16 +27,12 @@ export function Footer() {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/rentrroni"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:border-white/30 transition-all duration-200"
               >
                 <Facebook className="w-4 h-4" />
-              </a>
-              <a
-                href="#"
-                className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:border-white/30 transition-all duration-200"
-              >
-                <Twitter className="w-4 h-4" />
               </a>
             </div>
           </div>
