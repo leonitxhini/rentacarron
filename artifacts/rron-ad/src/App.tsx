@@ -109,30 +109,15 @@ export default function App() {
         display: "flex", alignItems: "center", justifyContent: "space-between",
       }}>
         {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: "clamp(8px, 2vw, 16px)" }}>
-          <div style={{
-            width: "clamp(36px, 8vw, 56px)", height: "clamp(36px, 8vw, 56px)",
-            borderRadius: "clamp(8px, 2vw, 14px)",
-            background: "rgba(59,130,246,0.15)",
-            border: "1px solid rgba(59,130,246,0.4)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0,
-          }}>
-            <div style={{
-              width: "clamp(16px, 3.5vw, 26px)", height: "clamp(9px, 2vw, 15px)",
-              borderRadius: "clamp(3px, 0.7vw, 6px)",
-              border: "clamp(1.5px, 0.3vw, 2.5px) solid #3B82F6",
-              position: "relative",
-            }}>
-              <div style={{ position: "absolute", bottom: "clamp(-5px,-1.2vw,-4px)", left: "clamp(2px,0.5vw,4px)", width: "clamp(4px,1vw,7px)", height: "clamp(4px,1vw,7px)", borderRadius: "50%", background: "#3B82F6" }} />
-              <div style={{ position: "absolute", bottom: "clamp(-5px,-1.2vw,-4px)", right: "clamp(2px,0.5vw,4px)", width: "clamp(4px,1vw,7px)", height: "clamp(4px,1vw,7px)", borderRadius: "50%", background: "#3B82F6" }} />
-            </div>
-          </div>
-          <div>
-            <div style={{ color: "#fff", fontSize: "clamp(14px, 3vw, 22px)", fontWeight: 800, letterSpacing: "0.25em", lineHeight: 1 }}>RRON</div>
-            <div style={{ color: "rgba(255,255,255,0.4)", fontSize: "clamp(8px, 1.6vw, 12px)", letterSpacing: "0.15em" }}>RENT A CAR</div>
-          </div>
-        </div>
+        <img
+          src={`${import.meta.env.BASE_URL}logo.png`}
+          alt="RRON Rent A Car"
+          style={{
+            height: "clamp(44px, 10vw, 70px)",
+            width: "auto",
+            objectFit: "contain",
+          }}
+        />
 
         {/* Dot indicators */}
         <div style={{ display: "flex", gap: "clamp(4px, 1vw, 8px)", alignItems: "center" }}>
