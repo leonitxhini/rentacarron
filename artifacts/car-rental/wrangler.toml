@@ -13,5 +13,5 @@ binding = "IMAGES"
 bucket_name = "rron-images"
 
 [vars]
-ADMIN_SECRET = "admin123"
+ADMIN_SECRET = "ermal123admin"
 R2_PUBLIC_URL = "https://pub-b132e3ba0ce84031a678fb66664122c0.r2.dev"
