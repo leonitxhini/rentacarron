@@ -33,7 +33,7 @@ export default function Home() {
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
             <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-[-0.03em] leading-[1.05] mb-12">
-              Rent A Car<br /><span className="text-blue-400">RRON</span>
+              Rent A Car — <span className="text-blue-400">RRON</span>
             </h1>
 
             {/* Feature badges with thin dividers */}
