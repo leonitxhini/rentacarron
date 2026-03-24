@@ -45,6 +45,7 @@ export interface Car {
   pricePerDay: number;
   available: boolean;
   imageUrl: string | null;
+  images: string[];
   features: string[];
   description: string | null;
   createdAt: string;

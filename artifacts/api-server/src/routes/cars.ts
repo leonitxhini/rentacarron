@@ -21,6 +21,7 @@ function formatCar(car: typeof carsTable.$inferSelect) {
     ...car,
     pricePerDay: Number(car.pricePerDay),
     features: car.features || [],
+    images: car.images || [],
     imageUrl: car.imageUrl || null,
     description: car.description || null,
     createdAt: car.createdAt.toISOString(),

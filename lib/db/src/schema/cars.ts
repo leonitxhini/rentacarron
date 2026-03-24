@@ -16,6 +16,7 @@ export const carsTable = pgTable("cars", {
   pricePerDay: numeric("price_per_day", { precision: 10, scale: 2 }).notNull(),
   available: boolean("available").notNull().default(true),
   imageUrl: text("image_url"),
+  images: text("images").array().notNull().default([]),
   features: text("features").array().notNull().default([]),
   description: text("description"),
   createdAt: timestamp("created_at").notNull().defaultNow(),

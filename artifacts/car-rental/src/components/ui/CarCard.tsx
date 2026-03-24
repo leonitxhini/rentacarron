@@ -1,28 +1,114 @@
 import { useState } from "react";
 import { Car } from "@workspace/api-client-react";
-import { Gauge, Fuel, Users, Briefcase, Heart, ArrowRight } from "lucide-react";
+import { Gauge, Fuel, Users, Briefcase, Heart, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { BookingModal } from "./BookingModal";
+
+function resolveImg(url: string | null | undefined): string {
+  if (!url) return "";
+  if (url.startsWith("http")) return url;
+  return `${import.meta.env.BASE_URL}${url}`;
+}
+
+function CarImageCarousel({ car }: { car: Car }) {
+  const allImages = (car.images && car.images.length > 0)
+    ? car.images
+    : car.imageUrl
+      ? [car.imageUrl]
+      : [];
+
+  const fallback = "https://images.unsplash.com/photo-1503376713203-b0970081e8c9?w=800&q=80";
+  const imgs = allImages.length > 0 ? allImages : [fallback];
+
+  const [idx, setIdx] = useState(0);
+
+  const prev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIdx(i => (i - 1 + imgs.length) % imgs.length);
+  };
+  const next = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIdx(i => (i + 1) % imgs.length);
+  };
+
+  return (
+    <div className="relative w-full h-full" style={{ minHeight: 210 }}>
+      {/* RRON watermark */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
+        <img
+          src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
+          alt=""
+          className="w-2/5 object-contain"
+          style={{ opacity: 0.05 }}
+        />
+      </div>
+
+      {/* Current photo */}
+      <div className="flex items-center justify-center px-6 py-8 relative z-1" style={{ minHeight: 210 }}>
+        <img
+          key={idx}
+          src={resolveImg(imgs[idx]) || fallback}
+          onError={e => { (e.target as HTMLImageElement).src = fallback; }}
+          alt={`${car.make} ${car.model} — photo ${idx + 1}`}
+          className="w-full object-contain transition-all duration-400 group-hover:scale-[1.04]"
+          style={{
+            maxHeight: 158,
+            filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.15))",
+          }}
+        />
+      </div>
+
+      {/* Nav arrows — only shown when multiple images */}
+      {imgs.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white/80 border border-gray-200 flex items-center justify-center shadow-sm hover:bg-white transition-all duration-150 opacity-0 group-hover:opacity-100"
+            aria-label="Previous photo"
+          >
+            <ChevronLeft className="w-4 h-4 text-gray-600" strokeWidth={2.5} />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white/80 border border-gray-200 flex items-center justify-center shadow-sm hover:bg-white transition-all duration-150 opacity-0 group-hover:opacity-100"
+            aria-label="Next photo"
+          >
+            <ChevronRight className="w-4 h-4 text-gray-600" strokeWidth={2.5} />
+          </button>
+
+          {/* Dot indicators */}
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
+            {imgs.map((_, i) => (
+              <button
+                key={i}
+                onClick={e => { e.stopPropagation(); setIdx(i); }}
+                className={`rounded-full transition-all duration-200 ${
+                  i === idx
+                    ? "w-4 h-1.5 bg-blue-500"
+                    : "w-1.5 h-1.5 bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Photo ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 export function CarCard({ car }: { car: Car }) {
   const [showModal, setShowModal] = useState(false);
   const [liked, setLiked] = useState(false);
   const isAvailable = car.available;
 
-  const specs = [
-    { icon: Gauge,     label: car.transmission },
-    { icon: Fuel,      label: car.fuelType },
-    { icon: Users,     label: `${car.seats} Seats` },
-    { icon: Briefcase, label: `${car.bags} Bags` },
-  ];
-
   return (
     <>
       <div className="group rounded-[26px] overflow-hidden bg-white border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.11)] hover:border-gray-200 hover:-translate-y-1 transition-all duration-300 flex flex-col">
 
-        {/* ── Image area — Apple product grey ── */}
+        {/* ── Image area ── */}
         <div
           className="relative overflow-hidden"
-          style={{ background: "#F5F5F7", minHeight: 210 }}
+          style={{ background: "#F5F5F7" }}
         >
           {/* Available badge */}
           <div className="absolute top-4 left-4 z-10">
@@ -48,34 +134,7 @@ export function CarCard({ car }: { car: Car }) {
             <Heart className="w-4 h-4" fill={liked ? "currentColor" : "none"} />
           </button>
 
-          {/* RRON watermark */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-            <img
-              src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
-              alt=""
-              className="w-2/5 object-contain"
-              style={{ opacity: 0.06 }}
-            />
-          </div>
-
-          {/* Car image */}
-          <div className="flex items-center justify-center px-8 py-10" style={{ minHeight: 210 }}>
-            <img
-              src={
-                car.imageUrl
-                  ? car.imageUrl.startsWith("http")
-                    ? car.imageUrl
-                    : `${import.meta.env.BASE_URL}${car.imageUrl}`
-                  : "https://images.unsplash.com/photo-1503376713203-b0970081e8c9?w=800&q=80"
-              }
-              alt={`${car.make} ${car.model}`}
-              className="w-full object-contain group-hover:scale-[1.05] transition-transform duration-500"
-              style={{
-                maxHeight: 150,
-                filter: "drop-shadow(0 10px 20px rgba(0,0,0,0.13))",
-              }}
-            />
-          </div>
+          <CarImageCarousel car={car} />
         </div>
 
         {/* ── Info area ── */}
@@ -91,9 +150,8 @@ export function CarCard({ car }: { car: Car }) {
             {car.make} {car.model}
           </h3>
 
-          {/* Specs — same style as hero feature strip */}
+          {/* Specs */}
           <div className="flex flex-col gap-2.5">
-            {/* Row 1: transmission | fuel */}
             <div className="flex items-center gap-5">
               <div className="flex items-center gap-1.5 text-[10px] text-gray-500 uppercase tracking-[0.13em] font-light">
                 <Gauge className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" strokeWidth={1.8} />
@@ -105,9 +163,7 @@ export function CarCard({ car }: { car: Car }) {
                 {car.fuelType}
               </div>
             </div>
-            {/* Thin divider */}
             <div className="h-px w-32 bg-gray-150" style={{ backgroundColor: "#e8e8ed" }} />
-            {/* Row 2: seats | bags */}
             <div className="flex items-center gap-5">
               <div className="flex items-center gap-1.5 text-[10px] text-gray-500 uppercase tracking-[0.13em] font-light">
                 <Users className="w-3.5 h-3.5 text-blue-500 flex-shrink-0" strokeWidth={1.8} />
@@ -121,7 +177,6 @@ export function CarCard({ car }: { car: Car }) {
             </div>
           </div>
 
-          {/* Divider */}
           <div className="h-px bg-gray-100 my-0.5" />
 
           {/* Price + CTA */}
