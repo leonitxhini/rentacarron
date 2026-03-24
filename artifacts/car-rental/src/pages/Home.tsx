@@ -29,6 +29,15 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c14] via-transparent to-transparent" />
         </div>
 
+        {/* Soft logo watermark */}
+        <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none select-none">
+          <img
+            src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
+            alt=""
+            className="w-[55%] max-w-2xl opacity-[0.045] brightness-200 blur-[1px]"
+          />
+        </div>
+
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
