@@ -4,6 +4,7 @@ export const modules: ModuleMap = {
   "./components/mockups/ads/AdAirport.tsx": () => import("../components/mockups/ads/AdAirport.tsx"),
   "./components/mockups/ads/AdFleet.tsx": () => import("../components/mockups/ads/AdFleet.tsx"),
   "./components/mockups/ads/AdGrid.tsx": () => import("../components/mockups/ads/AdGrid.tsx"),
+  "./components/mockups/ads/AdLocations.tsx": () => import("../components/mockups/ads/AdLocations.tsx"),
   "./components/mockups/ads/AdNight.tsx": () => import("../components/mockups/ads/AdNight.tsx"),
   "./components/mockups/ads/AdPremium.tsx": () => import("../components/mockups/ads/AdPremium.tsx"),
   "./components/mockups/ads/AdReview.tsx": () => import("../components/mockups/ads/AdReview.tsx"),
