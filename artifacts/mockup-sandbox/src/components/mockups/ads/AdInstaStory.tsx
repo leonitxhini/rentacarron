@@ -102,11 +102,8 @@ export function AdInstaStory() {
       {/* Blue glow bottom */}
       <div style={{ position: "absolute", bottom: -60, left: "50%", transform: "translateX(-50%)", width: 300, height: 200, background: `radial-gradient(ellipse, rgba(59,130,246,0.3) 0%, transparent 70%)`, borderRadius: "50%", pointerEvents: "none" }} />
 
-      {/* iOS Status Bar */}
-      <IosStatusBar />
-
-      {/* Content below status bar */}
-      <div style={{ position: "relative", zIndex: 2, height: "calc(100% - 34px)", display: "flex", flexDirection: "column", padding: "18px 22px 24px" }}>
+      {/* Content */}
+      <div style={{ position: "relative", zIndex: 2, height: "100%", display: "flex", flexDirection: "column", padding: "28px 22px 24px" }}>
 
         {/* Center: Location name */}
         <div style={{ textAlign: "center", margin: "auto 0" }}>
