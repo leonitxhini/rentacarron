@@ -144,7 +144,7 @@ export const translations = {
       contact: "KONTAKT",
     },
     hero: {
-      heading: "Merr Me Qira",
+      heading: "Rent A Car",
       headingBrand: "RRON",
       unlimitedKm: "Km Pa Limit",
       airportPickup: "Tërheqje nga Aeroporti",
