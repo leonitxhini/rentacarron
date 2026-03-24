@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://rentrronacar.pages.dev/</loc>
+    <loc>https://rentacarron.com/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://rentrronacar.pages.dev/fleet</loc>
+    <loc>https://rentacarron.com/fleet</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://rentrronacar.pages.dev/booking</loc>
+    <loc>https://rentacarron.com/booking</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://rentrronacar.pages.dev/locations</loc>
+    <loc>https://rentacarron.com/locations</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://rentrronacar.pages.dev/contact</loc>
+    <loc>https://rentacarron.com/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
