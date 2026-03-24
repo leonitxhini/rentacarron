@@ -43,21 +43,21 @@ export function AdInstaStoryCars() {
       {CARS.map((c, i) => (
         <img key={i} src={c.img} alt={c.name} style={{
           position: "absolute",
-          bottom: 168, right: -24,
-          width: "88%", height: "auto",
+          bottom: 158, right: -40,
+          width: "108%", height: "auto",
           objectFit: "contain",
           opacity: active === i ? 1 : 0,
           transition: "opacity 0.65s ease",
-          filter: "drop-shadow(0 24px 60px rgba(0,0,0,0.85))",
+          filter: "drop-shadow(0 20px 50px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(59,130,246,0.15))",
           pointerEvents: "none",
         }} />
       ))}
 
-      {/* Left edge fade */}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,8,15,0.55) 0%, transparent 50%)", pointerEvents: "none" }} />
+      {/* Left edge fade — lighter so car shows through */}
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to right, rgba(6,8,15,0.45) 0%, transparent 60%)", pointerEvents: "none" }} />
 
-      {/* Top + bottom dark */}
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,8,15,0.65) 0%, transparent 30%, rgba(6,8,15,0.88) 68%, rgba(6,8,15,1) 100%)", pointerEvents: "none" }} />
+      {/* Top + bottom dark — open up the middle so car pops */}
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,8,15,0.6) 0%, transparent 22%, transparent 55%, rgba(6,8,15,0.9) 72%, rgba(6,8,15,1) 100%)", pointerEvents: "none" }} />
 
       {/* Blue atmospheric glow — center */}
       <div style={{ position: "absolute", top: "28%", left: "50%", transform: "translate(-50%,-50%)", width: 320, height: 320, background: `radial-gradient(ellipse, rgba(59,130,246,0.13) 0%, transparent 65%)`, pointerEvents: "none" }} />
