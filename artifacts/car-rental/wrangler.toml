@@ -6,7 +6,7 @@ pages_build_output_dir = "./dist"
 [[d1_databases]]
 binding = "DB"
 database_name = "rron-db"
-database_id = "PLACEHOLDER_REPLACE_WITH_YOUR_D1_ID"
+database_id = "f219a065-11bf-46e3-8168-9a5aeb20431d"
 
 [[r2_buckets]]
 binding = "IMAGES"
