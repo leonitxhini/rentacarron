@@ -15,5 +15,6 @@ export const modules: ModuleMap = {
   "./components/mockups/ads/AdWeekend.tsx": () => import("../components/mockups/ads/AdWeekend.tsx"),
   "./components/mockups/ads/AdWhatsApp.tsx": () => import("../components/mockups/ads/AdWhatsApp.tsx"),
   "./components/mockups/devices/IphoneMockup.tsx": () => import("../components/mockups/devices/IphoneMockup.tsx"),
+  "./components/mockups/devices/IphoneVideoMockup.tsx": () => import("../components/mockups/devices/IphoneVideoMockup.tsx"),
   "./components/mockups/devices/MacbookMockup.tsx": () => import("../components/mockups/devices/MacbookMockup.tsx")
 };
