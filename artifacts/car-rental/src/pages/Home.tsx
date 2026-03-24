@@ -29,15 +29,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c14] via-transparent to-transparent" />
         </div>
 
-        {/* Soft logo watermark */}
-        <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none select-none">
-          <img
-            src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
-            alt=""
-            className="w-[55%] max-w-2xl opacity-[0.045] brightness-200 blur-[1px]"
-          />
-        </div>
-
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
@@ -312,8 +303,16 @@ export default function Home() {
       </section>
 
       {/* Google Reviews */}
-      <section className="py-24 lg:py-32 bg-[#e9ecf4]">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 text-center">
+      <section className="relative overflow-hidden py-24 lg:py-32 bg-[#e9ecf4]">
+        {/* Soft logo watermark */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+          <img
+            src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
+            alt=""
+            className="w-[60%] max-w-2xl opacity-[0.06] blur-[2px]"
+          />
+        </div>
+        <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
           <div className="inline-flex items-center justify-center gap-4 mb-8">
             <span className="w-12 h-[1px] bg-gray-200"></span>
             <span className="text-[11px] text-gray-400 uppercase tracking-[0.2em] font-medium">VERIFIED ON GOOGLE</span>
