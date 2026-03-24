@@ -7,16 +7,42 @@ const LOCATIONS = [
     city: "Ferizaj",
     label: "Main Office · Kosovo 70000",
     photo: `${BASE}/location-ferizaj.jpg`,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+        <polyline points="9 22 9 12 15 12 15 22"/>
+      </svg>
+    ),
   },
   {
-    city: "Prishtinë",
-    label: "City Center · Kosovo 10000",
+    city: "Airport Prishtina",
+    label: "Pristina Intl. · Kosovo",
     photo: `${BASE}/location-pristina.jpg`,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l-1 1 7 3L5 14l-2 1 6 4z"/>
+      </svg>
+    ),
   },
   {
-    city: "Airport",
-    label: "Pristina Intl. · Pickup & Drop-off",
-    photo: null,
+    city: "Airport Skopje",
+    label: "Skopje Intl. · North Macedonia",
+    photo: `${BASE}/location-skopje.jpg`,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l-1 1 7 3L5 14l-2 1 6 4z"/>
+      </svg>
+    ),
+  },
+  {
+    city: "Airport Kukes",
+    label: "Kukës Airport · Albania",
+    photo: `${BASE}/location-kukes.jpg`,
+    icon: (
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l-1 1 7 3L5 14l-2 1 6 4z"/>
+      </svg>
+    ),
   },
 ];
 
@@ -24,13 +50,11 @@ const BLUE = "#0A84FF";
 const appleFont = "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif";
 
 export default function AdLocations() {
-  const [visible, setVisible] = useState(false);
   const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
-    const t1 = setTimeout(() => setVisible(true), 100);
-    const t2 = setInterval(() => setBgIndex(p => (p + 1) % 2), 3500);
-    return () => { clearTimeout(t1); clearInterval(t2); };
+    const t = setInterval(() => setBgIndex(p => (p + 1) % LOCATIONS.length), 2800);
+    return () => clearInterval(t);
   }, []);
 
   return (
@@ -43,144 +67,126 @@ export default function AdLocations() {
     }}>
       <style>{`
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(16px); }
+          from { opacity: 0; transform: translateY(14px); }
           to   { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes bgFade {
-          from { opacity: 0; }
-          to   { opacity: 0.18; }
-        }
-        @keyframes bgFadeOut {
-          from { opacity: 0.18; }
-          to   { opacity: 0; }
         }
         @keyframes logoPop {
           0%   { opacity: 0; transform: scale(0.88); }
           60%  { opacity: 1; transform: scale(1.03); }
           100% { opacity: 1; transform: scale(1); }
         }
-        @keyframes shimmer {
-          0%   { transform: translateX(-100%) skewX(-15deg); }
-          100% { transform: translateX(400%) skewX(-15deg); }
-        }
       `}</style>
 
-      {/* Background location photo — crossfade */}
-      {[0, 1].map(i => (
+      {/* Crossfading background photos */}
+      {LOCATIONS.map((loc, i) => (
         <img
           key={i}
-          src={LOCATIONS[i].photo!}
+          src={loc.photo}
           alt=""
           style={{
             position: "absolute", inset: 0,
             width: "100%", height: "100%",
             objectFit: "cover",
-            opacity: bgIndex === i ? 0.18 : 0,
-            transition: "opacity 1.5s ease",
-            filter: "blur(2px) saturate(0.6)",
-            transform: "scale(1.05)",
+            opacity: bgIndex === i ? 0.2 : 0,
+            transition: "opacity 1.4s ease",
+            filter: "blur(3px) saturate(0.5)",
+            transform: "scale(1.06)",
           }}
         />
       ))}
+
       {/* Dark gradient overlay */}
       <div style={{
         position: "absolute", inset: 0,
-        background: "linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 100%)",
+        background: "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.88) 100%)",
       }} />
 
       {/* Blue accent glow */}
       <div style={{
-        position: "absolute", top: -100, right: -60,
-        width: 300, height: 300,
-        background: `radial-gradient(circle, ${BLUE}22 0%, transparent 70%)`,
+        position: "absolute", top: -80, right: -50,
+        width: 260, height: 260,
+        background: `radial-gradient(circle, ${BLUE}20 0%, transparent 70%)`,
         borderRadius: "50%",
-        pointerEvents: "none",
       }} />
 
       {/* Content */}
       <div style={{
         position: "relative", zIndex: 2,
-        padding: "40px 36px",
+        padding: "34px 32px 28px",
         display: "flex", flexDirection: "column",
         height: "100%", boxSizing: "border-box",
       }}>
 
         {/* Logo */}
         <div style={{
-          animation: visible ? "logoPop 0.6s ease forwards" : "none",
-          opacity: 0,
-          marginBottom: 28,
-          display: "flex", alignItems: "center", gap: 12,
+          animation: "logoPop 0.6s ease both",
+          marginBottom: 22,
         }}>
           <img
             src={`${BASE}/rron-logo.png`}
             alt="RRON"
-            style={{ height: 38, filter: "brightness(0) invert(1)", objectFit: "contain" }}
+            style={{ height: 34, filter: "brightness(0) invert(1)", objectFit: "contain" }}
           />
         </div>
 
         {/* Headline */}
         <div style={{
-          animation: visible ? "fadeUp 0.5s 0.15s ease forwards" : "none",
-          opacity: 0,
-          marginBottom: 28,
+          animation: "fadeUp 0.5s 0.12s ease both",
+          marginBottom: 22,
         }}>
-          <div style={{ fontSize: 11, fontWeight: 600, color: BLUE, letterSpacing: "0.12em", marginBottom: 6 }}>
+          <div style={{ fontSize: 10, fontWeight: 600, color: BLUE, letterSpacing: "0.14em", marginBottom: 5 }}>
             WHERE TO FIND US
           </div>
-          <div style={{ fontSize: 30, fontWeight: 700, color: "#fff", letterSpacing: "-0.5px", lineHeight: 1.15 }}>
-            Find us<br />near you.
+          <div style={{ fontSize: 26, fontWeight: 700, color: "#fff", letterSpacing: "-0.4px", lineHeight: 1.15 }}>
+            Find us near you.
           </div>
         </div>
 
         {/* Location cards */}
         <div style={{
           background: "rgba(255,255,255,0.07)",
-          borderRadius: 18,
-          border: "1px solid rgba(255,255,255,0.1)",
+          borderRadius: 16,
+          border: "1px solid rgba(255,255,255,0.09)",
           overflow: "hidden",
           flex: 1,
         }}>
           {LOCATIONS.map((loc, i) => (
             <div key={i} style={{
-              animation: visible ? `fadeUp 0.5s ${0.3 + i * 0.12}s ease forwards` : "none",
-              opacity: 0,
+              animation: `fadeUp 0.45s ${0.25 + i * 0.1}s ease both`,
             }}>
-              {i > 0 && <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginLeft: 68 }} />}
+              {i > 0 && (
+                <div style={{ height: 1, background: "rgba(255,255,255,0.07)", marginLeft: 62 }} />
+              )}
               <div style={{
                 display: "flex", alignItems: "center",
-                padding: "16px 18px", gap: 14,
+                padding: "13px 16px", gap: 12,
               }}>
-                {/* Photo thumbnail or icon */}
+                {/* Photo thumbnail */}
                 <div style={{
-                  width: 42, height: 42, borderRadius: 10, overflow: "hidden",
-                  background: `${BLUE}1A`, flexShrink: 0,
-                  position: "relative",
+                  width: 38, height: 38, borderRadius: 9, overflow: "hidden",
+                  background: `${BLUE}18`, flexShrink: 0,
                   display: "flex", alignItems: "center", justifyContent: "center",
+                  color: BLUE,
                 }}>
-                  {loc.photo ? (
-                    <img
-                      src={loc.photo}
-                      alt={loc.city}
-                      style={{ width: "100%", height: "100%", objectFit: "cover" }}
-                    />
-                  ) : (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={BLUE} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 2c-2-2-4-2-5.5-.5L10 5 1.8 6.2l-1 1 7 3L5 14l-2 1 6 4z"/>
-                    </svg>
-                  )}
+                  <img
+                    src={loc.photo}
+                    alt={loc.city}
+                    style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                  />
                 </div>
+
                 {/* Text */}
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 16, fontWeight: 600, color: "#fff", letterSpacing: "-0.2px" }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: "#fff", letterSpacing: "-0.15px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                     {loc.city}
                   </div>
-                  <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)", marginTop: 2 }}>
+                  <div style={{ fontSize: 11, color: "rgba(255,255,255,0.38)", marginTop: 1 }}>
                     {loc.label}
                   </div>
                 </div>
+
                 {/* Chevron */}
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.18)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <polyline points="9 18 15 12 9 6"/>
                 </svg>
               </div>
@@ -191,12 +197,11 @@ export default function AdLocations() {
         {/* Footer */}
         <div style={{
           display: "flex", justifyContent: "space-between", alignItems: "center",
-          marginTop: 20,
-          animation: visible ? "fadeUp 0.5s 0.7s ease forwards" : "none",
-          opacity: 0,
+          marginTop: 18,
+          animation: "fadeUp 0.45s 0.72s ease both",
         }}>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.3)" }}>+383 48 188 415</div>
-          <div style={{ fontSize: 12, fontWeight: 500, color: BLUE }}>rrcar.vercel.app →</div>
+          <div style={{ fontSize: 11, color: "rgba(255,255,255,0.28)" }}>+383 48 188 415</div>
+          <div style={{ fontSize: 11, fontWeight: 500, color: BLUE }}>rrcar.vercel.app →</div>
         </div>
       </div>
     </div>
