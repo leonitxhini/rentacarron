@@ -5,10 +5,16 @@ const BLUE = "#3B82F6";
 const DARK = "#06080f";
 
 const CARS = [
-  { name: "Audi A6",  mark: "A6",   sub: "2021 · Automatik · Diesel", price: 75, img: `${BASE}/audi-a6.png`,  tag: "PREMIUM",  specs: [{ label: "HP",     val: "286" }, { label: "Motor",   val: "3.0 TDI" }, { label: "0–100",  val: "5.7s" }] },
-  { name: "Audi A5",  mark: "A5",   sub: "2021 · Automatik · Benzin", price: 70, img: `${BASE}/audi-a5.png`,  tag: "SPORTIV",  specs: [{ label: "HP",     val: "245" }, { label: "Motor",   val: "2.0 TFSI"}, { label: "0–100",  val: "6.3s" }] },
-  { name: "Audi A3",  mark: "A3",   sub: "2018 · Automatik · Benzin", price: 40, img: `${BASE}/audi-a3.png`,  tag: "KOMPAKT",  specs: [{ label: "HP",     val: "150" }, { label: "Motor",   val: "1.5 TFSI"}, { label: "Gearbox",val: "7DSG" }] },
-  { name: "Golf 8",   mark: "MK8",  sub: "2021 · Automatik · Benzin", price: 50, img: `${BASE}/golf8.png`,    tag: "POPULLOR", specs: [{ label: "HP",     val: "150" }, { label: "Motor",   val: "2.0 TDI" }, { label: "Gearbox",val: "7DSG" }] },
+  { name: "Audi A6",  mark: "A6",   sub: "2021 · Automatik · Diesel", price: 75, img: `${BASE}/audi-a6.png`,  tag: "PREMIUM"  },
+  { name: "Audi A5",  mark: "A5",   sub: "2021 · Automatik · Benzin", price: 70, img: `${BASE}/audi-a5.png`,  tag: "SPORTIV"  },
+  { name: "Audi A3",  mark: "A3",   sub: "2018 · Automatik · Benzin", price: 40, img: `${BASE}/audi-a3.png`,  tag: "KOMPAKT"  },
+  { name: "Golf 8",   mark: "MK8",  sub: "2021 · Automatik · Benzin", price: 50, img: `${BASE}/golf8.png`,    tag: "POPULLOR" },
+];
+
+const SERVICE_BOXES = [
+  { val: "4",    label: "Aeroporte" },
+  { val: "∞",    label: "Km Falas"  },
+  { val: "24/7", label: "Dispozicion" },
 ];
 
 export function AdInstaStoryCars() {
@@ -101,16 +107,16 @@ export function AdInstaStoryCars() {
           }}>{car.tag}</div>
         </div>
 
-        {/* Spec stats — floating in middle */}
-        <div key={`specs-${active}`} style={{ display: "flex", gap: 8, marginTop: "auto", marginBottom: 12 }}>
-          {car.specs.map((s, i) => (
+        {/* Service info boxes */}
+        <div style={{ display: "flex", gap: 8, marginTop: "auto", marginBottom: 12 }}>
+          {SERVICE_BOXES.map((s, i) => (
             <div key={i} style={{
               flex: 1, padding: "10px 0", borderRadius: 12,
               background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.09)",
               textAlign: "center",
               animation: `specIn 0.4s ease ${0.05 + i * 0.07}s both`,
             }}>
-              <div style={{ color: "#fff", fontSize: 16, fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1 }}>{s.val}</div>
+              <div style={{ color: BLUE, fontSize: 17, fontWeight: 800, letterSpacing: "-0.02em", lineHeight: 1 }}>{s.val}</div>
               <div style={{ color: "rgba(255,255,255,0.33)", fontSize: 10, fontWeight: 600, marginTop: 3, textTransform: "uppercase", letterSpacing: "0.07em" }}>{s.label}</div>
             </div>
           ))}
