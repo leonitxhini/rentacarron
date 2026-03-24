@@ -1,100 +1,201 @@
+import React from "react";
+
 const SITE = "https://9118c3f6-0cb8-47e6-aef7-5d5447b4f0ab-00-1nbkuu2o727rc.riker.replit.dev";
 
 export function AdAlb3() {
   return (
     <div style={{
-      width: "100vw", height: "100vh", overflow: "hidden",
+      width: "530px",
+      height: "530px",
+      overflow: "hidden",
       fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif",
-      background: "#08090f",
-      display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center",
+      background: "#07080e",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
       position: "relative",
-      padding: "5vw",
       boxSizing: "border-box",
-      gap: "4vw",
     }}>
-      {/* Subtle blue glow */}
+      <style>
+        {`@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');`}
+      </style>
+
+      {/* Subtle radial glow centered behind the phone */}
       <div style={{
-        position: "absolute", inset: 0,
-        background: "radial-gradient(ellipse at 50% 40%, rgba(59,130,246,0.12) 0%, transparent 65%)",
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: "450px",
+        height: "450px",
+        background: "radial-gradient(circle, rgba(59,130,246,0.14) 0%, transparent 70%)",
         pointerEvents: "none",
+        zIndex: 0,
       }} />
 
-      {/* Top: logo + tagline */}
-      <div style={{ position: "relative", zIndex: 1, textAlign: "center" }}>
-        <div style={{ color: "#3B82F6", fontSize: "2.4vw", fontWeight: 700, letterSpacing: "0.22em", textTransform: "uppercase", marginBottom: "1.5vw" }}>
-          RRON Rent A Car
+      {/* Top headline block */}
+      <div style={{ position: "relative", zIndex: 1, textAlign: "center", marginBottom: "18px" }}>
+        <div style={{
+          color: "#3B82F6",
+          fontSize: "11px",
+          fontWeight: 700,
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          marginBottom: "6px"
+        }}>
+          RRON RENT A CAR
         </div>
-        <h2 style={{ margin: 0, color: "#fff", fontSize: "7.5vw", fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1.05 }}>
-          Merr Veturë<br />
-          <span style={{ color: "rgba(255,255,255,0.3)" }}>me Qira Online</span>
-        </h2>
+        <div style={{
+          fontFamily: "'Bebas Neue', sans-serif",
+          lineHeight: 1.0,
+          display: "flex",
+          alignItems: "baseline",
+          justifyContent: "center",
+          gap: "8px"
+        }}>
+          <span style={{ color: "#fff", fontSize: "60px", letterSpacing: "1px" }}>
+            Merr Veturë
+          </span>
+          <span style={{ color: "#a1a1aa", fontSize: "45px", letterSpacing: "0.5px" }}>
+            me Qira Online
+          </span>
+        </div>
       </div>
 
-      {/* Phone frame with live website */}
-      <div style={{
-        position: "relative", zIndex: 1,
-        width: "42vw", height: "58vw",
-        borderRadius: "5.5vw",
-        background: "#111827",
-        border: "0.7vw solid rgba(255,255,255,0.13)",
-        overflow: "hidden",
-        boxShadow: "0 5vw 25vw rgba(0,0,0,0.7), 0 0 0 0.2vw rgba(255,255,255,0.05), 0 0 40px rgba(59,130,246,0.2)",
-        flexShrink: 0,
-      }}>
-        {/* Dynamic island */}
+      {/* Phone mockup frame */}
+      <div style={{ position: "relative", zIndex: 1, marginBottom: "22px" }}>
+        {/* Buttons SVG on the left/right */}
+        <svg
+          width="216"
+          height="280"
+          viewBox="0 0 216 280"
+          style={{ position: "absolute", top: 0, left: "-8px", pointerEvents: "none" }}
+        >
+          {/* Left buttons (Volume up, Volume down, Action) */}
+          <rect x="0" y="60" width="8" height="14" rx="3" fill="#333" />
+          <rect x="0" y="85" width="8" height="24" rx="3" fill="#333" />
+          <rect x="0" y="115" width="8" height="24" rx="3" fill="#333" />
+          {/* Right button (Power) */}
+          <rect x="208" y="95" width="8" height="35" rx="3" fill="#333" />
+        </svg>
+
         <div style={{
-          position: "absolute", top: "2vw", left: "50%", transform: "translateX(-50%)",
-          width: "11vw", height: "1.5vw", borderRadius: "10vw",
-          background: "#000", zIndex: 10,
-        }} />
-        {/* Live homepage */}
-        <iframe
-          src={`${SITE}/`}
-          style={{
-            width: "265%", height: "265%",
-            border: "none",
-            transform: "scale(0.377) translateZ(0)",
-            transformOrigin: "top left",
+          position: "relative",
+          width: "200px",
+          height: "280px",
+          borderRadius: "28px",
+          background: "#000",
+          border: "1.5px solid rgba(255,255,255,0.12)",
+          boxShadow: "0 0 50px rgba(59,130,246,0.18), 0 20px 40px rgba(0,0,0,0.8)",
+          overflow: "hidden",
+        }}>
+          {/* Side reflection (glass effect) */}
+          <div style={{
+            position: "absolute",
+            top: "10%",
+            bottom: "10%",
+            right: 0,
+            width: "1.5px",
+            background: "linear-gradient(to bottom, transparent, rgba(255,255,255,0.4), transparent)",
+            zIndex: 10,
+          }} />
+
+          {/* Dynamic Island */}
+          <div style={{
+            position: "absolute",
+            top: "8px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: "48px",
+            height: "7px",
+            borderRadius: "10px",
+            background: "#000",
+            zIndex: 10,
+            boxShadow: "inset 0 0 2px rgba(255,255,255,0.1)"
+          }} />
+
+          {/* Iframe */}
+          <div style={{ width: "200px", height: "280px", overflow: "hidden", borderRadius: "26px" }}>
+            <iframe
+              src={`${SITE}/`}
+              style={{
+                width: "400px",
+                height: "560px",
+                border: "none",
+                transform: "scale(0.5)",
+                transformOrigin: "top left",
+                pointerEvents: "none",
+                background: "#111827",
+              }}
+              scrolling="no"
+              title="RRON Rent A Car"
+            />
+          </div>
+
+          {/* Bottom fade gradient */}
+          <div style={{
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "70px",
+            background: "linear-gradient(to bottom, transparent, rgba(7,8,14,0.95))",
             pointerEvents: "none",
-          }}
-          scrolling="no"
-        />
-        {/* Bottom fade */}
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: "38%",
-          background: "linear-gradient(to bottom, transparent, rgba(8,9,15,0.96))",
-          pointerEvents: "none",
-        }} />
+            zIndex: 5,
+          }} />
+        </div>
       </div>
 
-      {/* Bottom */}
-      <div style={{ position: "relative", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: "2.5vw" }}>
-        <div style={{ display: "flex", gap: "2.5vw" }}>
-          {["14 Vetura", "Nga €25/ditë", "♾ Km Falas"].map(t => (
-            <div key={t} style={{
-              padding: "1.5vw 3vw", borderRadius: "10vw",
+      {/* Bottom section */}
+      <div style={{ position: "relative", zIndex: 1, width: "100%", padding: "0 40px", display: "flex", flexDirection: "column", alignItems: "center", gap: "18px", boxSizing: "border-box" }}>
+        {/* Pills */}
+        <div style={{ display: "flex", gap: "8px" }}>
+          {["14 Vetura", "Nga €25/ditë", "Km pa Limit"].map((text) => (
+            <div key={text} style={{
+              padding: "5px 12px",
+              borderRadius: "10px",
               background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.09)",
-              color: "rgba(255,255,255,0.5)", fontSize: "2vw", fontWeight: 500,
-            }}>{t}</div>
+              border: "1px solid rgba(255,255,255,0.1)",
+              color: "rgba(255,255,255,0.9)",
+              fontSize: "12px",
+              fontWeight: 500,
+              backdropFilter: "blur(8px)",
+            }}>
+              {text}
+            </div>
           ))}
         </div>
-        <div style={{
-          display: "flex", gap: "3vw", width: "100%", maxWidth: "72vw",
-        }}>
+
+        {/* CTA Buttons */}
+        <div style={{ display: "flex", gap: "14px", width: "100%", maxWidth: "360px" }}>
           <div style={{
-            flex: 1, padding: "2.5vw 0", borderRadius: "2.2vw",
-            background: "linear-gradient(135deg, #3B82F6, #2563EB)",
-            color: "#fff", fontSize: "2.8vw", fontWeight: 800, textAlign: "center",
-            boxShadow: "0 2vw 6vw rgba(59,130,246,0.5)",
-          }}>💬 WhatsApp</div>
+            flex: 1,
+            padding: "12px 0",
+            borderRadius: "100px",
+            background: "linear-gradient(135deg, #3B82F6, #1D4ED8)",
+            color: "#fff",
+            fontSize: "15px",
+            fontWeight: 700,
+            textAlign: "center",
+            boxShadow: "0 4px 15px rgba(59,130,246,0.3)",
+          }}>
+            💬 WhatsApp
+          </div>
           <div style={{
-            flex: 1, padding: "2.5vw 0", borderRadius: "2.2vw",
+            flex: 1,
+            padding: "12px 0",
+            borderRadius: "100px",
             background: "rgba(255,255,255,0.07)",
-            border: "1px solid rgba(255,255,255,0.1)",
-            color: "#fff", fontSize: "2.8vw", fontWeight: 700, textAlign: "center",
-          }}>Shiko Flotën</div>
+            border: "1px solid rgba(255,255,255,0.12)",
+            color: "#fff",
+            fontSize: "15px",
+            fontWeight: 600,
+            textAlign: "center",
+            backdropFilter: "blur(8px)",
+          }}>
+            Shiko Flotën
+          </div>
         </div>
       </div>
     </div>
