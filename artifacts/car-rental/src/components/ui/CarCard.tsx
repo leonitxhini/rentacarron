@@ -31,7 +31,7 @@ function CarImageCarousel({ car }: { car: Car }) {
   };
 
   return (
-    <div className="relative w-full h-full" style={{ minHeight: 210 }}>
+    <div className="relative w-full h-full" style={{ minHeight: 270 }}>
       {/* RRON watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
         <img
@@ -43,7 +43,7 @@ function CarImageCarousel({ car }: { car: Car }) {
       </div>
 
       {/* Current photo */}
-      <div className="flex items-center justify-center px-6 py-8 relative z-1" style={{ minHeight: 210 }}>
+      <div className="flex items-center justify-center px-4 py-6 relative z-1" style={{ minHeight: 270 }}>
         <img
           key={idx}
           src={resolveImg(imgs[idx]) || fallback}
@@ -51,7 +51,7 @@ function CarImageCarousel({ car }: { car: Car }) {
           alt={`${car.make} ${car.model} — photo ${idx + 1}`}
           className="w-full object-contain transition-all duration-400 group-hover:scale-[1.04]"
           style={{
-            maxHeight: 158,
+            maxHeight: 210,
             filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.15))",
           }}
         />
