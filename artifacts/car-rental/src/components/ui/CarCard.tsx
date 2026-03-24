@@ -31,29 +31,16 @@ function CarImageCarousel({ car }: { car: Car }) {
   };
 
   return (
-    <div className="relative w-full h-full" style={{ minHeight: 270 }}>
-      {/* RRON watermark */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none z-0">
-        <img
-          src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
-          alt=""
-          className="w-2/5 object-contain"
-          style={{ opacity: 0.05 }}
-        />
-      </div>
+    <div className="relative w-full h-full">
 
       {/* Current photo */}
-      <div className="flex items-center justify-center px-4 py-6 relative z-1" style={{ minHeight: 270 }}>
+      <div className="relative z-1 w-full" style={{ height: 240 }}>
         <img
           key={idx}
           src={resolveImg(imgs[idx]) || fallback}
           onError={e => { (e.target as HTMLImageElement).src = fallback; }}
           alt={`${car.make} ${car.model} — photo ${idx + 1}`}
-          className="w-full object-contain transition-all duration-400 group-hover:scale-[1.04]"
-          style={{
-            maxHeight: 210,
-            filter: "drop-shadow(0 12px 24px rgba(0,0,0,0.15))",
-          }}
+          className="w-full h-full object-cover transition-all duration-400 group-hover:scale-[1.04]"
         />
       </div>
 
@@ -106,10 +93,7 @@ export function CarCard({ car }: { car: Car }) {
       <div className="group rounded-[26px] overflow-hidden bg-white border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_10px_40px_rgba(0,0,0,0.11)] hover:border-gray-200 hover:-translate-y-1 transition-all duration-300 flex flex-col">
 
         {/* ── Image area ── */}
-        <div
-          className="relative overflow-hidden"
-          style={{ background: "#F5F5F7" }}
-        >
+        <div className="relative overflow-hidden">
           {/* Available badge */}
           <div className="absolute top-4 left-4 z-10">
             <span className={`inline-flex items-center gap-1.5 text-[10px] font-semibold px-3 py-1.5 rounded-full tracking-wide ${
