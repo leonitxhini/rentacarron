@@ -1,53 +1,80 @@
 import { motion } from 'framer-motion';
-import { sceneTransitions } from '@/lib/video/animations';
+import { sceneTransitions, charVariants } from '@/lib/video/animations';
 
 export function Scene1Reveal() {
+  const title = "PREMIUM RENT A CAR";
+  
   return (
     <motion.div
       className="absolute inset-0 flex flex-col items-center justify-center bg-transparent z-10"
       {...sceneTransitions.zoomThrough}
     >
-      <div className="relative w-full h-full flex flex-col items-center justify-center">
-        {/* Dramatic light sweep wrapper */}
-        <div className="relative overflow-hidden">
+      <div className="relative w-full h-full flex flex-col items-center justify-center px-[8vmin]">
+        
+        {/* Blue diagonal light streaks */}
+        <motion.div
+          className="absolute w-[200%] h-32 bg-[var(--color-primary)]/10 blur-2xl -rotate-45"
+          initial={{ top: '-50%', left: '-50%' }}
+          animate={{ top: '150%', left: '150%' }}
+          transition={{ duration: 2, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute w-[200%] h-16 bg-white/5 blur-xl -rotate-45"
+          initial={{ top: '-30%', left: '-50%' }}
+          animate={{ top: '170%', left: '150%' }}
+          transition={{ duration: 2.5, delay: 0.5, ease: 'easeInOut' }}
+        />
+
+        {/* Logo drops from top with spring + glow pulse */}
+        <motion.div className="relative mb-[6vh]">
           <motion.img
             src={`${import.meta.env.BASE_URL}logo.png`}
             alt="RRON Logo"
-            className="w-[38vw] max-w-2xl object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.4)] filter brightness-0 invert"
-            initial={{ scale: 0.8, opacity: 0, filter: 'blur(12px) brightness(0) invert(1)' }}
-            animate={{ scale: 1, opacity: 1, filter: 'blur(0px) brightness(0) invert(1)' }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+            className="w-[60vmin] object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.6)] filter brightness-0 invert"
+            initial={{ y: -100, scale: 0.5, opacity: 0 }}
+            animate={{ y: 0, scale: 1, opacity: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20, delay: 0.2 }}
           />
-          {/* Blue light sweep — no gold */}
           <motion.div
-            className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-[rgba(59,130,246,0.35)] to-transparent skew-x-[-20deg]"
-            initial={{ left: '-100%' }}
-            animate={{ left: '200%' }}
-            transition={{ duration: 2, delay: 0.6, ease: 'easeInOut' }}
-            style={{ mixBlendMode: 'overlay' }}
+            className="absolute inset-0 rounded-full bg-[var(--color-primary)] blur-[60px] -z-10"
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: [0, 0.4, 0.1], scale: [0.5, 1.2, 1] }}
+            transition={{ duration: 2, delay: 0.5, times: [0, 0.2, 1] }}
           />
-        </div>
-
-        <motion.div
-          className="mt-6 flex items-center gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 1.2, ease: 'easeOut' }}
-        >
-          <span className="w-12 h-[1px] bg-[var(--color-primary)] inline-block" />
-          <span className="text-[2.5vw] tracking-[0.4em] font-body font-light text-white/70">PREMIUM RENT A CAR</span>
-          <span className="w-12 h-[1px] bg-[var(--color-primary)] inline-block" />
         </motion.div>
 
-        {/* Subtitle */}
-        <motion.p
-          className="font-body text-[1.2vw] text-white/30 tracking-[0.3em] mt-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.8 }}
+        {/* Typed out character by character */}
+        <div className="mt-[2vh] flex flex-wrap justify-center gap-x-[1.5vmin] perspective-[1000px]">
+          {title.split('').map((char, i) => (
+            <motion.span
+              key={i}
+              className="text-[6vmin] tracking-[0.2em] font-body font-light text-white/90"
+              variants={charVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.8 + i * 0.05 }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </motion.span>
+          ))}
+        </div>
+
+        {/* Wipe in via clip-path at bottom */}
+        <motion.div
+          className="mt-[4vh] relative"
+          initial={{ clipPath: 'inset(0 50% 0 50%)' }}
+          animate={{ clipPath: 'inset(0 0% 0 0%)' }}
+          transition={{ duration: 1, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          FERIZAJ · PRISHTINË · KOSOVO
-        </motion.p>
+          <div className="flex items-center justify-center gap-[2vmin]">
+            <span className="w-[8vmin] h-[2px] bg-[var(--color-primary)] inline-block" />
+            <p className="font-body text-[3vmin] text-[var(--color-primary)] tracking-[0.3em] whitespace-nowrap">
+              FERIZAJ · PRISHTINË · KOSOVO
+            </p>
+            <span className="w-[8vmin] h-[2px] bg-[var(--color-primary)] inline-block" />
+          </div>
+        </motion.div>
+        
       </div>
     </motion.div>
   );
