@@ -309,7 +309,7 @@ export default function Home() {
           <img
             src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
             alt=""
-            className="w-[60%] max-w-2xl opacity-[0.06] blur-[2px]"
+            className="w-[65%] max-w-2xl opacity-[0.15] invert"
           />
         </div>
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
