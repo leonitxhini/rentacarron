@@ -10,7 +10,6 @@ import {
   Scene6Outro,
 } from './scenes';
 
-// 6 scenes based on the requirements
 const SCENE_DURATIONS = {
   reveal: 4000,
   fleet: 6000,
@@ -31,40 +30,29 @@ export default function VideoTemplate() {
       className="w-full h-screen overflow-hidden relative"
       style={{ backgroundColor: 'var(--color-bg-dark)' }}
     >
-      {/* PERSISTENT BACKGROUND LAYER */}
-      {/* Animated gradient shifting subtly across all scenes */}
-      <div className="absolute inset-0 pointer-events-none opacity-30 mix-blend-screen z-0">
+      {/* PERSISTENT BACKGROUND — blue orb only, no gold */}
+      <div className="absolute inset-0 pointer-events-none z-0">
         <motion.div
-          className="absolute w-[100vw] h-[100vw] rounded-full bg-[var(--color-primary)] blur-[120px]"
+          className="absolute w-[60vw] h-[60vw] rounded-full bg-[var(--color-primary)] blur-[180px]"
           animate={{
-            x: currentScene === 0 ? '-30vw' : currentScene === 2 ? '50vw' : currentScene === 4 ? '10vw' : '-20vw',
-            y: currentScene === 0 ? '-20vh' : currentScene === 3 ? '50vh' : currentScene === 5 ? '80vh' : '20vh',
-            scale: currentScene % 2 === 0 ? 1 : 1.5,
-            opacity: currentScene === 4 ? 0.1 : 0.4, // Dim down for CTA which has green
+            x: currentScene === 0 ? '-20vw' : currentScene === 2 ? '40vw' : currentScene === 4 ? '10vw' : '-10vw',
+            y: currentScene === 0 ? '-10vh' : currentScene === 3 ? '40vh' : currentScene === 5 ? '60vh' : '10vh',
+            scale: currentScene % 2 === 0 ? 1 : 1.2,
+            opacity: currentScene === 4 ? 0.02 : 0.04,
           }}
           transition={{ duration: 4, ease: 'easeInOut' }}
         />
-        <motion.div
-          className="absolute w-[80vw] h-[80vw] rounded-full bg-[var(--color-secondary)] blur-[100px]"
-          animate={{
-            x: currentScene === 0 ? '60vw' : currentScene === 1 ? '10vw' : currentScene === 5 ? '40vw' : '80vw',
-            y: currentScene === 0 ? '60vh' : currentScene === 2 ? '-20vh' : currentScene === 4 ? '-40vh' : '80vh',
-            scale: currentScene === 1 || currentScene === 5 ? 1.2 : 0.8,
-            opacity: 0.2,
-          }}
-          transition={{ duration: 5, ease: 'easeInOut' }}
-        />
       </div>
 
-      {/* CROSS-SCENE CONTINUITY: Accent Line */}
+      {/* CROSS-SCENE CONTINUITY: Blue accent line */}
       <motion.div
-        className="absolute z-30 bg-[var(--color-secondary)] shadow-[0_0_10px_rgba(212,175,55,0.8)]"
+        className="absolute z-30 bg-[var(--color-primary)] shadow-[0_0_10px_rgba(59,130,246,0.7)]"
         animate={{
-          width: currentScene === 0 ? '0vw' : currentScene === 1 ? '3vw' : currentScene === 3 ? '8vw' : currentScene === 5 ? '40vw' : '2vw',
+          width: currentScene === 0 ? '0vw' : currentScene === 1 ? '3px' : currentScene === 3 ? '3px' : currentScene === 5 ? '40vw' : '2px',
           height: currentScene === 1 || currentScene === 3 ? '100vh' : '2px',
-          left: currentScene === 1 ? '5vw' : currentScene === 3 ? '92vw' : '30vw',
+          left: currentScene === 1 ? '5vw' : currentScene === 3 ? '93vw' : '30vw',
           top: currentScene === 1 || currentScene === 3 ? '0' : currentScene === 5 ? '65vh' : '10vh',
-          opacity: currentScene === 2 || currentScene === 4 ? 0 : 0.8, // Hide during features and CTA
+          opacity: currentScene === 2 || currentScene === 4 ? 0 : 0.7,
         }}
         transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
       />
