@@ -19,42 +19,55 @@ export default function Home() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-24 lg:pt-48 lg:pb-32 bg-[#0a0c14]">
-        {/* Background image */}
+      <section className="relative overflow-hidden bg-[#0a0c14]" style={{ minHeight: "100vh" }}>
+        {/* Background image — full viewport */}
         <div className="absolute inset-0 z-0">
           <img
-            src={`${import.meta.env.BASE_URL}images/hero-car.png`}
+            src={`${import.meta.env.BASE_URL}images/hero-car-new.png`}
             alt=""
-            className="w-full h-full object-cover object-center opacity-60" 
+            className="w-full h-full object-cover object-center"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c14] via-[#0a0c14]/80 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c14] via-transparent to-transparent" />
+          {/* Dark vignette overlays */}
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0c14] via-[#0a0c14]/10 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0c14]/60 via-transparent to-transparent" />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
-          <div className="max-w-2xl">
-            <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-[-0.03em] leading-[1.05] mb-12">
-              {t.hero.heading} — <span className="text-blue-400">{t.hero.headingBrand}</span>
-            </h1>
+        {/* Centered logo watermark */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none">
+          <img
+            src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
+            alt="RRON Rent A Car"
+            className="w-[55vw] max-w-2xl opacity-[0.12] select-none"
+          />
+        </div>
 
-            {/* Feature badges with thin dividers */}
-            <div className="flex flex-col gap-4">
-              <div className="flex items-center gap-6">
-                <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
-                  <Gauge className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
-                  {t.hero.unlimitedKm}
+        {/* Content — pinned to bottom-left */}
+        <div className="relative z-20 flex flex-col justify-end" style={{ minHeight: "100vh" }}>
+          <div className="max-w-6xl mx-auto w-full px-6 lg:px-8 pb-36 pt-32">
+            <div className="max-w-xl">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-[-0.03em] leading-[1.05] mb-12">
+                {t.hero.heading} — <span className="text-blue-400">{t.hero.headingBrand}</span>
+              </h1>
+
+              {/* Feature badges */}
+              <div className="flex flex-col gap-4">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
+                    <Gauge className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
+                    {t.hero.unlimitedKm}
+                  </div>
+                  <div className="w-[1px] h-4 bg-white/10" />
+                  <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
+                    <PlaneTakeoff className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
+                    {t.hero.airportPickup}
+                  </div>
                 </div>
-                <div className="w-[1px] h-4 bg-white/10" />
+                <div className="h-[1px] w-48 bg-white/10" />
                 <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
-                  <PlaneTakeoff className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
-                  {t.hero.airportPickup}
+                  <MessageCircle className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
+                  {t.hero.whatsappBooking}
                 </div>
-              </div>
-              <div className="h-[1px] w-48 bg-white/10" />
-              <div className="flex items-center gap-2 text-xs text-gray-400 uppercase tracking-[0.15em] font-light">
-                <MessageCircle className="w-3.5 h-3.5 text-blue-400" strokeWidth={1.8} />
-                {t.hero.whatsappBooking}
               </div>
             </div>
           </div>
