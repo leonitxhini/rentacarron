@@ -7,9 +7,54 @@ const DARK = "#06080f";
 const LOCATIONS = [
   { name: "Aeroport\nPrishtina", img: `${BASE}/location-pristina.jpg`, flag: "🇽🇰" },
   { name: "Aeroport\nShkup",     img: `${BASE}/location-skopje.jpg`,   flag: "🇲🇰" },
-  { name: "Aeroport\nKukës",     img: `${BASE}/location-kukes.jpg`,     flag: "🇦🇱" },
+  { name: "Aeroport\nKukës",     img: `${BASE}/location-kukes.jpg`,    flag: "🇦🇱" },
   { name: "Ferizaj\nZyra Qendrore", img: `${BASE}/location-ferizaj.jpg`, flag: "🏢" },
 ];
+
+function IosStatusBar() {
+  const [time, setTime] = useState(() => {
+    const d = new Date();
+    return `${d.getHours()}:${String(d.getMinutes()).padStart(2, "0")}`;
+  });
+  useEffect(() => {
+    const t = setInterval(() => {
+      const d = new Date();
+      setTime(`${d.getHours()}:${String(d.getMinutes()).padStart(2, "0")}`);
+    }, 10000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 22px 0", position: "relative", zIndex: 10 }}>
+      {/* Time */}
+      <span style={{ color: "#fff", fontSize: 15, fontWeight: 700, letterSpacing: "-0.02em", fontFamily: "-apple-system, 'SF Pro Display', sans-serif" }}>{time}</span>
+
+      {/* Right side: signal + wifi + battery */}
+      <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+        {/* Cellular signal — 4 bars */}
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+          <rect x="0"  y="8"  width="3" height="4"  rx="0.8" fill="white"/>
+          <rect x="4"  y="5"  width="3" height="7"  rx="0.8" fill="white"/>
+          <rect x="8"  y="2.5" width="3" height="9.5" rx="0.8" fill="white"/>
+          <rect x="12" y="0"  width="3" height="12" rx="0.8" fill="white"/>
+        </svg>
+        {/* WiFi */}
+        <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
+          <path d="M8 10.5a1.2 1.2 0 1 0 0-2.4 1.2 1.2 0 0 0 0 2.4z" fill="white"/>
+          <path d="M4.5 7.5C5.5 6.4 6.7 5.7 8 5.7s2.5.7 3.5 1.8" stroke="white" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+          <path d="M1.5 4.5C3.2 2.7 5.5 1.5 8 1.5s4.8 1.2 6.5 3" stroke="white" strokeWidth="1.4" strokeLinecap="round" fill="none"/>
+        </svg>
+        {/* Battery */}
+        <div style={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <div style={{ width: 25, height: 12, border: "1.5px solid rgba(255,255,255,0.8)", borderRadius: 3.5, padding: 1.5, display: "flex", alignItems: "center" }}>
+            <div style={{ width: "82%", height: "100%", background: "#fff", borderRadius: 1.5 }} />
+          </div>
+          <div style={{ width: 2, height: 5, background: "rgba(255,255,255,0.6)", borderRadius: "0 1px 1px 0" }} />
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function AdInstaStory() {
   const [active, setActive] = useState(0);
@@ -40,7 +85,7 @@ export function AdInstaStory() {
     }}>
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap');`}</style>
 
-      {/* Background location photo */}
+      {/* Background location photos */}
       {LOCATIONS.map((l, i) => (
         <img key={i} src={l.img} alt="" style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",
@@ -54,35 +99,14 @@ export function AdInstaStory() {
       {/* Gradient overlays */}
       <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(6,8,15,0.75) 0%, rgba(6,8,15,0.3) 40%, rgba(6,8,15,0.85) 100%)", pointerEvents: "none" }} />
 
-      {/* Blue glow */}
+      {/* Blue glow bottom */}
       <div style={{ position: "absolute", bottom: -60, left: "50%", transform: "translateX(-50%)", width: 300, height: 200, background: `radial-gradient(ellipse, rgba(59,130,246,0.3) 0%, transparent 70%)`, borderRadius: "50%", pointerEvents: "none" }} />
 
-      {/* Content */}
-      <div style={{ position: "relative", zIndex: 2, height: "100%", display: "flex", flexDirection: "column", padding: "24px 22px" }}>
+      {/* iOS Status Bar */}
+      <IosStatusBar />
 
-        {/* Story progress bars */}
-        <div style={{ display: "flex", gap: 5, marginBottom: 16 }}>
-          {LOCATIONS.map((_, i) => (
-            <div key={i} style={{ flex: 1, height: 3, borderRadius: 3, background: "rgba(255,255,255,0.2)", overflow: "hidden" }}>
-              <div style={{
-                height: "100%", borderRadius: 3, background: "#fff",
-                width: i < active ? "100%" : i === active ? `${progress}%` : "0%",
-                transition: i === active ? "none" : "width 0.3s",
-              }} />
-            </div>
-          ))}
-        </div>
-
-        {/* Instagram-style top bar */}
-        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: "auto" }}>
-          <div style={{ width: 34, height: 34, borderRadius: "50%", background: `linear-gradient(135deg, ${BLUE}, #2563EB)`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-            <img src={`${BASE}/rron-logo.png`} alt="RRON" style={{ width: 20, height: 20, objectFit: "contain", filter: "brightness(0) invert(1)" }} />
-          </div>
-          <div>
-            <div style={{ color: "#fff", fontSize: 12, fontWeight: 700, lineHeight: 1 }}>rentacarron</div>
-            <div style={{ color: "rgba(255,255,255,0.45)", fontSize: 10, marginTop: 2 }}>Pronuar · Tani</div>
-          </div>
-        </div>
+      {/* Content below status bar */}
+      <div style={{ position: "relative", zIndex: 2, height: "calc(100% - 34px)", display: "flex", flexDirection: "column", padding: "18px 22px 24px" }}>
 
         {/* Center: Location name */}
         <div style={{ textAlign: "center", margin: "auto 0" }}>
@@ -107,7 +131,7 @@ export function AdInstaStory() {
             ))}
           </div>
 
-          {/* Logo + price */}
+          {/* Logo + CTA card */}
           <div style={{
             background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)",
             borderRadius: 18, padding: "16px 20px",
@@ -126,7 +150,7 @@ export function AdInstaStory() {
             }}>Rezervo →</div>
           </div>
 
-          {/* Swipe up hint */}
+          {/* Swipe up */}
           <div style={{ textAlign: "center", marginTop: 14, color: "rgba(255,255,255,0.3)", fontSize: 11, fontWeight: 600, letterSpacing: "0.08em" }}>
             ↑ SHIKO MË SHUMË
           </div>
