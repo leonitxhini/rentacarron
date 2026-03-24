@@ -10,6 +10,7 @@ export const modules: ModuleMap = {
   "./components/mockups/ads/AdInstaPortrait.tsx": () => import("../components/mockups/ads/AdInstaPortrait.tsx"),
   "./components/mockups/ads/AdInstaSquare.tsx": () => import("../components/mockups/ads/AdInstaSquare.tsx"),
   "./components/mockups/ads/AdInstaStory.tsx": () => import("../components/mockups/ads/AdInstaStory.tsx"),
+  "./components/mockups/ads/AdInstaStoryBook.tsx": () => import("../components/mockups/ads/AdInstaStoryBook.tsx"),
   "./components/mockups/ads/AdInstaStoryCars.tsx": () => import("../components/mockups/ads/AdInstaStoryCars.tsx"),
   "./components/mockups/ads/AdInstaStoryWeb.tsx": () => import("../components/mockups/ads/AdInstaStoryWeb.tsx"),
   "./components/mockups/ads/AdLocations.tsx": () => import("../components/mockups/ads/AdLocations.tsx"),
