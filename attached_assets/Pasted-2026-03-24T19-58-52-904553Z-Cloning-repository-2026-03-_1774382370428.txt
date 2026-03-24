@@ -1,0 +1,200 @@
+2026-03-24T19:58:52.904553Z	Cloning repository...
+2026-03-24T19:58:54.82141Z	From https://github.com/leonitxhini/rentacarron
+2026-03-24T19:58:54.821971Z	 * branch            c797e0474c29f60c95d7b541afd37a2b1ba7f2a8 -> FETCH_HEAD
+2026-03-24T19:58:54.8221Z	
+2026-03-24T19:58:55.424142Z	HEAD is now at c797e04 Update image used for website deployment guidance
+2026-03-24T19:58:55.424594Z	
+2026-03-24T19:58:55.474005Z	
+2026-03-24T19:58:55.474528Z	Using v2 root directory strategy
+2026-03-24T19:58:55.488222Z	Success: Finished cloning repository files
+2026-03-24T19:58:57.821599Z	Checking for configuration in a Wrangler configuration file (BETA)
+2026-03-24T19:58:57.822076Z	
+2026-03-24T19:58:57.822767Z	Found wrangler.toml file. Reading build configuration...
+2026-03-24T19:58:57.831233Z	pages_build_output_dir: dist
+2026-03-24T19:58:57.83143Z	Build environment variables: 
+2026-03-24T19:58:57.83152Z	  - ADMIN_SECRET: ermal123admin
+2026-03-24T19:58:57.831584Z	  - R2_PUBLIC_URL: https://pub-b132e3ba0ce84031a678fb66664122c0.r2.dev
+2026-03-24T19:58:58.928554Z	Successfully read the Wrangler configuration file.
+2026-03-24T19:58:59.199Z	Detected the following tools from environment: pnpm@10.11.1, nodejs@22.16.0, npm@10.9.2
+2026-03-24T19:59:00.301392Z	Installing project dependencies: pnpm install
+2026-03-24T19:59:00.912991Z	Scope: all 8 workspace projects
+2026-03-24T19:59:01.045221Z	../..                                    | Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-03-24T19:59:01.132917Z	../..                                    | +500 ++++++++++++++++++++++++++++++++
+2026-03-24T19:59:02.04669Z	../..                                    | Progress: resolved 500, reused 0, downloaded 124, added 123
+2026-03-24T19:59:03.050477Z	../..                                    | Progress: resolved 500, reused 0, downloaded 192, added 158
+2026-03-24T19:59:04.049911Z	../..                                    | Progress: resolved 500, reused 0, downloaded 292, added 206
+2026-03-24T19:59:05.05162Z	../..                                    | Progress: resolved 500, reused 0, downloaded 497, added 497
+2026-03-24T19:59:05.720222Z	../..                                    | Progress: resolved 500, reused 0, downloaded 500, added 500, done
+2026-03-24T19:59:05.97519Z	.../esbuild@0.27.3/node_modules/esbuild postinstall$ node install.js
+2026-03-24T19:59:06.08912Z	.../esbuild@0.27.3/node_modules/esbuild postinstall: Done
+2026-03-24T19:59:06.508911Z	
+2026-03-24T19:59:06.509208Z	dependencies:
+2026-03-24T19:59:06.5093Z	+ @cloudflare/workers-types 4.20260317.1
+2026-03-24T19:59:06.509461Z	+ hono 4.12.9
+2026-03-24T19:59:06.509542Z	
+2026-03-24T19:59:06.509614Z	devDependencies:
+2026-03-24T19:59:06.509679Z	+ @hookform/resolvers 3.10.0
+2026-03-24T19:59:06.509741Z	+ @radix-ui/react-accordion 1.2.12
+2026-03-24T19:59:06.509802Z	+ @radix-ui/react-alert-dialog 1.1.15
+2026-03-24T19:59:06.509858Z	+ @radix-ui/react-aspect-ratio 1.1.8
+2026-03-24T19:59:06.509924Z	+ @radix-ui/react-avatar 1.1.11
+2026-03-24T19:59:06.510095Z	+ @radix-ui/react-checkbox 1.3.3
+2026-03-24T19:59:06.510166Z	+ @radix-ui/react-collapsible 1.1.12
+2026-03-24T19:59:06.510221Z	+ @radix-ui/react-context-menu 2.2.16
+2026-03-24T19:59:06.510413Z	+ @radix-ui/react-dialog 1.1.15
+2026-03-24T19:59:06.510483Z	+ @radix-ui/react-dropdown-menu 2.1.16
+2026-03-24T19:59:06.510541Z	+ @radix-ui/react-hover-card 1.1.15
+2026-03-24T19:59:06.510636Z	+ @radix-ui/react-label 2.1.8
+2026-03-24T19:59:06.510699Z	+ @radix-ui/react-menubar 1.1.16
+2026-03-24T19:59:06.510745Z	+ @radix-ui/react-navigation-menu 1.2.14
+2026-03-24T19:59:06.510843Z	+ @radix-ui/react-popover 1.1.15
+2026-03-24T19:59:06.510941Z	+ @radix-ui/react-progress 1.1.8
+2026-03-24T19:59:06.510998Z	+ @radix-ui/react-radio-group 1.3.8
+2026-03-24T19:59:06.511046Z	+ @radix-ui/react-scroll-area 1.2.10
+2026-03-24T19:59:06.511156Z	+ @radix-ui/react-select 2.2.6
+2026-03-24T19:59:06.511206Z	+ @radix-ui/react-separator 1.1.8
+2026-03-24T19:59:06.511255Z	+ @radix-ui/react-slider 1.3.6
+2026-03-24T19:59:06.511304Z	+ @radix-ui/react-slot 1.2.4
+2026-03-24T19:59:06.511396Z	+ @radix-ui/react-switch 1.2.6
+2026-03-24T19:59:06.511486Z	+ @radix-ui/react-tabs 1.1.13
+2026-03-24T19:59:06.511574Z	+ @radix-ui/react-toast 1.2.15
+2026-03-24T19:59:06.511617Z	+ @radix-ui/react-toggle 1.1.10
+2026-03-24T19:59:06.511714Z	+ @radix-ui/react-toggle-group 1.1.11
+2026-03-24T19:59:06.511751Z	+ @radix-ui/react-tooltip 1.2.8
+2026-03-24T19:59:06.511785Z	+ @replit/vite-plugin-cartographer 0.5.1
+2026-03-24T19:59:06.51182Z	+ @replit/vite-plugin-dev-banner 0.1.2
+2026-03-24T19:59:06.511888Z	+ @replit/vite-plugin-runtime-error-modal 0.0.6
+2026-03-24T19:59:06.511942Z	+ @tailwindcss/typography 0.5.19
+2026-03-24T19:59:06.511998Z	+ @tailwindcss/vite 4.2.1
+2026-03-24T19:59:06.512109Z	+ @tanstack/react-query 5.90.21
+2026-03-24T19:59:06.512168Z	+ @types/node 25.3.5
+2026-03-24T19:59:06.512237Z	+ @types/react 19.2.14
+2026-03-24T19:59:06.512316Z	+ @types/react-dom 19.2.3
+2026-03-24T19:59:06.512421Z	+ @vitejs/plugin-react 5.1.4
+2026-03-24T19:59:06.512536Z	+ @workspace/api-client-react 0.0.0 <- ../../lib/api-client-react
+2026-03-24T19:59:06.512592Z	+ class-variance-authority 0.7.1
+2026-03-24T19:59:06.512639Z	+ clsx 2.1.1
+2026-03-24T19:59:06.51268Z	+ cmdk 1.1.1
+2026-03-24T19:59:06.512719Z	+ date-fns 3.6.0
+2026-03-24T19:59:06.512773Z	+ embla-carousel-react 8.6.0
+2026-03-24T19:59:06.512915Z	+ framer-motion 12.35.1
+2026-03-24T19:59:06.512966Z	+ input-otp 1.4.2
+2026-03-24T19:59:06.513031Z	+ lucide-react 0.545.0
+2026-03-24T19:59:06.513074Z	+ next-themes 0.4.6
+2026-03-24T19:59:06.513147Z	+ react 19.1.0
+2026-03-24T19:59:06.513244Z	+ react-day-picker 9.14.0
+2026-03-24T19:59:06.513293Z	+ react-dom 19.1.0
+2026-03-24T19:59:06.513343Z	+ react-hook-form 7.71.2
+2026-03-24T19:59:06.513472Z	+ react-icons 5.6.0
+2026-03-24T19:59:06.513541Z	+ react-resizable-panels 2.1.9
+2026-03-24T19:59:06.513622Z	+ recharts 2.15.4
+2026-03-24T19:59:06.513684Z	+ sonner 2.0.7
+2026-03-24T19:59:06.513734Z	+ tailwind-merge 3.5.0
+2026-03-24T19:59:06.513792Z	+ tailwindcss 4.2.1
+2026-03-24T19:59:06.513847Z	+ tw-animate-css 1.4.0
+2026-03-24T19:59:06.513893Z	+ vaul 1.1.2
+2026-03-24T19:59:06.513953Z	+ vite 7.3.1
+2026-03-24T19:59:06.514129Z	+ wouter 3.9.0
+2026-03-24T19:59:06.514285Z	+ zod 3.25.76
+2026-03-24T19:59:06.514364Z	
+2026-03-24T19:59:06.572208Z	../.. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+2026-03-24T19:59:06.591041Z	../.. preinstall: Done
+2026-03-24T19:59:06.777035Z	Done in 6.2s using pnpm v10.11.1
+2026-03-24T19:59:06.843578Z	Executing user command: pnpm run build
+2026-03-24T19:59:07.447723Z	
+2026-03-24T19:59:07.448137Z	> @workspace/car-rental@0.0.0 build /opt/buildhome/repo/artifacts/car-rental
+2026-03-24T19:59:07.44821Z	> vite build --config vite.config.ts
+2026-03-24T19:59:07.448255Z	
+2026-03-24T19:59:08.04338Z	[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+2026-03-24T19:59:08.146775Z	transforming...
+2026-03-24T19:59:08.720418Z	[33msrc/components/ui/tooltip.tsx (2:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.[39m
+2026-03-24T19:59:15.186151Z	[32m✓[39m 3117 modules transformed.
+2026-03-24T19:59:16.097937Z	rendering chunks...
+2026-03-24T19:59:16.121298Z	computing gzip size...
+2026-03-24T19:59:16.164978Z	[2mdist/[22m[32mindex.html                 [39m[1m[2m    0.74 kB[22m[1m[22m[2m │ gzip:   0.41 kB[22m
+2026-03-24T19:59:16.165468Z	[2mdist/[22m[2massets/[22m[35mindex-7We6-pK9.css  [39m[1m[2m  135.00 kB[22m[1m[22m[2m │ gzip:  21.29 kB[22m
+2026-03-24T19:59:16.165586Z	[2mdist/[22m[2massets/[22m[36mindex-Br77m64r.js   [39m[1m[33m1,055.45 kB[39m[22m[2m │ gzip: 311.48 kB[22m
+2026-03-24T19:59:16.165653Z	[32m✓ built in 8.07s[39m
+2026-03-24T19:59:16.165721Z	[33m
+2026-03-24T19:59:16.165786Z	(!) Some chunks are larger than 500 kB after minification. Consider:
+2026-03-24T19:59:16.165841Z	- Using dynamic import() to code-split the application
+2026-03-24T19:59:16.165894Z	- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+2026-03-24T19:59:16.165955Z	- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+2026-03-24T19:59:16.404574Z	Finished
+2026-03-24T19:59:17.196792Z	Checking for configuration in a Wrangler configuration file (BETA)
+2026-03-24T19:59:17.197421Z	
+2026-03-24T19:59:17.197544Z	Found wrangler.toml file. Reading build configuration...
+2026-03-24T19:59:17.20555Z	pages_build_output_dir: dist
+2026-03-24T19:59:17.205744Z	Build environment variables: 
+2026-03-24T19:59:17.205819Z	  - ADMIN_SECRET: ermal123admin
+2026-03-24T19:59:17.206104Z	  - R2_PUBLIC_URL: https://pub-b132e3ba0ce84031a678fb66664122c0.r2.dev
+2026-03-24T19:59:18.327422Z	Successfully read the Wrangler configuration file.
+2026-03-24T19:59:18.331237Z	Found Functions directory at /functions. Uploading.
+2026-03-24T19:59:18.337859Z	 ⛅️ wrangler 3.101.0
+2026-03-24T19:59:18.338075Z	-------------------
+2026-03-24T19:59:19.794654Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mBuild failed with 3 errors:[0m
+2026-03-24T19:59:19.795096Z	
+2026-03-24T19:59:19.795208Z	  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "drizzle-orm/d1"[0m
+2026-03-24T19:59:19.795311Z	  
+2026-03-24T19:59:19.79536Z	      api/[[path]].ts:5:24:
+2026-03-24T19:59:19.795425Z	  [37m      5 │ import { drizzle } from [32m"drizzle-orm/d1"[37m;
+2026-03-24T19:59:19.795492Z	          ╵                         [32m~~~~~~~~~~~~~~~~[0m
+2026-03-24T19:59:19.795565Z	  
+2026-03-24T19:59:19.795624Z	    You can mark the path "drizzle-orm/d1" as external to exclude it from the bundle, which will remove this error.
+2026-03-24T19:59:19.79573Z	  
+2026-03-24T19:59:19.795823Z	  
+2026-03-24T19:59:19.795893Z	  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "drizzle-orm/sqlite-core"[0m
+2026-03-24T19:59:19.795954Z	  
+2026-03-24T19:59:19.796009Z	      api/[[path]].ts:11:7:
+2026-03-24T19:59:19.796046Z	  [37m      11 │ } from [32m"drizzle-orm/sqlite-core"[37m;
+2026-03-24T19:59:19.79609Z	           ╵        [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+2026-03-24T19:59:19.796123Z	  
+2026-03-24T19:59:19.796158Z	    You can mark the path "drizzle-orm/sqlite-core" as external to exclude it from the bundle, which will remove this error.
+2026-03-24T19:59:19.796194Z	  
+2026-03-24T19:59:19.796222Z	  
+2026-03-24T19:59:19.796254Z	  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "drizzle-orm"[0m
+2026-03-24T19:59:19.796323Z	  
+2026-03-24T19:59:19.796369Z	      api/[[path]].ts:12:19:
+2026-03-24T19:59:19.79641Z	  [37m      12 │ import { eq } from [32m"drizzle-orm"[37m;
+2026-03-24T19:59:19.796503Z	           ╵                    [32m~~~~~~~~~~~~~[0m
+2026-03-24T19:59:19.796535Z	  
+2026-03-24T19:59:19.796562Z	    You can mark the path "drizzle-orm" as external to exclude it from the bundle, which will remove this error.
+2026-03-24T19:59:19.79659Z	  
+2026-03-24T19:59:19.796619Z	  
+2026-03-24T19:59:19.796677Z	
+2026-03-24T19:59:19.796722Z	
+2026-03-24T19:59:19.79874Z	
+2026-03-24T19:59:19.801164Z	[31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mBuild failed with 3 errors:[0m
+2026-03-24T19:59:19.801311Z	
+2026-03-24T19:59:19.80152Z	  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "drizzle-orm/d1"[0m
+2026-03-24T19:59:19.801685Z	  
+2026-03-24T19:59:19.801763Z	      api/[[path]].ts:5:24:
+2026-03-24T19:59:19.801815Z	  [37m      5 │ import { drizzle } from [32m"drizzle-orm/d1"[37m;
+2026-03-24T19:59:19.801914Z	          ╵                         [32m~~~~~~~~~~~~~~~~[0m
+2026-03-24T19:59:19.802016Z	  
+2026-03-24T19:59:19.80208Z	    You can mark the path "drizzle-orm/d1" as external to exclude it from the bundle, which will remove this error.
+2026-03-24T19:59:19.802169Z	  
+2026-03-24T19:59:19.802252Z	  
+2026-03-24T19:59:19.802366Z	  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "drizzle-orm/sqlite-core"[0m
+2026-03-24T19:59:19.802447Z	  
+2026-03-24T19:59:19.802512Z	      api/[[path]].ts:11:7:
+2026-03-24T19:59:19.802627Z	  [37m      11 │ } from [32m"drizzle-orm/sqlite-core"[37m;
+2026-03-24T19:59:19.802945Z	           ╵        [32m~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+2026-03-24T19:59:19.803101Z	  
+2026-03-24T19:59:19.803301Z	    You can mark the path "drizzle-orm/sqlite-core" as external to exclude it from the bundle, which will remove this error.
+2026-03-24T19:59:19.803421Z	  
+2026-03-24T19:59:19.803583Z	  
+2026-03-24T19:59:19.803752Z	  [31m✘ [41;31m[[41;97mERROR[41;31m][0m [1mCould not resolve "drizzle-orm"[0m
+2026-03-24T19:59:19.803843Z	  
+2026-03-24T19:59:19.803944Z	      api/[[path]].ts:12:19:
+2026-03-24T19:59:19.803988Z	  [37m      12 │ import { eq } from [32m"drizzle-orm"[37m;
+2026-03-24T19:59:19.80402Z	           ╵                    [32m~~~~~~~~~~~~~[0m
+2026-03-24T19:59:19.804101Z	  
+2026-03-24T19:59:19.804175Z	    You can mark the path "drizzle-orm" as external to exclude it from the bundle, which will remove this error.
+2026-03-24T19:59:19.804291Z	  
+2026-03-24T19:59:19.804396Z	  
+2026-03-24T19:59:19.80448Z	
+2026-03-24T19:59:19.804583Z	
+2026-03-24T19:59:19.819007Z	🪵  Logs were written to "/root/.config/.wrangler/logs/wrangler-2026-03-24_19-59-18_943.log"
+2026-03-24T19:59:19.957216Z	Failed building Pages Functions.
+2026-03-24T19:59:21.176044Z	Failed: generating Pages Functions failed. Check the logs above for more information. If this continues for an unknown reason, contact support: https://cfl.re/3WgEyrH
