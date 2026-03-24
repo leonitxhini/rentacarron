@@ -19,7 +19,7 @@ export default function Home() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#0a0c14]" style={{ minHeight: "100vh" }}>
+      <section className="relative overflow-hidden bg-[#0a0c14]" style={{ height: 560 }}>
         {/* Background image — full viewport */}
         <div className="absolute inset-0 z-0">
           <img
@@ -43,8 +43,8 @@ export default function Home() {
         </div>
 
         {/* Content — pinned to bottom-left */}
-        <div className="relative z-20 flex flex-col justify-end" style={{ minHeight: "100vh" }}>
-          <div className="max-w-6xl mx-auto w-full px-6 lg:px-8 pb-36 pt-32">
+        <div className="relative z-20 flex flex-col justify-end h-full">
+          <div className="max-w-6xl mx-auto w-full px-6 lg:px-8 pb-16 pt-32">
             <div className="max-w-xl">
               <h1 className="text-xl sm:text-2xl lg:text-3xl font-black text-white tracking-[-0.03em] leading-[1.05] mb-12">
                 {t.hero.heading} — <span className="text-blue-400">{t.hero.headingBrand}</span>
