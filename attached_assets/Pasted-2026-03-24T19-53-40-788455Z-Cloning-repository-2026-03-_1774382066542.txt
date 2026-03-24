@@ -1,0 +1,63 @@
+2026-03-24T19:53:40.788455Z	Cloning repository...
+2026-03-24T19:53:43.42606Z	From https://github.com/leonitxhini/rentacarron
+2026-03-24T19:53:43.426443Z	 * branch            c797e0474c29f60c95d7b541afd37a2b1ba7f2a8 -> FETCH_HEAD
+2026-03-24T19:53:43.426533Z	
+2026-03-24T19:53:44.595675Z	HEAD is now at c797e04 Update image used for website deployment guidance
+2026-03-24T19:53:44.596154Z	
+2026-03-24T19:53:44.673731Z	
+2026-03-24T19:53:44.674516Z	Using v2 root directory strategy
+2026-03-24T19:53:44.700706Z	Success: Finished cloning repository files
+2026-03-24T19:53:46.84604Z	Checking for configuration in a Wrangler configuration file (BETA)
+2026-03-24T19:53:46.846556Z	
+2026-03-24T19:53:47.95285Z	No Wrangler configuration file found. Continuing.
+2026-03-24T19:53:48.2804Z	Detected the following tools from environment: pnpm@10.11.1, nodejs@22.16.0
+2026-03-24T19:53:49.612609Z	Installing project dependencies: pnpm install
+2026-03-24T19:53:50.196732Z	Scope: all 8 workspace projects
+2026-03-24T19:53:50.279554Z	Lockfile is up to date, resolution step is skipped
+2026-03-24T19:53:50.35367Z	Progress: resolved 1, reused 0, downloaded 0, added 0
+2026-03-24T19:53:50.461329Z	Packages: +500
+2026-03-24T19:53:50.461664Z	++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-03-24T19:53:51.354347Z	Progress: resolved 500, reused 0, downloaded 121, added 101
+2026-03-24T19:53:52.368593Z	Progress: resolved 500, reused 0, downloaded 295, added 271
+2026-03-24T19:53:53.371497Z	Progress: resolved 500, reused 0, downloaded 312, added 280
+2026-03-24T19:53:54.381402Z	Progress: resolved 500, reused 0, downloaded 370, added 305
+2026-03-24T19:53:55.374641Z	Progress: resolved 500, reused 0, downloaded 496, added 408
+2026-03-24T19:53:55.542006Z	Progress: resolved 500, reused 0, downloaded 500, added 500, done
+2026-03-24T19:53:55.832046Z	.../esbuild@0.27.3/node_modules/esbuild postinstall$ node install.js
+2026-03-24T19:53:56.121035Z	.../esbuild@0.27.3/node_modules/esbuild postinstall: Done
+2026-03-24T19:53:56.467939Z	
+2026-03-24T19:53:56.468272Z	devDependencies:
+2026-03-24T19:53:56.468352Z	+ prettier 3.8.1
+2026-03-24T19:53:56.468555Z	+ typescript 5.9.3
+2026-03-24T19:53:56.468632Z	
+2026-03-24T19:53:56.534787Z	. preinstall$ sh -c 'rm -f package-lock.json yarn.lock; case "$npm_config_user_agent" in pnpm/*) ;; *) echo "Use pnpm instead" >&2; exit 1 ;; esac'
+2026-03-24T19:53:56.565587Z	. preinstall: Done
+2026-03-24T19:53:56.785592Z	Done in 6.9s using pnpm v10.11.1
+2026-03-24T19:53:56.846649Z	Executing user command: pnpm --filter @workspace/car-rental run build
+2026-03-24T19:53:57.493099Z	
+2026-03-24T19:53:57.494149Z	> @workspace/car-rental@0.0.0 build /opt/buildhome/repo/artifacts/car-rental
+2026-03-24T19:53:57.494286Z	> vite build --config vite.config.ts
+2026-03-24T19:53:57.495364Z	
+2026-03-24T19:53:58.227856Z	[36mvite v7.3.1 [32mbuilding client environment for production...[36m[39m
+2026-03-24T19:53:58.340078Z	transforming...
+2026-03-24T19:53:59.069471Z	[33msrc/components/ui/tooltip.tsx (2:0): Error when using sourcemap for reporting an error: Can't resolve original location of error.[39m
+2026-03-24T19:54:05.872137Z	[32m✓[39m 3117 modules transformed.
+2026-03-24T19:54:06.827366Z	rendering chunks...
+2026-03-24T19:54:06.854022Z	computing gzip size...
+2026-03-24T19:54:06.903495Z	[2mdist/[22m[32mindex.html                 [39m[1m[2m    0.74 kB[22m[1m[22m[2m │ gzip:   0.41 kB[22m
+2026-03-24T19:54:06.903959Z	[2mdist/[22m[2massets/[22m[35mindex-7We6-pK9.css  [39m[1m[2m  135.00 kB[22m[1m[22m[2m │ gzip:  21.29 kB[22m
+2026-03-24T19:54:06.904453Z	[2mdist/[22m[2massets/[22m[36mindex-Br77m64r.js   [39m[1m[33m1,055.45 kB[39m[22m[2m │ gzip: 311.48 kB[22m
+2026-03-24T19:54:06.904541Z	[32m✓ built in 8.63s[39m
+2026-03-24T19:54:06.905845Z	[33m
+2026-03-24T19:54:06.906078Z	(!) Some chunks are larger than 500 kB after minification. Consider:
+2026-03-24T19:54:06.906135Z	- Using dynamic import() to code-split the application
+2026-03-24T19:54:06.90618Z	- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+2026-03-24T19:54:06.906212Z	- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+2026-03-24T19:54:07.034883Z	Finished
+2026-03-24T19:54:07.872236Z	Checking for configuration in a Wrangler configuration file (BETA)
+2026-03-24T19:54:07.872737Z	
+2026-03-24T19:54:09.000847Z	No Wrangler configuration file found. Continuing.
+2026-03-24T19:54:09.003344Z	Note: No functions dir at /functions found. Skipping.
+2026-03-24T19:54:09.003617Z	Validating asset output directory
+2026-03-24T19:54:09.00378Z	Error: Output directory "	artifacts/car-rental/dist" not found.
+2026-03-24T19:54:10.444888Z	Failed: build output directory not found
