@@ -1,11 +1,18 @@
 import { Link, useLocation } from "wouter";
 import { Menu, X, Search } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     { name: "HOME", path: "/" },
@@ -18,7 +25,11 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 flex justify-center pt-6 px-6">
       {/* Floating pill navbar */}
-      <nav className="w-full max-w-5xl bg-transparent border border-white/10 rounded-full px-6 py-3 flex items-center justify-between backdrop-blur-sm">
+      <nav className={`w-full max-w-5xl border border-white/10 rounded-full px-6 py-3 flex items-center justify-between transition-all duration-300 ${
+        scrolled
+          ? "bg-[#0a0c14]/80 backdrop-blur-xl shadow-2xl"
+          : "bg-transparent backdrop-blur-sm"
+      }`}>
         {/* Logo */}
         <Link href="/" className="flex-shrink-0 flex items-center">
           <img
