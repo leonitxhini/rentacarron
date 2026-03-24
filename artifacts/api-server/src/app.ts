@@ -28,7 +28,32 @@ app.use(
     },
   }),
 );
-app.use(cors());
+
+// In production, ALLOWED_ORIGINS env var restricts which frontends can call the API.
+// Set it to your Cloudflare Pages domain (comma-separated if multiple).
+// In development all origins are allowed.
+const isProd = process.env.NODE_ENV === "production";
+const rawAllowedOrigins = process.env.ALLOWED_ORIGINS ?? "";
+const allowedOrigins = rawAllowedOrigins
+  .split(",")
+  .map((s) => s.trim())
+  .filter(Boolean);
+
+app.use(
+  cors({
+    origin: isProd && allowedOrigins.length > 0
+      ? (origin, callback) => {
+          if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+          } else {
+            callback(new Error(`CORS: origin '${origin}' not allowed`));
+          }
+        }
+      : true,
+    credentials: true,
+  }),
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

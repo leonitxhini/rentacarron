@@ -21,11 +21,15 @@ import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer } from "recharts";
 
 // ─── helpers ────────────────────────────────────────────────────────────────
 
+const API_BASE = (import.meta.env.VITE_API_URL as string | undefined)?.replace(/\/+$/, "") ?? "";
+
 async function uploadCarImage(file: File): Promise<string> {
+  const token = sessionStorage.getItem("admin_token") ?? "";
   const form = new FormData();
   form.append("image", file);
-  const res = await fetch("/api/upload/car-image", {
+  const res = await fetch(`${API_BASE}/api/upload/car-image`, {
     method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
     body: form,
   });
   if (!res.ok) throw new Error("Upload failed");

@@ -1,14 +1,24 @@
-import { Router, type IRouter } from "express";
+import { Router, type IRouter, type RequestHandler } from "express";
 import multer from "multer";
 import path from "path";
 import fs from "fs";
 
 const router: IRouter = Router();
 
-const uploadDir = path.resolve(
-  process.cwd(),
-  "../../artifacts/car-rental/public/images/cars"
-);
+const ADMIN_SECRET = process.env.ADMIN_SECRET ?? "admin123";
+
+const requireAdmin: RequestHandler = (req, res, next) => {
+  const auth = req.headers["authorization"] ?? "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  if (!token || token !== ADMIN_SECRET) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  next();
+};
+
+const publicDir = path.resolve(process.cwd(), "public");
+const uploadDir = path.join(publicDir, "images", "cars");
 
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
@@ -32,12 +42,12 @@ const upload = multer({
   },
 });
 
-router.post("/upload/car-image", upload.single("image"), (req, res) => {
+router.post("/upload/car-image", requireAdmin, upload.single("image"), (req, res) => {
   if (!req.file) {
     res.status(400).json({ error: "No image file provided" });
     return;
   }
-  const relativePath = `images/cars/${req.file.filename}`;
+  const relativePath = `/images/cars/${req.file.filename}`;
   res.json({ url: relativePath });
 });
 

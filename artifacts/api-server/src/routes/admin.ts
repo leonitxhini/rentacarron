@@ -1,9 +1,23 @@
-import { Router, type IRouter } from "express";
+import { Router, type IRouter, type RequestHandler } from "express";
 import { db } from "@workspace/db";
 import { bookingsTable, carsTable, locationsTable } from "@workspace/db";
 import { sql } from "drizzle-orm";
 
 const router: IRouter = Router();
+
+const ADMIN_SECRET = process.env.ADMIN_SECRET ?? "admin123";
+
+const requireAdmin: RequestHandler = (req, res, next) => {
+  const auth = req.headers["authorization"] ?? "";
+  const token = auth.startsWith("Bearer ") ? auth.slice(7) : "";
+  if (!token || token !== ADMIN_SECRET) {
+    res.status(401).json({ error: "Unauthorized" });
+    return;
+  }
+  next();
+};
+
+router.use(requireAdmin);
 
 router.get("/stats", async (req, res) => {
   try {
