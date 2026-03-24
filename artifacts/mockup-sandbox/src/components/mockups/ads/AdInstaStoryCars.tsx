@@ -72,7 +72,10 @@ export function AdInstaStoryCars() {
 
         {/* Top: logo + tag */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-          <img src={`${BASE}/rron-logo.png`} alt="RRON" style={{ height: 22, filter: "brightness(0) invert(1)", objectFit: "contain" }} />
+          <div>
+            <img src={`${BASE}/rron-logo.png`} alt="RRON" style={{ height: 34, filter: "brightness(0) invert(1)", objectFit: "contain", display: "block" }} />
+            <div style={{ color: "rgba(255,255,255,0.35)", fontSize: 11, fontWeight: 500, marginTop: 4, letterSpacing: "0.02em" }}>rrcar.vercel.app</div>
+          </div>
           <div key={active} style={{
             padding: "5px 12px", borderRadius: 100,
             background: "rgba(59,130,246,0.15)", border: "1px solid rgba(59,130,246,0.35)",
