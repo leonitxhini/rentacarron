@@ -49,6 +49,10 @@ export function AdInstaStoryCars() {
           opacity: active === i ? 1 : 0,
           transition: "opacity 0.65s ease",
           filter: "drop-shadow(0 20px 50px rgba(0,0,0,0.7)) drop-shadow(0 0 40px rgba(59,130,246,0.15))",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 22%), linear-gradient(to top, transparent 0%, black 12%)",
+          WebkitMaskComposite: "source-in",
+          maskImage: "linear-gradient(to right, transparent 0%, black 22%), linear-gradient(to top, transparent 0%, black 12%)",
+          maskComposite: "intersect",
           pointerEvents: "none",
         }} />
       ))}
