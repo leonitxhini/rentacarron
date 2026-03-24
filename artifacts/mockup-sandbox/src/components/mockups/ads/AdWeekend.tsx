@@ -94,8 +94,8 @@ export default function AdWeekend() {
         {/* Price row */}
         <div style={{ display: "flex", alignItems: "flex-end", gap: 12, marginBottom: 24 }}>
           <div>
-            <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 14, textDecoration: "line-through", display: "block" }}>ab €95/Tag</span>
-            <span style={{ color: "#D4AF37", fontSize: 52, fontWeight: 900, lineHeight: 1 }}>€65</span>
+            <span style={{ color: "rgba(255,255,255,0.35)", fontSize: 14, textDecoration: "line-through", display: "block" }}>ab €75/Tag</span>
+            <span style={{ color: "#D4AF37", fontSize: 52, fontWeight: 900, lineHeight: 1 }}>€50</span>
             <span style={{ color: "rgba(255,255,255,0.4)", fontSize: 13 }}>/Tag</span>
           </div>
           <div style={{

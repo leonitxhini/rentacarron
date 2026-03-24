@@ -1,8 +1,8 @@
 const cars = [
-  { name: "Audi A5", price: "€85", type: "Premium", emoji: "🏎️" },
-  { name: "VW Golf", price: "€45", type: "Compact", emoji: "🚗" },
-  { name: "BMW 3", price: "€95", type: "Sport", emoji: "🚘" },
-  { name: "Mercedes C", price: "€105", type: "Luxury", emoji: "🛻" },
+  { name: "Audi A6", price: "€75", type: "Luxury", emoji: "🏎️" },
+  { name: "Audi A5", price: "€70", type: "Premium", emoji: "🚗" },
+  { name: "VW Golf 8", price: "€50", type: "Compact", emoji: "🚘" },
+  { name: "Audi A3", price: "€40", type: "Sport", emoji: "🚙" },
 ];
 
 export default function AdFleet() {

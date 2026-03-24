@@ -4,28 +4,40 @@ import { useState, useEffect } from 'react';
 
 const REAL_CARS = [
   {
-    name: 'Audi A5',
-    year: 2021,
-    price: '€85',
-    img: 'https://rentacarron.replit.app/images/cars/audi-a5-2021-darkblue-front.png',
-  },
-  {
     name: 'Audi A6',
     year: 2021,
     price: '€75',
     img: 'https://rentacarron.replit.app/images/cars/audi-a6-2021-black-front.png',
   },
   {
+    name: 'Audi A5',
+    year: 2021,
+    price: '€70',
+    img: 'https://rentacarron.replit.app/images/cars/audi-a5-2021-darkblue-front.png',
+  },
+  {
     name: 'Volkswagen Golf 8',
     year: 2021,
-    price: '€58',
+    price: '€50',
     img: 'https://rentacarron.replit.app/images/cars/golf8-2021-black-front.png',
   },
   {
     name: 'Audi A3',
     year: 2018,
-    price: '€62',
+    price: '€40',
     img: 'https://rentacarron.replit.app/images/cars/audi-a3-2018-lightgrey-front.png',
+  },
+  {
+    name: 'Volkswagen Golf 7',
+    year: 2018,
+    price: '€35',
+    img: 'https://rentacarron.replit.app/images/cars/golf7-2018-black-front.png',
+  },
+  {
+    name: 'Peugeot 308',
+    year: 2020,
+    price: '€35',
+    img: 'https://rentacarron.replit.app/images/cars/peugeot-308-2020-grey-front.png',
   },
 ];
 
