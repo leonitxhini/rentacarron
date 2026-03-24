@@ -12,7 +12,7 @@ export function Footer() {
           {/* Brand column */}
           <div className="md:col-span-4 flex flex-col gap-6">
             <Link href="/" className="inline-flex items-center">
-              <img src={`${import.meta.env.BASE_URL}images/rron-logo.png`} alt="RRON Rent A Car" className="h-7 w-auto" />
+              <img src={`${import.meta.env.BASE_URL}images/rron-logo.png`} alt="RRON Rent A Car" className="h-10 w-auto" />
             </Link>
             <p className="text-gray-500 text-sm font-light leading-relaxed max-w-[260px]">
               Premium car rental across the Balkans. Elegance, comfort, and reliability — every journey.

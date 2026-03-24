@@ -24,7 +24,7 @@ export function Navbar() {
           <img
             src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
             alt="RRON RENT A CAR"
-            className="h-6 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </Link>
 
