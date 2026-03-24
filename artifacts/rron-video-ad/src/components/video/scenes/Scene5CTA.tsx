@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { sceneTransitions } from '@/lib/video/animations';
 
 export function Scene5CTA() {
-  const cta = "JETZT BUCHEN";
+  const cta = "BOOK NOW";
   const number = "+383 48 188 415";
 
   return (
@@ -102,7 +102,7 @@ export function Scene5CTA() {
         
         {/* Typed in below */}
         <div className="mt-[8vh] flex">
-          {"24/7 VERFÜGBAR".split('').map((char, i) => (
+          {"24/7 AVAILABLE".split('').map((char, i) => (
             <motion.span
               key={i}
               className="font-body text-[5vmin] text-[#25D366] tracking-[0.3em] font-semibold drop-shadow-[0_0_10px_rgba(37,211,102,0.3)]"

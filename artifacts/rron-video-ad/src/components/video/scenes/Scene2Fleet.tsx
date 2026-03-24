@@ -81,7 +81,7 @@ export function Scene2Fleet() {
         transition={{ delay: 0.5 }}
       >
         <div className="font-display text-[10vmin] text-[var(--color-primary)] leading-none"><Counter to={14} duration={1.5} /></div>
-        <div className="font-body text-white/40 text-[2.5vmin] tracking-[0.2em] -mt-1">FAHRZEUGE</div>
+        <div className="font-body text-white/40 text-[2.5vmin] tracking-[0.2em] -mt-1">VEHICLES</div>
       </motion.div>
 
       {/* Car image filling upper 60% */}
@@ -120,7 +120,7 @@ export function Scene2Fleet() {
           transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="w-[8vw] h-[2px] bg-[var(--color-primary)] inline-block" />
-          FLOTTE
+          FLEET
         </motion.div>
 
         <div className="h-[12vh] perspective-[1000px] flex items-end overflow-hidden pb-2 w-full">

@@ -2,13 +2,13 @@ import { motion } from 'framer-motion';
 import { sceneTransitions, charVariants } from '@/lib/video/animations';
 
 const features = [
-  { title: "AIRPORT PICKUP", icon: "✈️", desc: "Direkt am Terminal" },
-  { title: "VOLLKASKO", icon: "🛡️", desc: "Ohne versteckte Kosten" },
-  { title: "24/7 SUPPORT", icon: "📞", desc: "Jederzeit erreichbar" }
+  { title: "AIRPORT PICKUP", icon: "✈️", desc: "Direct at the terminal" },
+  { title: "FULL INSURANCE", icon: "🛡️", desc: "No hidden costs" },
+  { title: "24/7 SUPPORT", icon: "📞", desc: "Always available" }
 ];
 
 export function Scene3Features() {
-  const title = "UNSER SERVICE";
+  const title = "OUR SERVICES";
   
   return (
     <motion.div
