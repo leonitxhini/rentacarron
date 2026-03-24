@@ -305,7 +305,7 @@ export default function Home() {
       {/* Google Reviews */}
       <section className="relative overflow-hidden py-24 lg:py-32 bg-[#e9ecf4]">
         {/* Soft logo watermark */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+        <div className="absolute inset-0 flex items-start justify-center pt-16 pointer-events-none select-none">
           <img
             src={`${import.meta.env.BASE_URL}images/rron-logo.png`}
             alt=""
