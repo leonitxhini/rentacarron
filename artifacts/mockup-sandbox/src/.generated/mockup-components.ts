@@ -2,13 +2,16 @@
 type ModuleMap = Record<string, () => Promise<Record<string, unknown>>>;
 export const modules: ModuleMap = {
   "./components/mockups/ads/AdAirport.tsx": () => import("../components/mockups/ads/AdAirport.tsx"),
+  "./components/mockups/ads/AdFleet.tsx": () => import("../components/mockups/ads/AdFleet.tsx"),
   "./components/mockups/ads/AdGrid.tsx": () => import("../components/mockups/ads/AdGrid.tsx"),
   "./components/mockups/ads/AdNight.tsx": () => import("../components/mockups/ads/AdNight.tsx"),
   "./components/mockups/ads/AdPremium.tsx": () => import("../components/mockups/ads/AdPremium.tsx"),
+  "./components/mockups/ads/AdReview.tsx": () => import("../components/mockups/ads/AdReview.tsx"),
   "./components/mockups/ads/AdScreenFleet.tsx": () => import("../components/mockups/ads/AdScreenFleet.tsx"),
   "./components/mockups/ads/AdScreenHome.tsx": () => import("../components/mockups/ads/AdScreenHome.tsx"),
   "./components/mockups/ads/AdScreenMobile.tsx": () => import("../components/mockups/ads/AdScreenMobile.tsx"),
   "./components/mockups/ads/AdStory.tsx": () => import("../components/mockups/ads/AdStory.tsx"),
+  "./components/mockups/ads/AdWeekend.tsx": () => import("../components/mockups/ads/AdWeekend.tsx"),
   "./components/mockups/ads/AdWhatsApp.tsx": () => import("../components/mockups/ads/AdWhatsApp.tsx"),
   "./components/mockups/devices/IphoneMockup.tsx": () => import("../components/mockups/devices/IphoneMockup.tsx"),
   "./components/mockups/devices/MacbookMockup.tsx": () => import("../components/mockups/devices/MacbookMockup.tsx")
