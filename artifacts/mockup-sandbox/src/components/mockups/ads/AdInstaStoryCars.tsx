@@ -154,7 +154,7 @@ export function AdInstaStoryCars() {
 
         {/* Feature pills */}
         <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 14, flexWrap: "wrap" }}>
-          {["✈ Airport", "♾ Km Falas", "💬 WhatsApp"].map(t => (
+          {["🛡 Sigurim i Plotë", "🔑 Marrje Falas", "💳 Pa Kaution"].map(t => (
             <div key={t} style={{
               padding: "6px 12px", borderRadius: 100,
               background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.11)",
