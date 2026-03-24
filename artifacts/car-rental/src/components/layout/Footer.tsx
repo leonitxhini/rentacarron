@@ -27,8 +27,8 @@ export function Footer() {
 
           {/* Contact Info - Right */}
           <div className="flex flex-col items-start md:items-end gap-3 text-sm text-gray-400 font-light">
-             <a href="mailto:booking@rronrental.com" className="hover:text-white transition-colors flex items-center gap-2">
-               <Mail className="w-4 h-4 text-blue-500" /> booking@rronrental.com
+             <a href="mailto:rentacarron@hotmail.com" className="hover:text-white transition-colors flex items-center gap-2">
+               <Mail className="w-4 h-4 text-blue-500" /> rentacarron@hotmail.com
              </a>
              <a href="tel:+38348188415" className="hover:text-white transition-colors flex items-center gap-2">
                <Phone className="w-4 h-4 text-blue-500" /> +383 48 188 415

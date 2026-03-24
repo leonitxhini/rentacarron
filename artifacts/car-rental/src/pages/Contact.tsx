@@ -15,9 +15,9 @@ const info = [
   {
     icon: Mail,
     label: "Email",
-    value: "info@rronrentacar.com",
+    value: "rentacarron@hotmail.com",
     sub: "We reply within minutes",
-    href: "mailto:info@rronrentacar.com",
+    href: "mailto:rentacarron@hotmail.com",
     color: "indigo",
   },
   {
