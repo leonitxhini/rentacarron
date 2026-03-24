@@ -18,33 +18,35 @@ function normalizeCarBody(body: Record<string, unknown>) {
 
 const PRODUCTION_ORIGINS = ["https://rentacarron.replit.app", "https://rentacarron.com"];
 
-function resolveImageUrl(url: string | null, baseUrl: string): string | null {
+function resolveImageUrl(url: string | null, isLocalDev: boolean): string | null {
   if (!url) return null;
+  // Strip known production origins to get the path component
   for (const origin of PRODUCTION_ORIGINS) {
     if (url.startsWith(origin)) {
-      return baseUrl + url.slice(origin.length);
+      const path = url.slice(origin.length);
+      // In local dev: return just the path — served from car-rental's own public folder via Replit proxy
+      // In production: return the full production URL as-is
+      return isLocalDev ? path : url;
     }
   }
-  if (url.startsWith("/")) return baseUrl + url;
+  if (url.startsWith("/")) return url;
   return url;
 }
 
-function formatCar(car: typeof carsTable.$inferSelect, baseUrl: string = "") {
+function formatCar(car: typeof carsTable.$inferSelect, isLocalDev: boolean = false) {
   return {
     ...car,
     pricePerDay: Number(car.pricePerDay),
     features: car.features || [],
-    images: (car.images || []).map(img => resolveImageUrl(img, baseUrl)).filter(Boolean) as string[],
-    imageUrl: resolveImageUrl(car.imageUrl, baseUrl),
+    images: (car.images || []).map(img => resolveImageUrl(img, isLocalDev)).filter(Boolean) as string[],
+    imageUrl: resolveImageUrl(car.imageUrl, isLocalDev),
     description: car.description || null,
     createdAt: car.createdAt.toISOString(),
   };
 }
 
-function getBaseUrl(req: import("express").Request): string {
-  const host = req.get("host") || "";
-  const proto = req.headers["x-forwarded-proto"] || req.protocol || "http";
-  return `${proto}://${host}`;
+function isLocalDev(_req: import("express").Request): boolean {
+  return process.env.NODE_ENV !== "production";
 }
 
 router.get("/", async (req, res) => {
@@ -59,8 +61,7 @@ router.get("/", async (req, res) => {
     if (category) {
       filtered = filtered.filter(c => c.category.toLowerCase() === (category as string).toLowerCase());
     }
-    const base = getBaseUrl(req);
-    res.json(filtered.map(c => formatCar(c, base)));
+    res.json(filtered.map(c => formatCar(c, isLocalDev(req))));
   } catch (err) {
     req.log.error({ err }, "Failed to list cars");
     res.status(500).json({ error: "Failed to list cars" });
@@ -75,7 +76,7 @@ router.get("/:id", async (req, res) => {
       res.status(404).json({ error: "Car not found" });
       return;
     }
-    res.json(formatCar(rows[0], getBaseUrl(req)));
+    res.json(formatCar(rows[0], isLocalDev(req)));
   } catch (err) {
     req.log.error({ err }, "Failed to get car");
     res.status(500).json({ error: "Failed to get car" });
@@ -86,7 +87,7 @@ router.post("/", async (req, res) => {
   try {
     const data = insertCarSchema.parse(normalizeCarBody(req.body));
     const rows = await db.insert(carsTable).values(data).returning();
-    res.status(201).json(formatCar(rows[0], getBaseUrl(req)));
+    res.status(201).json(formatCar(rows[0], isLocalDev(req)));
   } catch (err) {
     req.log.error({ err }, "Failed to create car");
     if (err instanceof z.ZodError) {
@@ -106,7 +107,7 @@ router.put("/:id", async (req, res) => {
       res.status(404).json({ error: "Car not found" });
       return;
     }
-    res.json(formatCar(rows[0], getBaseUrl(req)));
+    res.json(formatCar(rows[0], isLocalDev(req)));
   } catch (err) {
     req.log.error({ err }, "Failed to update car");
     if (err instanceof z.ZodError) {

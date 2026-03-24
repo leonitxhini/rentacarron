@@ -5,7 +5,7 @@ import { BookingModal } from "./BookingModal";
 
 function resolveImg(url: string | null | undefined): string {
   if (!url) return "";
-  if (url.startsWith("http")) return url;
+  if (url.startsWith("http") || url.startsWith("/")) return url;
   return `${import.meta.env.BASE_URL}${url}`;
 }
 
