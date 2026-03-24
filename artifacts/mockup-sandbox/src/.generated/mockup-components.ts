@@ -11,6 +11,7 @@ export const modules: ModuleMap = {
   "./components/mockups/ads/AdInstaSquare.tsx": () => import("../components/mockups/ads/AdInstaSquare.tsx"),
   "./components/mockups/ads/AdInstaStory.tsx": () => import("../components/mockups/ads/AdInstaStory.tsx"),
   "./components/mockups/ads/AdInstaStoryCars.tsx": () => import("../components/mockups/ads/AdInstaStoryCars.tsx"),
+  "./components/mockups/ads/AdInstaStoryWeb.tsx": () => import("../components/mockups/ads/AdInstaStoryWeb.tsx"),
   "./components/mockups/ads/AdLocations.tsx": () => import("../components/mockups/ads/AdLocations.tsx"),
   "./components/mockups/ads/AdNight.tsx": () => import("../components/mockups/ads/AdNight.tsx"),
   "./components/mockups/ads/AdPremium.tsx": () => import("../components/mockups/ads/AdPremium.tsx"),
