@@ -72,6 +72,7 @@
     "zod": "catalog:"
   },
   "dependencies": {
-    "html-to-image": "^1.11.13"
+    "html-to-image": "^1.11.13",
+    "jszip": "^3.10.1"
   }
 }
