@@ -32,13 +32,9 @@ export default function Home() {
         {/* Content */}
         <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8">
           <div className="max-w-2xl">
-            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-black text-white tracking-[-0.03em] leading-[1.05] mb-6">
-              Premium car<br />rental
+            <h1 className="text-5xl sm:text-6xl lg:text-[80px] font-black text-white tracking-[-0.03em] leading-[1.05] mb-12">
+              Rent A Car<br /><span className="text-blue-400">RRON</span>
             </h1>
-
-            <p className="text-lg lg:text-xl text-gray-300 font-light mb-12 max-w-md leading-relaxed">
-              Premium vehicles. Seamless booking. Uncompromising service across the Balkans.
-            </p>
 
             {/* Feature badges with thin dividers */}
             <div className="flex flex-col gap-4">
