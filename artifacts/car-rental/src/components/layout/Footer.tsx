@@ -42,10 +42,13 @@ export function Footer() {
           
         </div>
         
-        <div className="pt-8 border-t border-white/5 flex justify-center">
+        <div className="pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-2">
           <p className="text-[#666666] text-[10px] tracking-wider uppercase font-light">
             © {new Date().getFullYear()} RRON Rent A Car. All rights reserved.
           </p>
+          <a href="https://lxclouds.com" target="_blank" rel="noopener noreferrer" className="text-[#666666] text-[10px] tracking-wider uppercase font-light hover:text-white transition-colors">
+            by lxclouds.com
+          </a>
         </div>
       </div>
     </footer>
