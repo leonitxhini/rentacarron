@@ -1,85 +1,47 @@
-# Workspace
+# RRON Rent A Car – Workspace
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. RRON Rent A Car — full-featured car rental web app with dark premium design, public site, admin dashboard, and Express REST API.
+pnpm monorepo. Full-featured car rental web app with dark premium design.  
+**Target deployment: 100% Cloudflare (Pages + Functions + D1 + R2)**
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
-- **Node.js version**: 24
-- **Package manager**: pnpm
-- **TypeScript version**: 5.9
-- **API framework**: Express 5
-- **Database**: PostgreSQL + Drizzle ORM
-- **Validation**: Zod, `drizzle-zod`
-- **API codegen**: Orval (from OpenAPI spec)
-- **Build**: esbuild (ESM bundle)
-- **Frontend**: React + Vite, TailwindCSS, shadcn/ui
-- **Routing**: Wouter
-- **State**: TanStack Query (via generated hooks)
-- **Animations**: Framer Motion
-- **i18n**: Custom React context (EN/SQ — Albanian)
+| Layer | Technology |
+|---|---|
+| Frontend | React 19 + Vite + TailwindCSS + shadcn/ui |
+| API (production) | Hono — Cloudflare Pages Functions |
+| API (development) | Express 5 — runs on Replit |
+| Database (production) | Cloudflare D1 (SQLite via Drizzle ORM) |
+| Database (development) | PostgreSQL on Replit |
+| Image storage | Cloudflare R2 (new uploads) + Pages CDN (existing images) |
+| Routing | Wouter |
+| State | TanStack Query |
+| i18n | Custom React context (EN / SQ Albanian) |
 
 ## Structure
 
-```text
-artifacts-monorepo/
-├── artifacts/              # Deployable applications
-│   ├── api-server/         # Express API server  →  Replit deployment
-│   └── car-rental/         # React + Vite frontend →  Cloudflare Pages
-├── lib/                    # Shared libraries
-│   ├── api-spec/           # OpenAPI spec + Orval codegen config
-│   ├── api-client-react/   # Generated React Query hooks
-│   ├── api-zod/            # Generated Zod schemas from OpenAPI
-│   └── db/                 # Drizzle ORM schema + DB connection
-├── scripts/                # Utility scripts
-├── pnpm-workspace.yaml
-└── tsconfig.base.json
+```
+artifacts/
+├── car-rental/             # Frontend + Cloudflare Pages Functions
+│   ├── src/                # React app (Vite)
+│   ├── functions/
+│   │   └── api/
+│   │       └── [[path]].ts # Hono API — handles all /api/* in production
+│   ├── migrations/
+│   │   ├── 0001_schema.sql # D1 table creation
+│   │   └── 0002_seed.sql   # D1 seed data (all cars + locations)
+│   ├── public/
+│   │   ├── _redirects      # SPA fallback
+│   │   └── _headers        # Security + cache headers
+│   └── wrangler.toml       # Cloudflare config (D1 + R2 bindings)
+└── api-server/             # Express API — used only for local dev on Replit
+lib/
+├── db/                     # Drizzle + PostgreSQL (dev only)
+└── api-client-react/       # Generated React Query hooks
 ```
 
-## RRON Car Rental Features
-
-### Public Website
-- **Home** (`/`) — Hero with booking search, featured fleet, how it works, services, footer
-- **Fleet** (`/fleet`) — All cars with category filters and availability badges
-- **Booking** (`/booking/:carId`) — Full booking form (customer details, locations, dates)
-- **Booking Confirmation** (`/booking/confirm/:id`) — Success page with booking details
-- **Language switcher** — EN / SQ (Albanian) toggle in navbar and mobile menu
-
-### Admin Dashboard
-- **Secret URL**: `/rron-secure-4x9k` — not linked from anywhere public
-- **Password**: `admin123` (stored in `ADMIN_SECRET` env var on API server; `VITE_ADMIN_PASSWORD` on frontend)
-- **Auth**: Client-side sessionStorage + server-side Bearer token middleware on all `/api/admin/*` and `/api/upload/*` routes
-- **Dashboard** — Stats: total cars, bookings, revenue, pending
-- **Cars** — Full CRUD: add, edit, delete, toggle availability; image upload
-- **Bookings** — View all bookings, update status
-- **Chart** — Recharts bar chart for booking status breakdown
-
-## API Routes (all prefixed `/api`)
-
-### Public
-- `GET /api/cars` — List cars
-- `GET /api/cars/:id` — Get one car
-- `GET /api/locations` — List locations
-- `POST /api/bookings` — Create booking
-- `GET /api/bookings/:id` — Get booking
-- `GET /api/healthz` — Health check
-
-### Admin (requires `Authorization: Bearer <ADMIN_SECRET>`)
-- `GET /api/admin/stats` — Dashboard statistics
-- `POST/PUT/DELETE /api/cars/:id` — Create/update/delete car
-- `POST/PUT/DELETE /api/locations/:id` — Create/update/delete location
-- `PUT/DELETE /api/bookings/:id` — Update/delete booking
-- `POST /api/upload/car-image` — Upload car image
-
-## Database Tables
-
-- `cars` — Car fleet with pricing, specs, availability, image URL
-- `locations` — Pickup/dropoff locations
-- `bookings` — Customer bookings with status tracking
-
-## Real Business Info
+## Business Info
 
 - **Company**: RRON Rent A Car
 - **Phone**: +383 48 188 415
@@ -89,46 +51,99 @@ artifacts-monorepo/
 - **Instagram**: https://www.instagram.com/rentacarron/
 - **Facebook**: https://www.facebook.com/rentrroni
 
+## Public Pages
+
+- `/` — Hero, fleet preview, how it works, services, footer
+- `/fleet` — All cars with filters
+- `/booking/:carId` — Booking form
+- `/booking/confirm/:id` — Booking confirmation
+
+## Admin Dashboard
+
+- **URL**: `/rron-secure-4x9k` (secret, not linked publicly)
+- **Password**: Set via `VITE_ADMIN_PASSWORD` (Cloudflare Pages env var)
+- **API auth**: Bearer token sent automatically; API checks `ADMIN_SECRET` Worker var
+
 ---
 
-## Deployment
+## Cloudflare Deployment Guide
 
-### API Server → Replit
+### Prerequisites — do once
 
-1. Click **Deploy** in Replit
-2. Set env var `ADMIN_SECRET` = a strong secret (same as frontend's `VITE_ADMIN_PASSWORD`)
-3. Set env var `ALLOWED_ORIGINS` = your Cloudflare Pages URL (e.g. `https://rronrentacar.pages.dev`)
-4. `DATABASE_URL` is automatically set by Replit
+1. [Cloudflare account](https://dash.cloudflare.com) (free)
+2. GitHub repo connected (push your code there)
 
-### Frontend → Cloudflare Pages
+### Step 1 — Create D1 Database
 
+In Cloudflare Dashboard → **D1** → **Create database** → name it `rron-db`  
+Copy the **Database ID** (looks like `a1b2c3d4-...`)
+
+### Step 2 — Update wrangler.toml
+
+Open `artifacts/car-rental/wrangler.toml` and replace:
+```
+database_id = "PLACEHOLDER_REPLACE_WITH_YOUR_D1_ID"
+```
+with your actual Database ID. Then push to GitHub.
+
+### Step 3 — Run Migrations
+
+In Cloudflare Dashboard → D1 → `rron-db` → **Console**, run:
+
+```sql
+-- Paste contents of migrations/0001_schema.sql
+-- Then paste contents of migrations/0002_seed.sql
+```
+
+Or via Wrangler CLI:
+```bash
+wrangler d1 execute rron-db --file=artifacts/car-rental/migrations/0001_schema.sql --remote
+wrangler d1 execute rron-db --file=artifacts/car-rental/migrations/0002_seed.sql --remote
+```
+
+### Step 4 — Create R2 Bucket (for admin image uploads)
+
+Cloudflare Dashboard → **R2** → **Create bucket** → name it `rron-images`  
+Enable **Public access** → copy the public URL (e.g. `https://pub-xxx.r2.dev`)
+
+### Step 5 — Connect GitHub to Cloudflare Pages
+
+Dashboard → **Pages** → **Connect to Git** → select repo
+
+**Build settings:**
 | Setting | Value |
 |---|---|
-| Build command | `pnpm --filter @workspace/car-rental run build` |
-| Output directory | `artifacts/car-rental/dist` |
-| Node.js version | 22 |
+| Root directory | `artifacts/car-rental` |
+| Build command | `cd ../.. && pnpm install --frozen-lockfile && pnpm --filter @workspace/car-rental run build` |
+| Build output directory | `dist` |
+| Node.js version | `22` |
 
-**Environment variables in Cloudflare dashboard:**
-
+**Environment variables:**
 | Variable | Value |
 |---|---|
-| `VITE_API_URL` | `https://rentacarron.replit.app` |
-| `VITE_ADMIN_PASSWORD` | `admin123` (or your chosen secret) |
+| `VITE_ADMIN_PASSWORD` | Your chosen admin password |
 
-**SPA routing**: already handled by `artifacts/car-rental/public/_redirects`  
-**Security headers**: already set in `artifacts/car-rental/public/_headers`
+**Bindings (Pages → Settings → Functions → Bindings):**
+| Type | Name | Value |
+|---|---|---|
+| D1 Database | `DB` | `rron-db` |
+| R2 Bucket | `IMAGES` | `rron-images` |
+| Variable | `ADMIN_SECRET` | Same as VITE_ADMIN_PASSWORD |
+| Variable | `R2_PUBLIC_URL` | Your R2 public URL |
+
+### Step 6 — Deploy!
+
+Click **Save and Deploy**. Done — everything runs on Cloudflare.
 
 ---
 
-## TypeScript & Composite Projects
+## Local Development
 
-- `lib/*` packages are composite and emit declarations via `tsc --build`
-- `artifacts/*` are leaf packages checked with `tsc --noEmit`
-- Root `tsconfig.json` lists only lib packages as project references
+The Express API (`artifacts/api-server`) is used only for local development on Replit.  
+It connects to the Replit PostgreSQL database.
 
-## Root Scripts
+- Frontend: `http://localhost:22460`  
+- API: `http://localhost:8080`
 
-- `pnpm run build` — runs `typecheck` first, then recursively runs `build`
-- `pnpm run typecheck` — runs `tsc --build --emitDeclarationOnly`
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API client from OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes
+In production, the frontend calls `/api/*` which is handled by Pages Functions.  
+`VITE_API_URL` is **not set** in production — same-origin calls work automatically.

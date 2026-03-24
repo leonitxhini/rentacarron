@@ -1,0 +1,16 @@
+name = "rron-car-rental"
+compatibility_date = "2024-11-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "./dist"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "rron-db"
+database_id = "PLACEHOLDER_REPLACE_WITH_YOUR_D1_ID"
+
+[[r2_buckets]]
+binding = "IMAGES"
+bucket_name = "rron-images"
+
+[vars]
+ADMIN_SECRET = "admin123"

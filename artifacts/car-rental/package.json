@@ -73,5 +73,9 @@
     "vite": "catalog:",
     "wouter": "^3.3.5",
     "zod": "catalog:"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20260317.1",
+    "hono": "^4.12.9"
   }
 }
