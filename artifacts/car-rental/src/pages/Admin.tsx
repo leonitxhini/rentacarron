@@ -287,7 +287,7 @@ function CarsTab() {
                       <div className="w-16 h-11 rounded-lg overflow-hidden bg-white/5 shrink-0">
                         {car.imageUrl ? (
                           <img
-                            src={car.imageUrl.startsWith("http") ? car.imageUrl : `${import.meta.env.BASE_URL}${car.imageUrl}`}
+                            src={car.imageUrl}
                             alt=""
                             className="w-full h-full object-cover"
                           />
@@ -400,11 +400,7 @@ function CarFormModal({ car, onClose, onSaved }: { car: Car | null; onClose: () 
   );
 
   const [imagePreview, setImagePreview] = useState<string>(
-    car?.imageUrl
-      ? car.imageUrl.startsWith("http")
-        ? car.imageUrl
-        : `${import.meta.env.BASE_URL}${car.imageUrl}`
-      : ""
+    car?.imageUrl ?? ""
   );
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
