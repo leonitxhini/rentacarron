@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { setAuthTokenGetter } from '@workspace/api-client-react';
 
 const STORAGE_KEY = 'admin_token';
-const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD ?? 'admin123';
+const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD ?? 'ermal123admin';
 
 // Keep auth token getter in sync with session storage across renders
 setAuthTokenGetter(() => sessionStorage.getItem(STORAGE_KEY));
