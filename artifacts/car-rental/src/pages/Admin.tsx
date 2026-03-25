@@ -451,8 +451,9 @@ function CarFormModal({ car, onClose, onSaved }: { car: Car | null; onClose: () 
         toast({ title: "Car added to fleet" });
       }
       onSaved();
-    } catch {
-      toast({ title: "Save failed", variant: "destructive" });
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      toast({ title: "Save failed", description: msg, variant: "destructive" });
     } finally {
       setSaving(false);
     }
