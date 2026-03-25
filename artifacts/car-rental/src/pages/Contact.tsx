@@ -129,16 +129,19 @@ export default function Contact() {
             })}
 
             {/* Map */}
-            <div className="rounded-2xl overflow-hidden border border-gray-100 shadow-sm" style={{ height: 200 }}>
-              <iframe
-                title="RRON Rent A Car Location"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=21.1314%2C42.3580%2C21.1714%2C42.3860&layer=mapnik&marker=42.3717%2C21.1514"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-              />
+            <div className="w-full bg-gray-100 rounded-2xl overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.06)] border border-white relative p-2" style={{ height: 360 }}>
+              <div className="w-full h-full rounded-xl overflow-hidden">
+                <iframe
+                  src="https://maps.google.com/maps?q=Rent+A+Car+RRON,+Emin+Duraku,+Ferizaj+70000,+Kosovo&t=m&z=16&output=embed&iwloc=near"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="RRON Rent A Car location"
+                />
+              </div>
             </div>
           </div>
 
